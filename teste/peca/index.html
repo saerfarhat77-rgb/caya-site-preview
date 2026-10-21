@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caya Diamonds</title>
+<link rel="icon" href="../../assets/marca/favicon.png">
+<meta name="description" content="Diamante natural e ouro 18k.">
+<link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+/* ---------- pagina da peca ---------- */
+.trilha{padding:28px var(--g) 0;font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);font-stretch:110%}
+.trilha a{text-decoration:none}
+.trilha a:hover{color:var(--preto)}
+.trilha span{margin:0 10px}
+
+.ficha-peca{display:grid;grid-template-columns:minmax(0,560px) minmax(0,420px);gap:clamp(40px,7vw,128px);
+  padding:clamp(28px,4vw,56px) var(--g) var(--respiro);justify-content:center;align-items:start}
+
+.galeria{display:grid;gap:14px}
+.galeria .foto{max-width:560px}
+.miniaturas{display:flex;gap:10px}
+.nota-foto{font-size:12px;color:var(--cinza)}
+.miniaturas button{width:64px;aspect-ratio:4/5;overflow:hidden;opacity:.55;transition:opacity .25s var(--ease);outline-offset:3px}
+.miniaturas button img{width:100%;height:100%;object-fit:cover}
+.miniaturas button:hover{opacity:.85}
+.miniaturas button[aria-pressed="true"]{opacity:1;outline:1px solid var(--preto)}
+
+.info{position:sticky;top:100px;display:flex;flex-direction:column;gap:28px}
+.info h1{font-weight:300;font-stretch:110%;font-size:clamp(26px,2.4vw,34px);line-height:1.1;letter-spacing:.005em;margin-top:8px}
+.info .preco{font-size:19px;font-weight:400;letter-spacing:.02em}
+.info .resumo{color:var(--texto-2);max-width:40ch;font-size:15px}
+.info .topo-info{display:grid;gap:14px;padding-bottom:26px;border-bottom:1px solid var(--linha)}
+.info .rot{margin-bottom:12px}
+.info .eixo{gap:6px}
+.info .opc{font-size:12px;padding:8px 13px}
+.info .ouro-b,.info .bandas button{width:28px;height:28px}
+.info .eixo:has(.ouro-b){gap:14px}
+.comprar{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;background:var(--preto);color:var(--fundo);border:1px solid var(--preto);
+  font-size:11px;font-weight:400;font-stretch:110%;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .3s var(--ease),color .3s}
+.comprar:hover{background:transparent;color:var(--preto)}
+.comprar svg{width:15px;height:15px}
+.nota{font-size:13px;color:var(--cinza);margin-top:-14px}
+
+/* secoes que abrem e fecham */
+.secoes{border-top:1px solid var(--linha)}
+.secoes details{border-bottom:1px solid var(--linha)}
+.secoes summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:18px 0;
+  font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;font-stretch:110%}
+.secoes summary::-webkit-details-marker{display:none}
+.secoes summary svg{width:14px;height:14px;transition:transform .3s var(--ease)}
+.secoes details[open] summary svg{transform:rotate(45deg)}
+.secoes .conteudo{padding:0 0 22px;color:var(--texto-2);font-size:14px;max-width:46ch}
+.secoes ul{list-style:none;display:grid;gap:8px}
+.secoes li{display:grid;grid-template-columns:120px 1fr;gap:12px}
+.secoes li b{font-weight:400;color:var(--cinza);font-size:12px;letter-spacing:.04em}
+.secoes .so-texto li{grid-template-columns:1fr}
+
+/* mais da colecao */
+.mais{margin:0 var(--g) var(--respiro)}
+.mais .lote-cab{grid-template-columns:minmax(0,1fr) auto}
+.mais .lote-cab a{font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--preto);padding-bottom:4px}
+
+.sumiu{padding:var(--respiro) var(--g);text-align:center}
+.sumiu a{font-size:11px;letter-spacing:.18em;text-transform:uppercase}
+
+@media (max-width:900px){
+  .ficha-peca{grid-template-columns:minmax(0,1fr);max-width:560px;margin:0 auto}
+  .info{position:static}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="../papel/index.html"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <nav class="indice" aria-label="Coleções" id="indice"></nav>
+    <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
+  </div>
+</header>
+
+<main id="principal"></main>
+
+<footer class="rodape">
+  <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p></div>
+  <div><b>Atendimento</b><p><a id="zap" href="#">WhatsApp</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
+  <div><b>Aro sob medida</b><p>Anéis Halo, Candy Cut e Mosaico são feitos na sua medida. Combinamos pelo WhatsApp depois do pedido.</p></div>
+</footer>
+
+<script src="../../data/catalogo.js"></script>
+<script src="../comum.js"></script>
+<script src="../sacola.js"></script>
+<script>
+(function(){
+const {C,brl,ct,nomeBanda,corBanda,peca,variacao,rotulo,aPartirDe,lerEndereco,sacola,linkWhatsApp}=Caya;
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,a={},h='')=>{const e=document.createElement(t);for(const k in a)e.setAttribute(k,a[k]);if(h)e.innerHTML=h;return e};
+const SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
+const OK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+const MAIS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>';
+const RAIZ='../../';
+const OURO={branco:'linear-gradient(135deg,#F4F4F2,#C9C9C6)',amarelo:'linear-gradient(135deg,#F1D88F,#C9A24E)'};
+
+$('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
+C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../papel/index.html#'+c.id},c.nome)));
+Caya.montarSacola(RAIZ);
+
+const sel=lerEndereco();
+const main=$('#principal');
+if(!sel){
+  main.innerHTML=`<div class="sumiu"><p>Não encontramos essa peça.</p><p style="margin-top:18px"><a href="../papel/index.html">Ver todas as peças</a></p></div>`;
+  return;
+}
+const p=sel.p, e=sel.e;
+const col=C.colecoes.find(c=>c.id===p.colecao);
+const anel=/anel|alian/i.test(p.tipo);
+
+main.innerHTML=`
+  <nav class="trilha" aria-label="Você está em"><a href="../papel/index.html">Peças</a><span>/</span><a href="../papel/index.html#${col.id}">${col.nome}</a><span>/</span>${p.nome}</nav>
+  <section class="ficha-peca">
+    <div class="galeria">
+      <div class="foto"><img alt="" width="1024" height="1272"></div>
+      <div class="miniaturas" role="group" aria-label="Fotos da peça"></div>
+      <p class="nota-foto" hidden></p>
+    </div>
+    <div class="info">
+      <div class="topo-info">
+        <span class="pequeno">${p.tipo}</span>
+        <h1>${p.nome}</h1>
+        <span class="preco" data-r="preco"></span>
+        <p class="resumo">${p.resumo}</p>
+      </div>
+      <div class="escolhas-peca" style="display:grid;gap:26px"></div>
+      <div class="acao-peca"></div>
+      ${anel?'<p class="nota">Medida do aro combinada pelo WhatsApp depois do pedido.</p>':''}
+      <div class="secoes"></div>
+    </div>
+  </section>`;
+
+/* ---- escolhas ---- */
+const esc=$('.escolhas-peca',main);
+if(p.eixos.pts){
+  const maior=Math.max(...p.eixos.pts), muitos=p.eixos.pts.length>2;
+  const g=el('div',{},`<div class="rot"><span class="pequeno">Pedra</span><b data-r="pts"></b></div>`);
+  const box=el('div',muitos?{class:'regua',role:'group','aria-label':'Pontos do diamante'}:{class:'eixo',role:'group','aria-label':'Pontos do diamante'});
+  p.eixos.pts.forEach(v=>{
+    const b=muitos
+      ? el('button',{type:'button','data-k':'pts','data-v':v,'aria-pressed':'false','aria-label':ct(v)},`<span class="pedra" style="width:${Math.round(10+22*Math.pow(v/maior,.83))}px;height:${Math.round(10+22*Math.pow(v/maior,.83))}px"></span><span class="mono">${v} pts</span>`)
+      : el('button',{type:'button',class:'opc','data-k':'pts','data-v':v,'aria-pressed':'false'},ct(v));
+    b.onclick=()=>{e.pts=v;atual()}; box.append(b)});
+  g.append(box); esc.append(g);
+}
+if(p.eixos.banda){
+  const g=el('div',{},`<div class="rot"><span class="pequeno">Banda</span><b data-r="banda"></b></div>`);
+  const box=el('div',{class:'bandas',role:'group','aria-label':'Cor da banda'});
+  C.bandas.forEach(bd=>{const b=el('button',{type:'button','data-k':'banda','data-v':bd.id,'aria-pressed':'false','aria-label':'Banda '+bd.nome,title:bd.nome,style:'background:'+bd.cor});
+    b.onclick=()=>{e.banda=bd.id;atual()}; box.append(b)});
+  g.append(box); esc.append(g);
+}
+if(p.eixos.ouro){
+  const g=el('div',{},`<div class="rot"><span class="pequeno">Ouro 18k</span><b data-r="ouro"></b></div>`);
+  const box=el('div',{class:'eixo',role:'group','aria-label':'Cor do ouro'});
+  p.eixos.ouro.forEach(v=>{const b=el('button',{type:'button',class:'ouro-b','data-k':'ouro','data-v':v,'aria-pressed':'false','aria-label':'Ouro '+v,title:'Ouro '+v,style:'background:'+OURO[v]});
+    b.onclick=()=>{e.ouro=v;atual()}; box.append(b)});
+  g.append(box); esc.append(g);
+}
+if(!esc.children.length) esc.remove();
+
+/* ---- acao ---- */
+const acaoBox=$('.acao-peca',main);
+if(p.consulta){
+  acaoBox.append(el('a',{class:'comprar',href:linkWhatsApp(`Olá! Quero conversar sobre o ${p.nome}.`),target:'_blank',rel:'noopener'},`<span>Conversar no WhatsApp</span>${SETA}`));
+}else{
+  const b=el('button',{class:'comprar',type:'button',style:'width:100%'},`<span>Adicionar à sacola</span>${SETA}`);
+  b.onclick=()=>{sacola.adicionar(p,{...e}); b.innerHTML=`<span>Na sacola</span>${OK}`;
+    setTimeout(()=>b.innerHTML=`<span>Adicionar à sacola</span>${SETA}`,1600); Caya.abrirSacola()};
+  acaoBox.append(b);
+}
+
+/* ---- secoes ---- */
+function secao(titulo,html,aberta){return `<details${aberta?' open':''}><summary>${titulo}${MAIS}</summary><div class="conteudo">${html}</div></details>`}
+function montarSecoes(){
+  const linhas=[];
+  if(e.pts) linhas.push(['Diamante',p.pedras?p.pedras:`${e.pts} pontos (${ct(e.pts)})`]);
+  if(e.banda) linhas.push(['Banda','Silicone premium, '+nomeBanda(e.banda).toLowerCase()]);
+  if(e.ouro) linhas.push(['Ouro','18k '+e.ouro]);
+  const ficha=`<ul>${linhas.map(([a,b])=>`<li><b>${a}</b><span>${b}</span></li>`).join('')}</ul>
+    <ul class="so-texto" style="margin-top:14px">${p.ficha.map(f=>`<li>${f}</li>`).join('')}</ul>`;
+  $('.secoes',main).innerHTML=
+    secao('Descrição',`<p>${p.texto}</p>`,true)+
+    secao('Ficha técnica',ficha)+
+    (anel?secao('Medida do aro','<p>Depois do pedido, combinamos a medida do aro pelo WhatsApp. Se for presente e você não souber a medida, também ajudamos por lá.</p>'):'')+
+    secao('Atendimento',`<p>Dúvidas sobre a peça, prazo ou pagamento: <a href="${linkWhatsApp('Olá! Tenho uma dúvida sobre o '+p.nome+'.')}" target="_blank" rel="noopener">fale com a Caya no WhatsApp</a>.</p>`);
+}
+
+/* ---- galeria ---- */
+const fotoGrande=$('.galeria .foto img',main), minis=$('.miniaturas',main);
+let fotoAtual=0;
+function trocarFoto(src){ if(fotoGrande.getAttribute('src')===src) return; fotoGrande.classList.add('troca');
+  const n=new Image(); n.onload=()=>{fotoGrande.src=src; fotoGrande.classList.remove('troca')}; n.src=src; }
+function montarGaleria(v){
+  minis.innerHTML='';
+  if(fotoAtual>=v.fotos.length) fotoAtual=0;
+  v.fotos.forEach((f,i)=>{const b=el('button',{type:'button','aria-pressed':String(i===fotoAtual),'aria-label':'Foto '+(i+1)},`<img src="${RAIZ+f}" alt="">`);
+    b.onclick=()=>{fotoAtual=i; montarGaleria(v)}; minis.append(b)});
+  minis.hidden=v.fotos.length<2;
+  const nf=$('.nota-foto',main); nf.hidden=!v.foto_ouro;
+  if(v.foto_ouro) nf.textContent=`Foto em ouro ${v.foto_ouro}. Sua peça é feita em ouro ${e.ouro}.`;
+  trocarFoto(RAIZ+v.fotos[fotoAtual]);
+  fotoGrande.alt=`${p.nome}${rotulo(p,e)?', '+rotulo(p,e):''}`;
+}
+
+/* ---- atualizar tudo quando a escolha muda ---- */
+function atual(){
+  const v=variacao(p,e);
+  $('[data-r=preco]',main).textContent=p.consulta?'Sob consulta':brl(v.preco);
+  main.querySelectorAll('[data-k]').forEach(b=>b.setAttribute('aria-pressed',String(e[b.dataset.k])===b.dataset.v));
+  const r=(k,t)=>{const x=$(`[data-r=${k}]`,main); if(x) x.textContent=t};
+  if(e.pts) r('pts',p.pedras||ct(e.pts));
+  if(e.banda) r('banda',nomeBanda(e.banda));
+  if(e.ouro) r('ouro',e.ouro[0].toUpperCase()+e.ouro.slice(1));
+  montarGaleria(v); montarSecoes();
+  const q=new URLSearchParams({peca:p.id}); for(const k of Object.keys(p.eixos)) q.set(k,e[k]);
+  history.replaceState(null,'','?'+q);
+  document.title=`${p.nome}${rotulo(p,e)?' — '+rotulo(p,e):''} | Caya Diamonds`;
+}
+atual();
+
+/* ---- mais da colecao (ou das outras, se a peca estiver sozinha) ---- */
+let outras=C.pecas.filter(x=>x.colecao===p.colecao&&x.id!==p.id), titulo='Mais de '+col.nome, link=`<a href="../papel/index.html#${col.id}">Ver coleção</a>`;
+if(!outras.length){outras=C.pecas.filter(x=>x.id!==p.id).slice(0,4); titulo='Outras peças'; link='<a href="../papel/index.html">Ver todas</a>';}
+const mais=el('section',{class:'mais','aria-labelledby':'t-mais'},`<header class="lote-cab"><h2 id="t-mais">${titulo}</h2>${link}</header><div class="pecas"></div>`);
+outras.slice(0,4).forEach(x=>{const v=variacao(x,x.padrao); const q=new URLSearchParams({peca:x.id});
+  $('.pecas',mais).append(el('article',{class:'peca'},`<a class="foto" href="?${q}"><img src="${RAIZ+v.fotos[0]}" alt="${x.nome}" loading="lazy" width="1024" height="1272"></a>
+    <div class="peca-corpo"><div class="peca-nome"><h3><span class="pequeno">${x.tipo}</span><a class="nome-link" href="?${q}">${x.nome}</a></h3><span class="mono">${x.consulta?'sob consulta':'a partir de '+brl(aPartirDe(x))}</span></div></div>`))});
+main.append(mais);
+})();
+</script>
+</body>
+</html>
