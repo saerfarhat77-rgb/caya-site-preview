@@ -22,6 +22,7 @@
 .galeria{display:grid;gap:14px}
 .galeria .foto{max-width:560px}
 .miniaturas{display:flex;gap:10px}
+.miniaturas[hidden]{display:none}
 .nota-foto{font-size:12px;color:var(--cinza)}
 .miniaturas button{width:64px;aspect-ratio:4/5;overflow:hidden;opacity:.55;transition:opacity .25s var(--ease);outline-offset:3px}
 .miniaturas button img{width:100%;height:100%;object-fit:cover}
@@ -189,6 +190,9 @@ if(p.eixos.ouro){
   p.eixos.ouro.forEach(v=>{const b=el('button',{type:'button',class:'ouro-b','data-k':'ouro','data-v':v,'aria-pressed':'false','aria-label':'Ouro '+v,title:'Ouro '+v,style:'background:'+OURO[v]});
     b.onclick=()=>{e.ouro=v;atual()}; box.append(b)});
   g.append(box); esc.append(g);
+}
+if(p.cores){
+  esc.append(el('div',{},`<div class="rot"><span class="pequeno">As seis cores na caixa</span></div><ul class="todas-cores">${p.cores.map(id=>`<li><i style="background:${corBanda(id)}"></i>${nomeBanda(id)}</li>`).join('')}</ul>`));
 }
 if(!esc.children.length) esc.remove();
 

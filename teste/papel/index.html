@@ -25,14 +25,6 @@
   <section class="banner" id="banner" aria-label="Destaques"></section>
   <div class="abre"><h1>Diamante natural e ouro 18k. Escolha a pedra, a cor e o ouro direto na peça.</h1></div>
   <div id="lotes"></div>
-  <section class="caixa" aria-labelledby="t-caixa">
-    <figure><img src="../../assets/editorial/caixa.webp" alt="Caixa Caya Colors aberta, com bandas de silicone em várias cores" loading="lazy" width="1000" height="1250"></figure>
-    <div class="caixa-texto">
-      <h2 id="t-caixa">O Caya Colors chega na caixa Caya</h2>
-      <p>Todo Caya Colors é entregue na caixa Caya, pronto para presentear.</p>
-      <a class="acao" href="../peca/index.html?peca=caya-colors"><span>Escolher<span class="longo"> o seu Caya Colors</span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
-    </div>
-  </section>
 </main>
 
 <footer class="rodape">
@@ -47,7 +39,7 @@
 <script src="../banner.js"></script>
 <script>
 (function(){
-const {C,brl,ct,nomeBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
+const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
 const $=(s,r=document)=>r.querySelector(s);
 const el=(t,a={},h='')=>{const e=document.createElement(t);for(const k in a)e.setAttribute(k,a[k]);if(h)e.innerHTML=h;return e};
 const SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
@@ -101,6 +93,22 @@ function montarColors(p){
   atual(); return box;
 }
 
+/* Caya Colors Collection: mesma diagramacao do anel, com as seis cores a mostra */
+function montarCollection(p){
+  const v=p.variacoes[0], link=linkPeca(p,{}), ed=EDITORIAL[p.id];
+  const box=el('div',{class:'colors collection',id:'peca-'+p.id});
+  box.innerHTML=`<a class="foto" href="${link}"><img src="../../${v.fotos[0]}" alt="${p.nome}: caixa com o anel e as bandas nas seis cores" loading="lazy" width="1024" height="1272"></a>
+    <div class="painel">
+      <div class="peca-nome"><h3><span class="pequeno">${p.tipo}</span><a class="nome-link" href="${link}">${p.nome}</a></h3><span class="mono">${brl(v.preco)}</span></div>
+      <p class="resumo">${p.resumo}</p>
+      <div><div class="rot"><span class="pequeno">As seis cores na caixa</span></div>
+        <ul class="todas-cores">${p.cores.map(id=>`<li><i style="background:${corBanda(id)}"></i>${nomeBanda(id)}</li>`).join('')}</ul></div>
+    </div>`;
+  $('.painel',box).append(acao(p,()=>({})));
+  if(ed) box.append(el('figure',{class:'editorial'},`<img src="../../assets/editorial/${ed.img}.webp" alt="${ed.alt}" loading="lazy" width="1000" height="1250"><figcaption class="pequeno">${ed.legenda}</figcaption>`));
+  return box;
+}
+
 function montarPeca(p,sozinha){
   const e=Object.assign({},p.padrao, sel&&sel.p.id===p.id?sel.e:{});
   const art=el('article',{class:'peca',id:'peca-'+p.id});
@@ -131,6 +139,7 @@ function montarPeca(p,sozinha){
 }
 
 const EDITORIAL={
+  'colors-collection':{img:'collection',alt:'Mãos abrindo a caixa Caya Colors Collection com as bandas coloridas',legenda:'A caixa Caya Colors Collection'},
   'caya-colors':{img:'caya-colors',alt:'Mãos com cinco anéis Caya Colors em cores diferentes',legenda:'Caya Colors no dia a dia'},
   'halo':{img:'halo',alt:'Mão com anéis de diamante em ouro branco sobre blazer preto',legenda:'Halo'}
 };
@@ -148,7 +157,8 @@ C.colecoes.forEach(c=>{
     <div class="forro"></div>`;
   const forro=$('.forro',sec);
   const ed=EDITORIAL[c.id], fig=ed?el('figure',{class:'editorial'},`<img src="../../assets/editorial/${ed.img}.webp" alt="${ed.alt}" loading="lazy" width="1000" height="1250"><figcaption class="pequeno">${ed.legenda}</figcaption>`):null;
-  if(c.id==='caya-colors'){ const cc=montarColors(ps[0]); if(fig) cc.append(fig); forro.append(cc); }
+  if(c.id==='caya-colors'){ const cc=montarColors(ps[0]); if(fig) cc.append(fig); forro.append(cc);
+    ps.slice(1).forEach(p=>forro.append(montarCollection(p))); }
   else{ const box=el('div',{class:'pecas'}); box.dataset.n=ps.length; box.style.setProperty('--n',ps.length);
     if(fig) box.prepend(fig);
     ps.forEach(p=>box.append(montarPeca(p,false))); forro.append(box); }

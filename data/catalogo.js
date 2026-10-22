@@ -310,6 +310,38 @@ window.CAYA = {
    ]
   },
   {
+   "id": "colors-collection",
+   "colecao": "caya-colors",
+   "nome": "Caya Colors Collection",
+   "tipo": "Caixa",
+   "resumo": "Um diamante, as seis cores da linha Caya Colors numa caixa só.",
+   "texto": "A linha Caya Colors completa: o anel com diamante natural em bezel de ouro 18k e as bandas de silicone nas seis cores da coleção, para trocar a cor conforme o dia. One diamond, a different you everyday.",
+   "ficha": [
+    "Anel Caya Colors com diamante natural em bezel de ouro 18k",
+    "Bandas de silicone premium nas seis cores: branco, preto, marrom, rosa, bege e amarelo",
+    "Caixa Caya",
+    "Garantia Caya Diamonds"
+   ],
+   "cores": [
+    "branco",
+    "preto",
+    "marrom",
+    "rosa",
+    "bege",
+    "amarelo"
+   ],
+   "eixos": {},
+   "padrao": {},
+   "variacoes": [
+    {
+     "preco": 2500,
+     "fotos": [
+      "assets/img/collection-still.webp"
+     ]
+    }
+   ]
+  },
+  {
    "id": "halo-solitaire",
    "colecao": "halo",
    "nome": "Halo Solitaire",

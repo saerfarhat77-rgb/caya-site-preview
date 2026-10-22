@@ -78,7 +78,7 @@ a{color:inherit;text-underline-offset:.25em;text-decoration-thickness:1px}
 .acao svg{width:14px;height:14px}
 
 /* ---------- Caya Colors ---------- */
-.colors{display:grid;grid-template-columns:minmax(0,400px) minmax(0,440px);gap:clamp(32px,6vw,110px);align-items:center;max-width:1240px}
+.colors{display:grid;grid-template-columns:minmax(0,400px) minmax(0,440px);gap:clamp(32px,6vw,110px);align-items:start;max-width:1240px}
 .painel{display:flex;flex-direction:column;gap:clamp(26px,2.6vw,34px)}
 .painel .peca-nome h3{font-size:clamp(18px,1.5vw,21px)}
 .painel .peca-nome .mono{font-size:clamp(17px,1.4vw,20px)}
@@ -198,8 +198,13 @@ a.foto{display:block}
 /* ---------- fotos editoriais nas colecoes ---------- */
 .editorial{margin:0;display:flex;flex-direction:column;gap:12px}
 .editorial img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;background:#C4C2BE}
-.colors{grid-template-columns:minmax(0,380px) minmax(0,420px) minmax(0,300px);gap:clamp(28px,4.6vw,80px)}
-.colors .editorial{align-self:center}
+.colors{grid-template-columns:minmax(0,340px) minmax(0,400px) minmax(0,340px);gap:clamp(28px,4.6vw,80px)}
+.colors .editorial{align-self:start}
+.colors>.painel{align-self:center}
+.collection{margin-top:clamp(64px,8vw,112px)}
+.todas-cores{list-style:none;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.todas-cores li{display:flex;flex-direction:column;align-items:center;gap:8px;font-size:11px;letter-spacing:.06em;color:var(--texto-2)}
+.todas-cores i{display:block;width:30px;height:30px;border-radius:50%;border:1px solid rgba(20,20,20,.18)}
 
 /* ---------- a caixa Caya ---------- */
 .caixa{margin:0 var(--g) var(--respiro);display:grid;grid-template-columns:minmax(0,420px) minmax(0,400px);gap:clamp(32px,7vw,120px);
@@ -212,7 +217,7 @@ a.foto{display:block}
 .caixa-texto .acao{margin-top:12px;align-self:stretch}
 
 @media (max-width:1100px){
-  .colors{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,3vw,40px)}
+  .colors{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,1fr);gap:clamp(20px,3vw,40px)}
 }
 @media (min-width:761px) and (max-width:940px){
   .colors{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);max-width:none}
@@ -291,4 +296,11 @@ a.foto{display:block}
   /* sacola */
   .sacola header,.sacola footer{padding-inline:20px}
   .sacola .lista{padding-inline:20px}
+}
+
+@media (max-width:760px){
+  .collection{margin-top:48px}
+  .todas-cores{grid-template-columns:repeat(6,minmax(0,1fr));gap:4px}
+  .todas-cores i{width:24px;height:24px}
+  .todas-cores li{font-size:11px;letter-spacing:0}
 }
