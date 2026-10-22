@@ -218,3 +218,72 @@ a.foto{display:block}
 @media (max-width:860px){
   .caixa{grid-template-columns:minmax(0,1fr);max-width:460px;margin-inline:auto}
 }
+
+/* =========================================================
+   CELULAR: escala propria, mais compacta (vale por ultimo)
+   ========================================================= */
+@media (max-width:760px){
+  :root{--g:18px;--respiro:56px}
+  body{font-size:14px}
+
+  /* cabecalho */
+  .topo-in{padding:14px var(--g) 10px;row-gap:10px}
+  .marca img{height:16px}
+  .indice{gap:18px}
+  .indice a{font-size:11px;letter-spacing:.14em;padding:4px 0}
+  .sacola-btn{font-size:11px;letter-spacing:.14em;gap:8px}
+
+  /* abertura */
+  .abre{padding:30px var(--g) 34px}
+  .abre h1{font-size:17px;line-height:1.45;max-width:30ch}
+
+  /* colecao: titulo e descricao; os dados ficam nas pecas */
+  .lote-cab{padding-bottom:12px;margin-bottom:20px;gap:0}
+  .lote-cab h2{font-size:22px}
+  .lote-cab .linha{font-size:13px;margin-top:4px}
+  .lote-cab dl{display:none}
+
+  /* grade de pecas */
+  .pecas{gap:26px 12px}
+  .peca-corpo{padding-top:10px;gap:9px}
+  .peca-nome{flex-direction:column;gap:3px}
+  .peca-nome h3{font-size:13px}
+  .peca-nome h3 .pequeno{margin-bottom:3px}
+  .peca-nome .mono{font-size:13px}
+  .escolhas{gap:8px 12px}
+  .opc{font-size:11px;padding:4px 7px}
+  .ouro-b{width:16px;height:16px}
+  .acao{padding:8px 0}
+  .editorial{gap:8px}
+
+  /* Caya Colors: foto e nome lado a lado, escolhas embaixo */
+  .colors{grid-template-columns:minmax(0,42%) minmax(0,1fr);column-gap:16px;row-gap:18px;max-width:none;align-items:start}
+  .colors>.foto{grid-row:1 / span 2}
+  .colors .painel{display:contents}
+  .colors .painel .peca-nome{grid-column:2;align-self:end}
+  .colors .painel .peca-nome h3{font-size:16px}
+  .colors .painel .peca-nome .mono{font-size:15px}
+  .colors .painel .resumo{grid-column:2;margin:0;font-size:13px;align-self:start}
+  .colors .painel>div:not(.peca-nome),.colors .painel>.acao{grid-column:1 / -1}
+  .colors .editorial{display:none}
+  .regua button{min-height:66px;padding:12px 2px 8px;gap:7px}
+  .bandas{gap:10px}
+  .bandas button{width:26px;height:26px}
+  .painel .acao{padding:13px 16px}
+  .rot{margin-bottom:9px}
+
+  /* caixa */
+  .caixa{grid-template-columns:minmax(0,40%) minmax(0,1fr);gap:18px;max-width:none;margin:0 var(--g) var(--respiro);padding-top:32px;align-items:center}
+  .caixa-texto{gap:8px}
+  .caixa-texto h2{font-size:22px}
+  .caixa-texto p{font-size:13px}
+  .caixa-texto .acao{margin-top:4px}
+
+  /* rodape */
+  .rodape{padding:34px var(--g);gap:24px;font-size:13px}
+  .rodape img{height:28px;margin-bottom:10px}
+
+  /* sacola */
+  .sacola header,.sacola footer{padding-inline:20px}
+  .sacola .lista{padding-inline:20px}
+}

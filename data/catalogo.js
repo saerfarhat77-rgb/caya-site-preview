@@ -342,8 +342,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 6990,
      "fotos": [
-      "assets/img/halo-solitaire-30-branco-3.webp",
-      "assets/img/halo-solitaire-30-branco-4.webp"
+      "assets/img/halo-solitaire-30-branco.webp"
      ]
     },
     {
@@ -351,8 +350,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 6990,
      "fotos": [
-      "assets/img/halo-solitaire-30-amarelo-1.webp",
-      "assets/img/halo-solitaire-30-amarelo-2.webp"
+      "assets/img/halo-solitaire-30-amarelo.webp"
      ]
     },
     {
@@ -360,8 +358,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 10990,
      "fotos": [
-      "assets/img/halo-solitaire-50-branco-1.webp",
-      "assets/img/halo-solitaire-50-branco-4.webp"
+      "assets/img/halo-solitaire-50-branco.webp"
      ]
     },
     {
@@ -369,8 +366,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 10990,
      "fotos": [
-      "assets/img/halo-solitaire-50-amarelo-1.webp",
-      "assets/img/halo-solitaire-50-amarelo-2.webp"
+      "assets/img/halo-solitaire-50-amarelo.webp"
      ]
     }
    ]
@@ -407,8 +403,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 6999,
      "fotos": [
-      "assets/img/halo-dot-30-branco-1.webp",
-      "assets/img/halo-dot-30-branco-4.webp"
+      "assets/img/halo-dot-30-branco.webp"
      ]
     },
     {
@@ -416,8 +411,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 6999,
      "fotos": [
-      "assets/img/halo-dot-30-amarelo-1.webp",
-      "assets/img/halo-dot-30-amarelo-2.webp"
+      "assets/img/halo-dot-30-amarelo.webp"
      ]
     },
     {
@@ -425,8 +419,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 10990,
      "fotos": [
-      "assets/img/halo-dot-50-branco-1.webp",
-      "assets/img/halo-dot-50-branco-4.webp"
+      "assets/img/halo-dot-50-branco.webp"
      ]
     },
     {
@@ -434,8 +427,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 10990,
      "fotos": [
-      "assets/img/halo-dot-50-amarelo-1.webp",
-      "assets/img/halo-dot-50-amarelo-2.webp"
+      "assets/img/halo-dot-50-amarelo.webp"
      ]
     }
    ]
@@ -472,8 +464,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 13990,
      "fotos": [
-      "assets/img/halo-half-10-branco-2.webp",
-      "assets/img/halo-half-10-branco-4.webp"
+      "assets/img/halo-half-branco.webp"
      ]
     },
     {
@@ -481,8 +472,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 13990,
      "fotos": [
-      "assets/img/halo-half-10-amarelo-1.webp",
-      "assets/img/halo-half-10-amarelo-3.webp"
+      "assets/img/halo-half-amarelo.webp"
      ]
     }
    ],
