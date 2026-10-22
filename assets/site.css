@@ -159,6 +159,10 @@ a{color:inherit;text-underline-offset:.25em;text-decoration-thickness:1px}
   .peca-nome{flex-direction:column;gap:4px}
 }
 
+/* certificado GIA */
+.gia{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--preto)}
+.gia[hidden]{display:none}
+
 /* links da lista para a pagina da peca */
 a.foto{display:block}
 .nome-link{text-decoration:none}

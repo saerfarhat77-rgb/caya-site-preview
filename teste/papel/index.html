@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261022152830">
+<link rel="stylesheet" href="../../assets/site.css?v=20261022155508">
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -33,11 +33,11 @@
   <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261022152830"></script>
-<script src="../comum.js?v=20261022152830"></script>
-<script src="../sacola.js?v=20261022152830"></script>
-<script src="../preferencia.js?v=20261022152830"></script>
-<script src="../banner.js?v=20261022152830"></script>
+<script src="../../data/catalogo.js?v=20261022155508"></script>
+<script src="../comum.js?v=20261022155508"></script>
+<script src="../sacola.js?v=20261022155508"></script>
+<script src="../preferencia.js?v=20261022155508"></script>
+<script src="../banner.js?v=20261022155508"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
@@ -47,9 +47,9 @@ const SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 const OK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
 $('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
 const sel=lerEndereco();
-C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'#'+c.id},c.nome)));
+C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?linha='+c.id},c.nome)));
 
-function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../peca/index.html?'+q}
+function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../v2-peca/index.html?'+q}
 function trocarFoto(img,src){ if(img.getAttribute('src')===src) return; img.classList.add('troca');
   const n=new Image(); n.onload=()=>{img.src=src; img.classList.remove('troca')}; n.src=src; }
 
@@ -85,7 +85,7 @@ function montarColors(p){
     trocarFoto(img,'../../'+v.fotos[0]); img.alt=`${p.nome}, ${rotulo(p,e)}`;
     painel.querySelectorAll('.regua button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===e.pts));
     painel.querySelectorAll('.bandas button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===e.banda));
-    $('[data-r=pts]',painel).textContent=ct(e.pts);
+    $('[data-r=pts]',painel).textContent=ct(e.pts)+(variacao(p,e).gia?' · certificado GIA':'');
     $('[data-r=banda]',painel).textContent=nomeBanda(e.banda);
     $('[data-r=preco]',painel).textContent=brl(v.preco);
     $('a.foto',box).href=linkPeca(p,e);
@@ -115,7 +115,7 @@ function montarCollection(p){
   function atual(){
     const v=variacao(p,e);
     painel.querySelectorAll('.regua button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===e.pts));
-    $('[data-r=pts]',painel).textContent=ct(e.pts);
+    $('[data-r=pts]',painel).textContent=ct(e.pts)+(variacao(p,e).gia?' · certificado GIA':'');
     $('[data-r=preco]',painel).textContent=brl(v.preco);
     box.querySelectorAll('a.foto,a.nome-link').forEach(a=>a.href=linkPeca(p,e));
     if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
@@ -139,6 +139,7 @@ function montarPeca(p,sozinha){
     esc.append(g);
   }
   if(esc.children.length) corpo.append(esc);
+  if(p.variacoes.some(v=>v.gia)) corpo.append(el('p',{class:'gia',hidden:''},'Diamante com certificado GIA'));
   corpo.append(acao(p,()=>({...e})));
   const img=$('img',art);
   function atual(){
@@ -146,6 +147,7 @@ function montarPeca(p,sozinha){
     trocarFoto(img,'../../'+v.fotos[0]); img.alt=`${p.nome}${rotulo(p,e)?', '+rotulo(p,e):''}`;
     art.querySelectorAll('.opc,.ouro-b').forEach(b=>b.setAttribute('aria-pressed',String(e[b.dataset.k])===b.dataset.v));
     $('[data-r=preco]',art).textContent=p.consulta?'sob consulta':brl(v.preco);
+    const g=$('.gia',art); if(g) g.hidden=!v.gia;
     art.querySelectorAll('a.foto,a.nome-link').forEach(a=>a.href=linkPeca(p,e));
     if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
   }
@@ -182,16 +184,13 @@ C.colecoes.forEach(c=>{
 
 const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.remove('dobrado');io.unobserve(x.target)}}),{rootMargin:'0px 0px -10% 0px'});
 document.querySelectorAll('.lote').forEach(s=>io.observe(s));
-const links=[...document.querySelectorAll('#indice a')];
-const io2=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)links.forEach(a=>a.setAttribute('aria-current',a.hash==='#'+x.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
-document.querySelectorAll('.lote').forEach(s=>io2.observe(s));
 if(sel){const a=document.getElementById(sel.p.colecao); if(a){a.classList.remove('dobrado'); setTimeout(()=>a.scrollIntoView(),50)}}
 
 Caya.montarSacola('../../');
 Caya.montarPreferencia();
 Caya.montarBanner(document.getElementById('banner'),'../../',[
-  {img:'campanha',nome:'Caya Colors no dia a dia',link:'../peca/index.html?peca=caya-colors'},
-  {img:'halo-campanha',nome:'Coleção Halo',link:'#halo'}
+  {img:'colors-487',nome:'Caya Colors no dia a dia',link:'../v2-linha/index.html?linha=caya-colors'},
+  {img:'halo-campanha',nome:'Coleção Halo',link:'../v2-linha/index.html?linha=halo'}
 ]);
 })();
 </script>
