@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261022173030">
+<link rel="stylesheet" href="../../assets/site.css?v=20261022174354">
 <style>
 /* ---------- pagina da peca ---------- */
 .trilha{padding:28px var(--g) 0;font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);font-stretch:110%}
@@ -28,7 +28,7 @@
 .escala figure{margin:0;max-width:1240px}
 .escala-foto{position:relative}
 .escala-foto img{width:100%;height:auto;display:block}
-.escala-rot{position:absolute;bottom:7%;translate:-50% 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-stretch:110%;
+.escala-rot{position:absolute;bottom:6%;translate:-50% 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-stretch:110%;
   background:var(--fundo);padding:6px 10px;border:1px solid var(--linha);transition:border-color .2s}
 .escala-rot:hover{border-color:var(--preto)}
 .escala figcaption{font-size:12px;color:var(--cinza);margin-top:12px}
@@ -111,7 +111,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261022173030"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261022174354"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -125,10 +125,10 @@
   <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261022173030"></script>
-<script src="../comum.js?v=20261022173030"></script>
-<script src="../sacola.js?v=20261022173030"></script>
-<script src="../preferencia.js?v=20261022173030"></script>
+<script src="../../data/catalogo.js?v=20261022174354"></script>
+<script src="../comum.js?v=20261022174354"></script>
+<script src="../sacola.js?v=20261022174354"></script>
+<script src="../preferencia.js?v=20261022174354"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,peca,variacao,rotulo,aPartirDe,lerEndereco,sacola,linkWhatsApp}=Caya;
@@ -141,14 +141,14 @@ const RAIZ='../../';
 const OURO={branco:'linear-gradient(135deg,#F4F4F2,#C9C9C6)',amarelo:'linear-gradient(135deg,#F1D88F,#C9A24E)'};
 
 $('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
-C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?v=20261022173030&linha='+c.id},c.nome)));
+C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?v=20261022174354&linha='+c.id},c.nome)));
 Caya.montarSacola(RAIZ);
 Caya.montarPreferencia();
 
 const sel=lerEndereco();
 const main=$('#principal');
 if(!sel){
-  main.innerHTML=`<div class="sumiu"><p>Não encontramos essa peça.</p><p style="margin-top:18px"><a href="../papel/index.html?v=20261022173030">Ver todas as peças</a></p></div>`;
+  main.innerHTML=`<div class="sumiu"><p>Não encontramos essa peça.</p><p style="margin-top:18px"><a href="../papel/index.html?v=20261022174354">Ver todas as peças</a></p></div>`;
   return;
 }
 const p=sel.p, e=sel.e;
@@ -156,7 +156,7 @@ const col=C.colecoes.find(c=>c.id===p.colecao);
 const anel=/anel|alian/i.test(p.tipo);
 
 main.innerHTML=`
-  <nav class="trilha" aria-label="Você está em"><a href="../papel/index.html?v=20261022173030">Início</a><span>/</span><a href="../v2-linha/index.html?v=20261022173030&linha=${col.id}">${col.nome}</a><span>/</span>${p.nome}</nav>
+  <nav class="trilha" aria-label="Você está em"><a href="../papel/index.html?v=20261022174354">Início</a><span>/</span><a href="../v2-linha/index.html?v=20261022174354&linha=${col.id}">${col.nome}</a><span>/</span>${p.nome}</nav>
   <section class="ficha-peca">
     <div class="galeria">
       <div class="foto"><img alt="" width="1024" height="1272"></div>
@@ -275,23 +275,23 @@ if(p.eixos.ouro) Caya.aoMudarOuro(v=>{ e.ouro=v; atual(); });
 
 /* ---- comparacao de tamanhos (Halo Stud) ---- */
 if(p.id==='halo-stud'){
-  const pos=[12.4,33.1,55.9,82.5];
+  const pos=[12.5,37.5,62.5,87.5];
   const esc=el('section',{class:'escala','aria-labelledby':'t-escala'},`<header class="lote-cab"><h2 id="t-escala">Os quatro tamanhos lado a lado</h2></header>
-    <figure><div class="escala-foto"><img src="${RAIZ}assets/img/stud-escala-branco.webp" alt="Quatro pares de brincos Halo Stud, de 0,10 a 0,50 ct em cada brinco, lado a lado" loading="lazy" width="1600" height="729">
+    <figure><div class="escala-foto"><img src="${RAIZ}assets/img/stud-escala-branco.webp" alt="Quatro pares de brincos Halo Stud, de 0,10 a 0,50 ct em cada brinco, lado a lado" loading="lazy" width="1536" height="512">
       ${p.eixos.pts.map((v,i)=>`<button type="button" class="escala-rot" style="left:${pos[i]}%" data-v="${v}">${ct(v)}</button>`).join('')}</div>
       <figcaption>Pedra de cada brinco. Toque num tamanho para escolher.</figcaption></figure>`);
   esc.querySelectorAll('.escala-rot').forEach(b=>b.onclick=()=>{e.pts=+b.dataset.v; atual(); window.scrollTo({top:0,behavior:'smooth'})});
   main.append(esc);
   /* a foto da comparacao acompanha o ouro escolhido (dourada entra quando existir) */
-  const ESCALA={branco:'stud-escala-branco',amarelo:'stud-escala-amarelo'}, TEM={branco:true,amarelo:false};
+  const ESCALA={branco:'stud-escala-branco',amarelo:'stud-escala-amarelo'}, TEM={branco:true,amarelo:true};
   const imgEsc=$('.escala-foto img',esc);
   const updEsc=()=>{const o=TEM[e.ouro]?e.ouro:'branco'; const s=`${RAIZ}assets/img/${ESCALA[o]}.webp`; if(imgEsc.getAttribute('src')!==s) imgEsc.src=s;};
   atual=(orig=>()=>{orig(); updEsc();})(atual); updEsc();
 }
 
 /* ---- mais da colecao (ou das outras, se a peca estiver sozinha) ---- */
-let outras=C.pecas.filter(x=>x.colecao===p.colecao&&x.id!==p.id), titulo='Mais de '+col.nome, link=`<a href="../v2-linha/index.html?v=20261022173030&linha=${col.id}">Ver coleção</a>`;
-if(!outras.length){outras=C.pecas.filter(x=>x.id!==p.id).slice(0,4); titulo='Outras peças'; link='<a href="../papel/index.html?v=20261022173030">Ver todas</a>';}
+let outras=C.pecas.filter(x=>x.colecao===p.colecao&&x.id!==p.id), titulo='Mais de '+col.nome, link=`<a href="../v2-linha/index.html?v=20261022174354&linha=${col.id}">Ver coleção</a>`;
+if(!outras.length){outras=C.pecas.filter(x=>x.id!==p.id).slice(0,4); titulo='Outras peças'; link='<a href="../papel/index.html?v=20261022174354">Ver todas</a>';}
 const mais=el('section',{class:'mais','aria-labelledby':'t-mais'},`<header class="lote-cab"><h2 id="t-mais">${titulo}</h2>${link}</header><div class="pecas"></div>`);
 outras.slice(0,4).forEach(x=>{const v=variacao(x,x.padrao); const q=new URLSearchParams({peca:x.id});
   $('.pecas',mais).append(el('article',{class:'peca'},`<a class="foto" href="?${q}"><img src="${RAIZ+v.fotos[0]}" alt="${x.nome}" loading="lazy" width="1024" height="1272"></a>

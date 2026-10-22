@@ -611,7 +611,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 2190,
      "fotos": [
-      "assets/img/stud-10-branco.webp",
+      "assets/img/stud-10-branco-frente.webp",
       "assets/img/stud-10-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ]
@@ -621,7 +621,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 2190,
      "fotos": [
-      "assets/img/stud-10-amarelo.webp",
+      "assets/img/stud-10-amarelo-frente.webp",
       "assets/img/stud-10-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ]
@@ -631,7 +631,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 3990,
      "fotos": [
-      "assets/img/stud-20-branco.webp",
+      "assets/img/stud-20-branco-frente.webp",
       "assets/img/stud-20-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ]
@@ -641,7 +641,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 3990,
      "fotos": [
-      "assets/img/stud-20-amarelo.webp",
+      "assets/img/stud-20-amarelo-frente.webp",
       "assets/img/stud-20-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ]
@@ -651,7 +651,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 5790,
      "fotos": [
-      "assets/img/stud-30-branco.webp",
+      "assets/img/stud-30-branco-frente.webp",
       "assets/img/stud-30-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ],
@@ -662,7 +662,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 5790,
      "fotos": [
-      "assets/img/stud-30-amarelo.webp",
+      "assets/img/stud-30-amarelo-frente.webp",
       "assets/img/stud-30-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ],
@@ -673,7 +673,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 8990,
      "fotos": [
-      "assets/img/stud-50-branco.webp",
+      "assets/img/stud-50-branco-frente.webp",
       "assets/img/stud-50-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ],
@@ -684,7 +684,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 8990,
      "fotos": [
-      "assets/img/stud-50-amarelo.webp",
+      "assets/img/stud-50-amarelo-frente.webp",
       "assets/img/stud-50-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ],
