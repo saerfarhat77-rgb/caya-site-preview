@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261022132019">
+<link rel="stylesheet" href="../../assets/site.css?v=20261022134318">
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -29,15 +29,15 @@
 
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p></div>
-  <div><b>Atendimento</b><p><a id="zap" href="#">WhatsApp</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Aro sob medida</b><p>Anéis Halo, Candy Cut e Mosaico são feitos na sua medida. Combinamos pelo WhatsApp depois do pedido.</p></div>
+  <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
+  <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261022132019"></script>
-<script src="../comum.js?v=20261022132019"></script>
-<script src="../sacola.js?v=20261022132019"></script>
-<script src="../preferencia.js?v=20261022132019"></script>
-<script src="../banner.js?v=20261022132019"></script>
+<script src="../../data/catalogo.js?v=20261022134318"></script>
+<script src="../comum.js?v=20261022134318"></script>
+<script src="../sacola.js?v=20261022134318"></script>
+<script src="../preferencia.js?v=20261022134318"></script>
+<script src="../banner.js?v=20261022134318"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
@@ -54,7 +54,7 @@ function trocarFoto(img,src){ if(img.getAttribute('src')===src) return; img.clas
   const n=new Image(); n.onload=()=>{img.src=src; img.classList.remove('troca')}; n.src=src; }
 
 function acao(p,getE){
-  if(p.consulta) return el('a',{class:'acao',href:linkWhatsApp(`Olá! Quero conversar sobre o ${p.nome}.`),target:'_blank',rel:'noopener'},`<span>Conversar no WhatsApp</span>${SETA}`);
+  if(p.consulta) return el('a',{class:'acao',href:linkWhatsApp(`Olá! Quero conversar sobre o ${p.nome}.`),target:'_blank',rel:'noopener'},`<span>Falar com uma especialista</span>${SETA}`);
   const b=el('button',{class:'acao',type:'button'},`<span>Adicionar<span class="longo"> à sacola</span></span>${SETA}`);
   b.onclick=()=>{ sacola.adicionar(p,getE()); b.classList.add('ok'); b.innerHTML=`<span>Na sacola</span>${OK}`;
     setTimeout(()=>{b.classList.remove('ok'); b.innerHTML=`<span>Adicionar<span class="longo"> à sacola</span></span>${SETA}`},1600); Caya.abrirSacola(); };
@@ -96,18 +96,31 @@ function montarColors(p){
 
 /* Caya Colors Collection: mesma diagramacao do anel, com as seis cores a mostra */
 function montarCollection(p){
-  const v=p.variacoes[0], link=linkPeca(p,{}), ed=EDITORIAL[p.id];
+  const e=Object.assign(Caya.padraoCom(p), sel&&sel.p.id===p.id?sel.e:{}), ed=EDITORIAL[p.id], maior=Math.max(...p.eixos.pts);
   const box=el('div',{class:'colors collection',id:'peca-'+p.id});
-  box.innerHTML=`<a class="foto" href="${link}"><img src="../../${v.fotos[0]}" alt="${p.nome}: caixa com o anel e as bandas nas seis cores" loading="lazy" width="1024" height="1272"></a>
+  box.innerHTML=`<a class="foto" href="#"><img src="../../${p.variacoes[0].fotos[0]}" alt="${p.nome}: caixa com o anel e as bandas nas seis cores" loading="lazy" width="1024" height="1272"></a>
     <div class="painel">
-      <div class="peca-nome"><h3><span class="pequeno">${p.tipo}</span><a class="nome-link" href="${link}">${p.nome}</a></h3><span class="mono">${brl(v.preco)}</span></div>
+      <div class="peca-nome"><h3><span class="pequeno">${p.tipo}</span><a class="nome-link" href="#">${p.nome}</a></h3><span class="mono" data-r="preco"></span></div>
       <p class="resumo">${p.resumo}</p>
+      <div><div class="rot"><span class="pequeno">Pedra</span><b class="mono" data-r="pts"></b></div><div class="regua" role="group" aria-label="Pontos do diamante"></div></div>
       <div><div class="rot"><span class="pequeno">As seis cores na caixa</span></div>
         <ul class="todas-cores">${p.cores.map(id=>`<li><i style="background:${corBanda(id)}"></i>${nomeBanda(id)}</li>`).join('')}</ul></div>
     </div>`;
-  $('.painel',box).append(acao(p,()=>({})));
+  const painel=$('.painel',box);
+  p.eixos.pts.forEach(v=>{const d=Math.round(10+22*Math.pow(v/maior,.83));
+    const b=el('button',{type:'button','aria-pressed':'false','data-v':v,'aria-label':ct(v)},`<span class="pedra" style="width:${d}px;height:${d}px"></span><span class="mono">${v} pts</span>`);
+    b.onclick=()=>{e.pts=v;atual()}; $('.regua',painel).append(b)});
+  painel.append(acao(p,()=>({...e})));
   if(ed) box.append(el('figure',{class:'editorial'},`<img src="../../assets/editorial/${ed.img}.webp" alt="${ed.alt}" loading="lazy" width="1000" height="1250"><figcaption class="pequeno">${ed.legenda}</figcaption>`));
-  return box;
+  function atual(){
+    const v=variacao(p,e);
+    painel.querySelectorAll('.regua button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===e.pts));
+    $('[data-r=pts]',painel).textContent=ct(e.pts);
+    $('[data-r=preco]',painel).textContent=brl(v.preco);
+    box.querySelectorAll('a.foto,a.nome-link').forEach(a=>a.href=linkPeca(p,e));
+    if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
+  }
+  atual(); return box;
 }
 
 function montarPeca(p,sozinha){

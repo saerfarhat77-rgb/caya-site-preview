@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261022132019">
+<link rel="stylesheet" href="../../assets/site.css?v=20261022134318">
 <style>
 /* ---------- pagina da peca ---------- */
 .trilha{padding:28px var(--g) 0;font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);font-stretch:110%}
@@ -110,14 +110,14 @@
 
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p></div>
-  <div><b>Atendimento</b><p><a id="zap" href="#">WhatsApp</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Aro sob medida</b><p>Anéis Halo, Candy Cut e Mosaico são feitos na sua medida. Combinamos pelo WhatsApp depois do pedido.</p></div>
+  <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
+  <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261022132019"></script>
-<script src="../comum.js?v=20261022132019"></script>
-<script src="../sacola.js?v=20261022132019"></script>
-<script src="../preferencia.js?v=20261022132019"></script>
+<script src="../../data/catalogo.js?v=20261022134318"></script>
+<script src="../comum.js?v=20261022134318"></script>
+<script src="../sacola.js?v=20261022134318"></script>
+<script src="../preferencia.js?v=20261022134318"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,peca,variacao,rotulo,aPartirDe,lerEndereco,sacola,linkWhatsApp}=Caya;
@@ -161,7 +161,7 @@ main.innerHTML=`
       </div>
       <div class="escolhas-peca" style="display:grid;gap:26px"></div>
       <div class="acao-peca"></div>
-      ${anel?'<p class="nota">Medida do aro combinada pelo WhatsApp depois do pedido.</p>':''}
+      ${p.aros?'<p class="nota">Você informa a medida do aro ao finalizar o pedido.</p>':''}
       <div class="secoes"></div>
     </div>
   </section>`;
@@ -201,7 +201,7 @@ if(!esc.children.length) esc.remove();
 /* ---- acao ---- */
 const acaoBox=$('.acao-peca',main);
 if(p.consulta){
-  acaoBox.append(el('a',{class:'comprar',href:linkWhatsApp(`Olá! Quero conversar sobre o ${p.nome}.`),target:'_blank',rel:'noopener'},`<span>Conversar no WhatsApp</span>${SETA}`));
+  acaoBox.append(el('a',{class:'comprar',href:linkWhatsApp(`Olá! Quero conversar sobre o ${p.nome}.`),target:'_blank',rel:'noopener'},`<span>Falar com uma especialista</span>${SETA}`));
 }else{
   const b=el('button',{class:'comprar',type:'button',style:'width:100%'},`<span>Adicionar à sacola</span>${SETA}`);
   b.onclick=()=>{sacola.adicionar(p,{...e}); b.innerHTML=`<span>Na sacola</span>${OK}`;
@@ -221,8 +221,8 @@ function montarSecoes(){
   $('.secoes',main).innerHTML=
     secao('Descrição',`<p>${p.texto}</p>`,true)+
     secao('Ficha técnica',ficha)+
-    (anel?secao('Medida do aro','<p>Depois do pedido, combinamos a medida do aro pelo WhatsApp. Se for presente e você não souber a medida, também ajudamos por lá.</p>'):'')+
-    secao('Atendimento',`<p>Dúvidas sobre a peça, prazo ou pagamento: <a href="${linkWhatsApp('Olá! Tenho uma dúvida sobre o '+p.nome+'.')}" target="_blank" rel="noopener">fale com a Caya no WhatsApp</a>.</p>`);
+    (p.aros?secao('Medida do aro','<p>Você informa a medida do aro na sacola, ao finalizar o pedido'+(p.aros>1?', uma para cada anel do par':'')+'. Se não souber, escolha "Não sei a medida": uma especialista Caya ajuda você a descobrir antes da produção, inclusive se for presente.</p>'):'')+
+    secao('Atendimento',`<p>Dúvidas sobre a peça, a medida ou o prazo: <a href="${linkWhatsApp('Olá! Tenho uma dúvida sobre o '+p.nome+'.')}" target="_blank" rel="noopener">fale com uma especialista Caya</a>.</p>`);
 }
 
 /* ---- galeria ---- */

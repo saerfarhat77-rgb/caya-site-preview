@@ -307,7 +307,8 @@ window.CAYA = {
       "assets/img/caya-colors-50-preto-2.webp"
      ]
     }
-   ]
+   ],
+   "aros": 1
   },
   {
    "id": "colors-collection",
@@ -330,16 +331,48 @@ window.CAYA = {
     "bege",
     "amarelo"
    ],
-   "eixos": {},
-   "padrao": {},
+   "eixos": {
+    "pts": [
+     10,
+     30,
+     40,
+     50
+    ]
+   },
+   "padrao": {
+    "pts": 10
+   },
    "variacoes": [
     {
-     "preco": 2500,
+     "pts": 10,
+     "preco": 2490,
+     "fotos": [
+      "assets/img/collection-still.webp"
+     ]
+    },
+    {
+     "pts": 30,
+     "preco": 5290,
+     "fotos": [
+      "assets/img/collection-still.webp"
+     ]
+    },
+    {
+     "pts": 40,
+     "preco": 6290,
+     "fotos": [
+      "assets/img/collection-still.webp"
+     ]
+    },
+    {
+     "pts": 50,
+     "preco": 7990,
      "fotos": [
       "assets/img/collection-still.webp"
      ]
     }
-   ]
+   ],
+   "aros": 1
   },
   {
    "id": "halo-solitaire",
@@ -401,7 +434,8 @@ window.CAYA = {
       "assets/img/halo-solitaire-50-amarelo.webp"
      ]
     }
-   ]
+   ],
+   "aros": 1
   },
   {
    "id": "halo-dot",
@@ -462,7 +496,8 @@ window.CAYA = {
       "assets/img/halo-dot-50-amarelo.webp"
      ]
     }
-   ]
+   ],
+   "aros": 0
   },
   {
    "id": "halo-half",
@@ -508,7 +543,8 @@ window.CAYA = {
      ]
     }
    ],
-   "pedras": "7 × 0,10 ct"
+   "pedras": "7 × 0,10 ct",
+   "aros": 1
   },
   {
    "id": "candy-cut",
@@ -550,7 +586,8 @@ window.CAYA = {
       "assets/img/candy-cut-amarelo-2.webp"
      ]
     }
-   ]
+   ],
+   "aros": 1
   },
   {
    "id": "candy-cut-par",
@@ -591,7 +628,8 @@ window.CAYA = {
       "assets/img/candy-cut-par-amarelo-1.webp"
      ]
     }
-   ]
+   ],
+   "aros": 2
   },
   {
    "id": "mosaico",
@@ -634,7 +672,8 @@ window.CAYA = {
      "foto_ouro": "branco"
     }
    ],
-   "consulta": true
+   "consulta": true,
+   "aros": 1
   },
   {
    "id": "solitario-gia",
@@ -658,7 +697,8 @@ window.CAYA = {
       "assets/img/solitario-gia-2.webp"
      ]
     }
-   ]
+   ],
+   "aros": 1
   }
  ],
  "contato": {

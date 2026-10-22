@@ -74,19 +74,38 @@
       const chave = p.id + '|' + JSON.stringify(e);
       const ja = itens.find((i) => i.chave === chave);
       if (ja) ja.qtd += 1;
-      else itens.push({ chave, id: p.id, nome: p.nome, detalhe: rotulo(p, e), preco: v.preco, foto: v.fotos[0], qtd: 1 });
+      else itens.push({ chave, id: p.id, nome: p.nome, detalhe: rotulo(p, e), preco: v.preco, foto: v.fotos[0], qtd: 1,
+                        aros: p.aros || 0, medidas: [] });
       salvar();
     },
     remover(chave) { itens = itens.filter((i) => i.chave !== chave); salvar(); },
+    /* medida do aro: um campo por anel (par = 2 por unidade) */
+    camposAro: (i) => (i.aros || 0) * i.qtd,
+    definirAro(chave, n, valor) {
+      const i = itens.find((x) => x.chave === chave);
+      if (!i) return;
+      i.medidas = i.medidas || [];
+      i.medidas[n] = valor;
+      salvar();
+    },
+    faltaAro: () => itens.some((i) => {
+      for (let n = 0; n < (i.aros || 0) * i.qtd; n++) if (!(i.medidas || [])[n]) return true;
+      return false;
+    }),
     ouvir(f) { ouvintes.push(f); f(itens); },
   };
+  const textoAro = (m) => (m === 'ajuda' ? 'preciso de ajuda com a medida' : 'aro ' + m);
 
   function linkWhatsApp(texto) {
     return 'https://wa.me/' + C.contato.whatsapp + '?text=' + encodeURIComponent(texto);
   }
   function pedidoWhatsApp() {
-    const linhas = itens.map((i) => `• ${i.nome} (${i.detalhe}) ×${i.qtd} — ${brl(i.preco * i.qtd)}`);
-    return linkWhatsApp('Olá! Quero fechar este pedido:\n' + linhas.join('\n') + '\nTotal: ' + brl(sacola.total()));
+    const linhas = itens.map((i) => {
+      const n = (i.aros || 0) * i.qtd;
+      const aros = n ? ' — ' + Array.from({ length: n }, (_, k) => textoAro((i.medidas || [])[k])).join(', ') : '';
+      return `• ${i.nome}${i.detalhe ? ' (' + i.detalhe + ')' : ''} ×${i.qtd} — ${brl(i.preco * i.qtd)}${aros}`;
+    });
+    return linkWhatsApp('Olá! Gostaria de finalizar meu pedido Caya:\n' + linhas.join('\n') + '\nTotal: ' + brl(sacola.total()));
   }
 
   window.Caya = { C, brl, ct, nomeBanda, corBanda, peca, variacao, rotulo, aPartirDe,

@@ -330,3 +330,15 @@ a.foto{display:block}
   .ouro-pref i{width:16px;height:16px}
   .pref-opcoes{gap:8px}
 }
+
+/* ---------- medida do aro na sacola ---------- */
+.item .aros{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:8px 14px;padding-top:4px}
+.aro{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.aro select{font:inherit;font-size:13px;letter-spacing:0;text-transform:none;color:var(--preto);background:var(--branco);border:1px solid var(--linha);
+  padding:7px 30px 7px 10px;appearance:none;-webkit-appearance:none;border-radius:0;
+  background-image:linear-gradient(45deg,transparent 50%,var(--preto) 50%),linear-gradient(135deg,var(--preto) 50%,transparent 50%);
+  background-position:calc(100% - 15px) 52%,calc(100% - 10px) 52%;background-size:5px 5px;background-repeat:no-repeat;cursor:pointer}
+.aro select:focus-visible{outline:1px solid var(--preto);outline-offset:2px}
+.aro select:invalid,.aro select:has(option[value=""]:checked){color:var(--cinza)}
+.falta-aro{color:var(--preto)!important;font-size:12px}
+.dica-aro{font-size:12px;color:var(--texto-2);padding:4px 0 12px}
