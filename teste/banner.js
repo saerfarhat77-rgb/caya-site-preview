@@ -6,13 +6,16 @@
   const TEMPO = 6000;
 
   Caya.montarBanner = function (box, raiz, slides) {
+    /* slide com imgOuro {branco, amarelo}: segue a preferencia de ouro da cliente */
+    const ouro = () => (Caya.ouroPreferido && Caya.ouroPreferido()) || 'branco';
+    const nomeImg = (s) => (s.imgOuro ? s.imgOuro[ouro()] || s.imgOuro.branco : s.img);
     box.innerHTML = `
       <div class="banner-fotos" aria-roledescription="carrossel" aria-label="Destaques">
         ${slides.map((s, i) => `
           <a class="banner-slide${i === 0 ? ' ativo' : ''}" href="${s.link}" aria-hidden="${i !== 0}" tabindex="${i === 0 ? 0 : -1}">
             <picture>
-              <source media="(max-width:760px)" srcset="${raiz}assets/banner/${s.img}-16x9.webp">
-              <img src="${raiz}assets/banner/${s.img}-largo.webp" alt="${s.nome}" width="2400" height="1029" ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}>
+              <source media="(max-width:760px)" srcset="${raiz}assets/banner/${nomeImg(s)}-16x9.webp">
+              <img src="${raiz}assets/banner/${nomeImg(s)}-largo.webp" alt="${s.nome}" width="2400" height="1029" ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'}>
             </picture>
           </a>`).join('')}
       </div>
@@ -25,6 +28,14 @@
       </div>`;
 
     const fotos = [...box.querySelectorAll('.banner-slide')];
+    if (Caya.aoMudarOuro) Caya.aoMudarOuro(() => {
+      slides.forEach((s, i) => {
+        if (!s.imgOuro) return;
+        const n = nomeImg(s), f = fotos[i];
+        f.querySelector('source').srcset = `${raiz}assets/banner/${n}-16x9.webp`;
+        f.querySelector('img').src = `${raiz}assets/banner/${n}-largo.webp`;
+      });
+    });
     const marcas = [...box.querySelectorAll('.banner-marcas button')];
     const nome = box.querySelector('.banner-nome');
     const pausa = box.querySelector('.banner-pausa');
