@@ -612,6 +612,7 @@ window.CAYA = {
      "preco": 2190,
      "fotos": [
       "assets/img/stud-10-branco.webp",
+      "assets/img/stud-10-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ]
     },
@@ -621,7 +622,7 @@ window.CAYA = {
      "preco": 2190,
      "fotos": [
       "assets/img/stud-10-amarelo.webp",
-      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-10-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ]
     },
@@ -631,6 +632,7 @@ window.CAYA = {
      "preco": 3990,
      "fotos": [
       "assets/img/stud-20-branco.webp",
+      "assets/img/stud-20-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ]
     },
@@ -640,7 +642,7 @@ window.CAYA = {
      "preco": 3990,
      "fotos": [
       "assets/img/stud-20-amarelo.webp",
-      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-20-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ]
     },
@@ -650,6 +652,7 @@ window.CAYA = {
      "preco": 5790,
      "fotos": [
       "assets/img/stud-30-branco.webp",
+      "assets/img/stud-30-branco-close.webp",
       "assets/img/stud-modelo.webp"
      ],
      "gia": true
@@ -660,7 +663,7 @@ window.CAYA = {
      "preco": 5790,
      "fotos": [
       "assets/img/stud-30-amarelo.webp",
-      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-30-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ],
      "gia": true
@@ -682,7 +685,7 @@ window.CAYA = {
      "preco": 8990,
      "fotos": [
       "assets/img/stud-50-amarelo.webp",
-      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-50-amarelo-close.webp",
       "assets/img/stud-modelo.webp"
      ],
      "gia": true
