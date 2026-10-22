@@ -212,8 +212,12 @@ a.foto{display:block}
 .caixa-texto .acao{margin-top:12px;align-self:stretch}
 
 @media (max-width:1100px){
-  .colors{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
-  .colors .editorial{display:none}
+  .colors{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(20px,3vw,40px)}
+}
+@media (min-width:761px) and (max-width:940px){
+  .colors{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);max-width:none}
+  .colors .editorial{grid-column:1 / -1}
+  .colors .editorial img{aspect-ratio:16/9;object-position:50% 47%}
 }
 @media (max-width:860px){
   .caixa{grid-template-columns:minmax(0,1fr);max-width:460px;margin-inline:auto}
@@ -265,7 +269,8 @@ a.foto{display:block}
   .colors .painel .peca-nome .mono{font-size:15px}
   .colors .painel .resumo{grid-column:2;margin:0;font-size:13px;align-self:start}
   .colors .painel>div:not(.peca-nome),.colors .painel>.acao{grid-column:1 / -1}
-  .colors .editorial{display:none}
+  .colors .editorial{grid-column:1 / -1;margin-top:6px}
+  .colors .editorial img{aspect-ratio:4/3;object-position:50% 47%}
   .regua button{min-height:66px;padding:12px 2px 8px;gap:7px}
   .bandas{gap:10px}
   .bandas button{width:26px;height:26px}
