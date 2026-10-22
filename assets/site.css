@@ -304,3 +304,29 @@ a.foto{display:block}
   .todas-cores i{width:24px;height:24px}
   .todas-cores li{font-size:11px;letter-spacing:0}
 }
+
+/* ---------- preferencia de ouro ---------- */
+.ouro-pref{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:400;font-stretch:110%;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;margin-left:auto}
+.ouro-pref i{display:block;width:14px;height:14px;border-radius:50%;border:1px solid rgba(20,20,20,.25)}
+.ouro-pref+.sacola-btn{margin-left:0}
+.pref{margin:auto;border:0;padding:clamp(28px,4vw,48px);width:min(440px,calc(100% - 36px));background:var(--fundo);color:var(--preto);
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.45)}
+.pref::backdrop{background:rgba(20,20,20,.32);backdrop-filter:blur(2px)}
+.pref[open]{animation:pref-entra .5s var(--ease)}
+@keyframes pref-entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.pref h2:focus{outline:none}
+.pref h2{font-weight:300;font-stretch:110%;font-size:clamp(22px,2.2vw,28px);line-height:1.2;padding-right:28px}
+.pref p{color:var(--texto-2);font-size:14px;margin-top:10px;max-width:34ch}
+.pref-x{position:absolute;top:14px;right:14px}
+.pref-opcoes{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.pref-opcoes button{display:flex;flex-direction:column;align-items:center;gap:14px;padding:24px 10px 20px;border:1px solid var(--linha);background:var(--branco);
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-stretch:110%;transition:border-color .25s var(--ease)}
+.pref-opcoes button:hover,.pref-opcoes button[aria-pressed="true"]{border-color:var(--preto)}
+.pref-opcoes i{display:block;width:44px;height:44px;border-radius:50%;border:1px solid rgba(20,20,20,.18)}
+@media (prefers-reduced-motion:reduce){.pref[open]{animation:none}}
+@media (max-width:760px){
+  .ouro-pref{font-size:11px;letter-spacing:.14em;gap:6px}
+  .ouro-pref span{display:none}
+  .ouro-pref i{width:16px;height:16px}
+  .pref-opcoes{gap:8px}
+}

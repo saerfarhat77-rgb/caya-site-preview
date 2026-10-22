@@ -1,0 +1,56 @@
+/* Pergunta da primeira visita: ouro branco ou amarelo. A escolha vira o padrao de
+   todas as pecas (Caya.definirOuro) e pode ser trocada pelo botao "Ouro" do topo.
+   Precisa de comum.js antes. Uso: Caya.montarPreferencia() */
+(function () {
+  const COR = {
+    branco: 'linear-gradient(135deg,#F4F4F2,#C9C9C6)',
+    amarelo: 'linear-gradient(135deg,#F1D88F,#C9A24E)',
+  };
+  const NOME = { branco: 'Ouro branco', amarelo: 'Ouro amarelo' };
+  const X = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>';
+
+  Caya.montarPreferencia = function () {
+    /* botao no topo, antes da sacola */
+    const sacolaBtn = document.getElementById('abrir-sacola');
+    const botao = document.createElement('button');
+    botao.type = 'button';
+    botao.className = 'ouro-pref';
+    sacolaBtn.before(botao);
+
+    document.body.insertAdjacentHTML('beforeend', `
+      <dialog class="pref" id="pref" aria-labelledby="pref-t">
+        <button type="button" class="x pref-x" aria-label="Fechar">${X}</button>
+        <h2 id="pref-t" tabindex="-1" autofocus>Qual ouro você prefere?</h2>
+        <p>As peças vão abrir nessa cor. Você pode trocar quando quiser, no topo da página.</p>
+        <div class="pref-opcoes">
+          ${['branco', 'amarelo'].map((v) => `
+            <button type="button" data-v="${v}"><i style="background:${COR[v]}"></i><span>${NOME[v]}</span></button>`).join('')}
+        </div>
+      </dialog>`);
+    const dlg = document.getElementById('pref');
+
+    function atualizarBotao() {
+      const v = Caya.ouroPreferido() || 'branco';
+      botao.innerHTML = `<i style="background:${COR[v]}"></i><span>Ouro</span>`;
+      botao.setAttribute('aria-label', `Preferência de ouro: ${NOME[v].toLowerCase()}. Trocar`);
+      dlg.querySelectorAll('.pref-opcoes button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.v === v)));
+    }
+    function fechar() {
+      if (dlg.open) dlg.close();
+      try { sessionStorage.setItem('caya-ouro-perguntado', '1'); } catch (_) {}
+    }
+    dlg.querySelectorAll('.pref-opcoes button').forEach((b) => {
+      b.onclick = () => { Caya.definirOuro(b.dataset.v); atualizarBotao(); fechar(); };
+    });
+    dlg.querySelector('.pref-x').onclick = fechar;
+    dlg.addEventListener('cancel', fechar);
+    dlg.addEventListener('click', (ev) => { if (ev.target === dlg) fechar(); });
+    botao.onclick = () => dlg.showModal();
+    atualizarBotao();
+
+    /* pergunta so quem ainda nao escolheu (e nao fechou o quadro nesta visita) */
+    let jaPerguntado = false;
+    try { jaPerguntado = !!sessionStorage.getItem('caya-ouro-perguntado'); } catch (_) {}
+    if (!Caya.ouroPreferido() && !jaPerguntado) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
+  };
+})();

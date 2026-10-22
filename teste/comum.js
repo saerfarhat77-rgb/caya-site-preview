@@ -22,12 +22,28 @@
 
   function aPartirDe(p) { return Math.min(...p.variacoes.map((v) => v.preco)); }
 
+  /* ouro preferido da cliente: vira o padrao de toda peca que tem escolha de ouro */
+  const CHAVE_OURO = 'caya-ouro';
+  let ouroPref = null;
+  try { ouroPref = localStorage.getItem(CHAVE_OURO); } catch (_) {}
+  const ouvintesOuro = [];
+  function padraoCom(p) {
+    const e = Object.assign({}, p.padrao);
+    if (p.eixos.ouro && ouroPref && p.eixos.ouro.includes(ouroPref)) e.ouro = ouroPref;
+    return e;
+  }
+  function definirOuro(v) {
+    ouroPref = v;
+    try { localStorage.setItem(CHAVE_OURO, v); } catch (_) {}
+    ouvintesOuro.forEach((f) => f(v));
+  }
+
   /* escolha <-> endereco: ?peca=caya-colors&pts=30&banda=rosa */
   function lerEndereco() {
     const q = new URLSearchParams(location.search);
     const p = q.get('peca') && peca(q.get('peca'));
     if (!p) return null;
-    const e = Object.assign({}, p.padrao);
+    const e = padraoCom(p);
     for (const k of Object.keys(p.eixos)) {
       const v = q.get(k);
       if (v != null) e[k] = k === 'pts' ? Number(v) : v;
@@ -74,5 +90,6 @@
   }
 
   window.Caya = { C, brl, ct, nomeBanda, corBanda, peca, variacao, rotulo, aPartirDe,
-                  lerEndereco, gravarEndereco, sacola, linkWhatsApp, pedidoWhatsApp };
+                  lerEndereco, gravarEndereco, sacola, linkWhatsApp, pedidoWhatsApp,
+                  padraoCom, definirOuro, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
 })();

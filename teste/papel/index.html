@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css">
+<link rel="stylesheet" href="../../assets/site.css?v=20261022132019">
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
@@ -33,10 +33,11 @@
   <div><b>Aro sob medida</b><p>Anéis Halo, Candy Cut e Mosaico são feitos na sua medida. Combinamos pelo WhatsApp depois do pedido.</p></div>
 </footer>
 
-<script src="../../data/catalogo.js"></script>
-<script src="../comum.js"></script>
-<script src="../sacola.js"></script>
-<script src="../banner.js"></script>
+<script src="../../data/catalogo.js?v=20261022132019"></script>
+<script src="../comum.js?v=20261022132019"></script>
+<script src="../sacola.js?v=20261022132019"></script>
+<script src="../preferencia.js?v=20261022132019"></script>
+<script src="../banner.js?v=20261022132019"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
@@ -62,7 +63,7 @@ function acao(p,getE){
 
 /* Caya Colors: uma peca so; pedra e banda escolhidas no painel */
 function montarColors(p){
-  const e=Object.assign({},p.padrao, sel&&sel.p.id===p.id?sel.e:{});
+  const e=Object.assign(Caya.padraoCom(p), sel&&sel.p.id===p.id?sel.e:{});
   const box=el('div',{class:'colors'});
   box.innerHTML=`<a class="foto" href="#"><img alt="" width="1024" height="1272"></a>
     <div class="painel">
@@ -110,7 +111,7 @@ function montarCollection(p){
 }
 
 function montarPeca(p,sozinha){
-  const e=Object.assign({},p.padrao, sel&&sel.p.id===p.id?sel.e:{});
+  const e=Object.assign(Caya.padraoCom(p), sel&&sel.p.id===p.id?sel.e:{});
   const art=el('article',{class:'peca',id:'peca-'+p.id});
   art.innerHTML=`<a class="foto" href="#"><img alt="" loading="lazy" width="1024" height="1272"></a>
     <div class="peca-corpo"><div class="peca-nome"><h3><span class="pequeno">${p.tipo}</span><a class="nome-link" href="#">${p.nome}</a></h3><span class="mono" data-r="preco"></span></div></div>`;
@@ -135,6 +136,7 @@ function montarPeca(p,sozinha){
     art.querySelectorAll('a.foto,a.nome-link').forEach(a=>a.href=linkPeca(p,e));
     if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
   }
+  if(p.eixos.ouro) Caya.aoMudarOuro(v=>{ e.ouro=v; atual.pronto=false; atual(); });
   atual(); return art;
 }
 
@@ -173,6 +175,7 @@ document.querySelectorAll('.lote').forEach(s=>io2.observe(s));
 if(sel){const a=document.getElementById(sel.p.colecao); if(a){a.classList.remove('dobrado'); setTimeout(()=>a.scrollIntoView(),50)}}
 
 Caya.montarSacola('../../');
+Caya.montarPreferencia();
 Caya.montarBanner(document.getElementById('banner'),'../../',[
   {img:'campanha',nome:'Caya Colors no dia a dia',link:'../peca/index.html?peca=caya-colors'},
   {img:'halo-campanha',nome:'Coleção Halo',link:'#halo'}
