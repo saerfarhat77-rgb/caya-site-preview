@@ -154,7 +154,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-30-rosa-1.webp",
       "assets/img/caya-colors-30-rosa-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -163,7 +164,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-30-amarelo-1.webp",
       "assets/img/caya-colors-30-amarelo-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -172,7 +174,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-30-bege-1.webp",
       "assets/img/caya-colors-30-bege-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -180,7 +183,8 @@ window.CAYA = {
      "preco": 4790,
      "fotos": [
       "assets/img/caya-colors-30-branco-1.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -189,7 +193,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-30-marrom-1.webp",
       "assets/img/caya-colors-30-marrom-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -198,7 +203,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-30-preto-1.webp",
       "assets/img/caya-colors-30-preto-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
@@ -207,7 +213,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-40-rosa-1.webp",
       "assets/img/caya-colors-40-rosa-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
@@ -216,7 +223,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-40-amarelo-1.webp",
       "assets/img/caya-colors-40-amarelo-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
@@ -225,7 +233,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-40-bege-1.webp",
       "assets/img/caya-colors-40-bege-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
@@ -234,7 +243,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-40-branco-1.webp",
       "assets/img/caya-colors-40-branco-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
@@ -243,7 +253,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-40-marrom-1.webp",
       "assets/img/caya-colors-40-marrom-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
@@ -251,7 +262,8 @@ window.CAYA = {
      "preco": 5790,
      "fotos": [
       "assets/img/caya-colors-40-preto-1.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -260,7 +272,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-50-rosa-1.webp",
       "assets/img/caya-colors-50-rosa-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -269,7 +282,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-50-amarelo-1.webp",
       "assets/img/caya-colors-50-amarelo-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -278,7 +292,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-50-bege-1.webp",
       "assets/img/caya-colors-50-bege-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -287,7 +302,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-50-branco-1.webp",
       "assets/img/caya-colors-50-branco-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -296,7 +312,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-50-marrom-1.webp",
       "assets/img/caya-colors-50-marrom-2.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -305,7 +322,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/caya-colors-50-preto-1.webp",
       "assets/img/caya-colors-50-preto-2.webp"
-     ]
+     ],
+     "gia": true
     }
    ],
    "aros": 1
@@ -355,21 +373,24 @@ window.CAYA = {
      "preco": 5290,
      "fotos": [
       "assets/img/collection-still.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 40,
      "preco": 6290,
      "fotos": [
       "assets/img/collection-still.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
      "preco": 7990,
      "fotos": [
       "assets/img/collection-still.webp"
-     ]
+     ],
+     "gia": true
     }
    ],
    "aros": 1
@@ -408,7 +429,8 @@ window.CAYA = {
      "preco": 6990,
      "fotos": [
       "assets/img/halo-solitaire-30-branco.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -416,7 +438,8 @@ window.CAYA = {
      "preco": 6990,
      "fotos": [
       "assets/img/halo-solitaire-30-amarelo.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -424,7 +447,8 @@ window.CAYA = {
      "preco": 10990,
      "fotos": [
       "assets/img/halo-solitaire-50-branco.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -432,7 +456,8 @@ window.CAYA = {
      "preco": 10990,
      "fotos": [
       "assets/img/halo-solitaire-50-amarelo.webp"
-     ]
+     ],
+     "gia": true
     }
    ],
    "aros": 1
@@ -470,7 +495,8 @@ window.CAYA = {
      "preco": 6999,
      "fotos": [
       "assets/img/halo-dot-30-branco.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 30,
@@ -478,7 +504,8 @@ window.CAYA = {
      "preco": 6999,
      "fotos": [
       "assets/img/halo-dot-30-amarelo.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -486,7 +513,8 @@ window.CAYA = {
      "preco": 10990,
      "fotos": [
       "assets/img/halo-dot-50-branco.webp"
-     ]
+     ],
+     "gia": true
     },
     {
      "pts": 50,
@@ -494,7 +522,8 @@ window.CAYA = {
      "preco": 10990,
      "fotos": [
       "assets/img/halo-dot-50-amarelo.webp"
-     ]
+     ],
+     "gia": true
     }
    ],
    "aros": 0
@@ -695,7 +724,8 @@ window.CAYA = {
      "fotos": [
       "assets/img/solitario-gia-1.webp",
       "assets/img/solitario-gia-2.webp"
-     ]
+     ],
+     "gia": true
     }
    ],
    "aros": 1

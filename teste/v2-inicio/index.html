@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caya Diamonds</title>
+<link rel="icon" href="../../assets/marca/favicon.png">
+<meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
+<link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css?v=20261022152830">
+<style>
+/* ---------- inicio: so fotos que levam para as linhas e pecas ---------- */
+.vitrine{max-width:1240px;margin:0 auto;padding:clamp(56px,7vw,104px) var(--g) var(--respiro);display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(48px,6vw,96px) clamp(20px,3vw,48px)}
+.chamada{display:flex;flex-direction:column;gap:16px;text-decoration:none;color:inherit}
+.chamada .moldura{overflow:hidden;background:#C4C2BE}
+.chamada img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.chamada:hover img{transform:scale(1.03)}
+.chamada .leg{display:flex;justify-content:space-between;align-items:baseline;gap:20px}
+.chamada h2{font-weight:300;font-stretch:110%;font-size:clamp(20px,1.8vw,26px);line-height:1.15}
+.chamada p{color:var(--texto-2);font-size:14px;margin-top:6px;max-width:42ch}
+.chamada .ver{flex:none;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-stretch:110%;border-bottom:1px solid var(--preto);padding-bottom:4px}
+.retrato .moldura{aspect-ratio:4/5}
+.largo .moldura{aspect-ratio:21/9}
+.c-esq{grid-column:1 / span 6}
+.c-dir{grid-column:7 / span 6}
+.c-dir.desce{margin-top:clamp(48px,8vw,140px)}
+.c-total{grid-column:1 / -1}
+@media (max-width:760px){
+  .vitrine{grid-template-columns:minmax(0,1fr);gap:44px}
+  .c-esq,.c-dir,.c-total{grid-column:1}
+  .c-dir.desce{margin-top:0}
+  .largo .moldura{aspect-ratio:16/9}
+  .chamada h2{font-size:20px}
+  .chamada p{font-size:13px}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="index.html"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <nav class="indice" aria-label="Coleções" id="indice"></nav>
+    <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="banner" id="banner" aria-label="Destaques"></section>
+  <h1 class="abre-oculto" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)">Caya Diamonds: diamante natural e ouro 18k</h1>
+  <div class="vitrine" id="vitrine"></div>
+</main>
+
+<footer class="rodape">
+  <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p></div>
+  <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
+  <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
+</footer>
+
+<script src="../../data/catalogo.js?v=20261022152830"></script>
+<script src="../comum.js?v=20261022152830"></script>
+<script src="../sacola.js?v=20261022152830"></script>
+<script src="../preferencia.js?v=20261022152830"></script>
+<script src="../banner.js?v=20261022152830"></script>
+<script>
+(function(){
+const {C,linkWhatsApp}=Caya;
+const $=(s,r=document)=>r.querySelector(s);
+const LINHA=id=>'../v2-linha/index.html?linha='+id, PECA=q=>'../v2-peca/index.html?peca='+q;
+$('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href=LINHA(c.id); a.textContent=c.nome; $('#indice').append(a)});
+Caya.montarSacola('../../');
+Caya.montarPreferencia();
+Caya.montarBanner(document.getElementById('banner'),'../../',[
+  {img:'campanha',nome:'Caya Colors no dia a dia',link:LINHA('caya-colors')},
+  {img:'halo-campanha',nome:'Coleção Halo',link:LINHA('halo')}
+]);
+
+/* cada foto leva a uma linha ou a uma peca */
+const CHAMADAS=[
+  {cls:'retrato c-esq', img:'../../assets/editorial/caya-colors.webp', nome:'Caya Colors', linha:'Diamante natural e ouro 18k sobre silicone, em seis cores.', link:LINHA('caya-colors'), alt:'Mãos usando anéis Caya Colors em cinco cores'},
+  {cls:'retrato c-dir desce', img:'../../assets/img/collection-still.webp', nome:'Caya Colors Collection', linha:'Um diamante, as seis cores da linha numa caixa só.', link:PECA('colors-collection'), alt:'Caixa Caya Colors Collection aberta com as seis bandas'},
+  {cls:'largo c-total', img:'../../assets/banner/halo-campanha-largo.webp', nome:'Halo', linha:'Diamantes naturais em ouro 18k: solitário, pingente e meia aliança.', link:LINHA('halo'), alt:'Mão com anéis Halo de diamante sobre blazer preto'},
+  {cls:'retrato c-esq', img:'../../assets/img/halo-solitaire-30-branco.webp', nome:'Halo Solitaire', linha:'Uma única pedra, cravada para receber luz de todos os lados.', link:PECA('halo-solitaire'), alt:'Anel Halo Solitaire em ouro branco'},
+  {cls:'retrato c-dir desce', img:'../../assets/img/halo-dot-30-amarelo.webp', nome:'Halo Dot', linha:'O pingente de diamante natural suspenso em ouro 18k.', link:PECA('halo-dot'), alt:'Pingente Halo Dot em ouro amarelo'},
+  {cls:'largo c-total', img:'../../assets/banner/candy-cut-largo.webp', nome:'Candy Cut', linha:'Diamante e esmeralda natural na mesma peça, em design autoral.', link:LINHA('candy-cut'), alt:'Anel Candy Cut com esmeralda e diamantes'},
+  {cls:'retrato c-esq', img:'../../assets/img/mosaico-branco-1.webp', nome:'Mosaico', linha:'Feito sob medida com as esmeraldas que você escolhe.', link:PECA('mosaico'), alt:'Anel Mosaico com esmeraldas e diamante'},
+  {cls:'retrato c-dir desce', img:'../../assets/img/solitario-gia-1.webp', nome:'Clássicos', linha:'O solitário de sempre, com diamante certificado GIA.', link:LINHA('classicos'), alt:'Solitário clássico de diamante'},
+];
+CHAMADAS.forEach(c=>{
+  const a=document.createElement('a'); a.className='chamada '+c.cls; a.href=c.link;
+  a.innerHTML=`<div class="moldura"><img src="${c.img}" alt="${c.alt}" loading="lazy"></div>
+    <div class="leg"><div><h2>${c.nome}</h2><p>${c.linha}</p></div><span class="ver">Ver</span></div>`;
+  $('#vitrine').append(a);
+});
+})();
+</script>
+</body>
+</html>
