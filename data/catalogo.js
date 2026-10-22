@@ -334,7 +334,7 @@ window.CAYA = {
    },
    "padrao": {
     "pts": 30,
-    "ouro": "amarelo"
+    "ouro": "branco"
    },
    "variacoes": [
     {
@@ -395,7 +395,7 @@ window.CAYA = {
    },
    "padrao": {
     "pts": 30,
-    "ouro": "amarelo"
+    "ouro": "branco"
    },
    "variacoes": [
     {
@@ -456,7 +456,7 @@ window.CAYA = {
    },
    "padrao": {
     "pts": 10,
-    "ouro": "amarelo"
+    "ouro": "branco"
    },
    "variacoes": [
     {
@@ -498,7 +498,7 @@ window.CAYA = {
     ]
    },
    "padrao": {
-    "ouro": "amarelo"
+    "ouro": "branco"
    },
    "variacoes": [
     {
@@ -541,7 +541,7 @@ window.CAYA = {
     ]
    },
    "padrao": {
-    "ouro": "amarelo"
+    "ouro": "branco"
    },
    "variacoes": [
     {
