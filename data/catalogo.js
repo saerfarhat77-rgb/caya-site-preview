@@ -40,7 +40,7 @@ window.CAYA = {
   {
    "id": "halo",
    "nome": "Halo",
-   "linha": "Diamantes naturais em ouro 18k: solitário, pingente e meia aliança."
+   "linha": "Diamantes naturais em ouro 18k: solitário, pingente, meia aliança e brincos."
   },
   {
    "id": "candy-cut",
@@ -574,6 +574,120 @@ window.CAYA = {
    ],
    "pedras": "7 × 0,10 ct",
    "aros": 1
+  },
+  {
+   "id": "halo-stud",
+   "colecao": "halo",
+   "nome": "Halo Stud",
+   "tipo": "Par de brincos",
+   "resumo": "Um diamante natural em cada orelha, preso por garras em ouro 18k.",
+   "texto": "O ponto de luz de cada dia: um diamante natural em cada brinco, preso por garras finas em ouro 18k para receber luz de todos os lados. Pino e tarracha em ouro 18k.",
+   "ficha": [
+    "Par de brincos",
+    "Um diamante natural em cada brinco",
+    "Ouro 18k",
+    "Garantia Caya Diamonds"
+   ],
+   "eixos": {
+    "pts": [
+     10,
+     20,
+     30,
+     50
+    ],
+    "ouro": [
+     "branco",
+     "amarelo"
+    ]
+   },
+   "padrao": {
+    "pts": 30,
+    "ouro": "branco"
+   },
+   "pedras_rotulo": "cada brinco",
+   "variacoes": [
+    {
+     "pts": 10,
+     "ouro": "branco",
+     "preco": 2190,
+     "fotos": [
+      "assets/img/stud-branco.webp",
+      "assets/img/stud-modelo.webp"
+     ]
+    },
+    {
+     "pts": 10,
+     "ouro": "amarelo",
+     "preco": 2190,
+     "fotos": [
+      "assets/img/stud-amarelo.webp",
+      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-modelo.webp"
+     ]
+    },
+    {
+     "pts": 20,
+     "ouro": "branco",
+     "preco": 3990,
+     "fotos": [
+      "assets/img/stud-branco.webp",
+      "assets/img/stud-modelo.webp"
+     ]
+    },
+    {
+     "pts": 20,
+     "ouro": "amarelo",
+     "preco": 3990,
+     "fotos": [
+      "assets/img/stud-amarelo.webp",
+      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-modelo.webp"
+     ]
+    },
+    {
+     "pts": 30,
+     "ouro": "branco",
+     "preco": 5790,
+     "fotos": [
+      "assets/img/stud-branco.webp",
+      "assets/img/stud-modelo.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 30,
+     "ouro": "amarelo",
+     "preco": 5790,
+     "fotos": [
+      "assets/img/stud-amarelo.webp",
+      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-modelo.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 50,
+     "ouro": "branco",
+     "preco": 8990,
+     "fotos": [
+      "assets/img/stud-branco.webp",
+      "assets/img/stud-modelo.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 50,
+     "ouro": "amarelo",
+     "preco": 8990,
+     "fotos": [
+      "assets/img/stud-amarelo.webp",
+      "assets/img/stud-amarelo-close.webp",
+      "assets/img/stud-modelo.webp"
+     ],
+     "gia": true
+    }
+   ],
+   "aros": 0
   },
   {
    "id": "candy-cut",

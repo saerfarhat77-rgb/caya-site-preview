@@ -14,7 +14,7 @@
 
   function rotulo(p, escolha) {
     const partes = [];
-    if (escolha.pts) partes.push(p.pedras || ct(escolha.pts));
+    if (escolha.pts) partes.push(p.pedras || ct(escolha.pts) + (p.pedras_rotulo ? ' ' + p.pedras_rotulo : ''));
     if (escolha.banda) partes.push('banda ' + nomeBanda(escolha.banda).toLowerCase());
     if (escolha.ouro) partes.push('ouro ' + escolha.ouro);
     return partes.join(' · ');

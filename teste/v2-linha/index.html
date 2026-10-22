@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261022155508">
+<link rel="stylesheet" href="../../assets/site.css?v=20261022162614">
 <link rel="preload" as="image" href="../../assets/hero/rosa.webp">
 <style>
 /* ---------- hero: um diamante, seis cores (so nesta copia) ---------- */
@@ -100,10 +100,10 @@
   <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261022155508"></script>
-<script src="../comum.js?v=20261022155508"></script>
-<script src="../sacola.js?v=20261022155508"></script>
-<script src="../preferencia.js?v=20261022155508"></script>
+<script src="../../data/catalogo.js?v=20261022162614"></script>
+<script src="../comum.js?v=20261022162614"></script>
+<script src="../sacola.js?v=20261022162614"></script>
+<script src="../preferencia.js?v=20261022162614"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
@@ -232,7 +232,7 @@ const EDITORIAL={
 };
 [COL].forEach(c=>{
   const ps=C.pecas.filter(p=>p.colecao===c.id);
-  const faixa=[...new Set(ps.flatMap(p=>p.eixos.pts||[]))];
+  const faixa=[...new Set(ps.flatMap(p=>p.eixos.pts||[]))].sort((x,y)=>x-y);
   const dados=[
     ['Pedra',c.id==='candy-cut'||c.id==='mosaico'?'diamante + esmeralda':'diamante natural'],
     ['Ouro',c.id==='caya-colors'?'18k':'18k branco ou amarelo'],
@@ -248,7 +248,7 @@ const EDITORIAL={
   if(c.id==='caya-colors'){ const cc=montarColors(ps[0]); if(fig) cc.append(fig); forro.append(cc);
     ps.slice(1).forEach(p=>forro.append(montarCollection(p))); }
   else{ const box=el('div',{class:'pecas'}); box.dataset.n=ps.length; box.style.setProperty('--n',ps.length);
-    if(fig) box.prepend(fig);
+    if(fig){ box.prepend(fig); if(ps.length===4){ box.classList.add('com-ed4'); if(c.id==='halo') fig.querySelector('img').src='../../assets/editorial/halo-alto.webp'; } }
     ps.forEach(p=>box.append(montarPeca(p,false))); forro.append(box); }
   $('#lotes').append(sec);
 });
