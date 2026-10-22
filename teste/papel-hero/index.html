@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Caya Diamonds — Peças (teste do hero)</title>
+<link rel="icon" href="../../assets/marca/favicon.png">
+<meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
+<link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css?v=20261022141315">
+<link rel="preload" as="image" href="../../assets/hero/rosa.webp">
+<style>
+/* ---------- hero: um diamante, seis cores (so nesta copia) ---------- */
+.hero-cores{--dx:36%;--dy:52%;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);align-items:center;
+  gap:clamp(24px,5vw,80px);padding:clamp(20px,3vw,40px) var(--g) clamp(48px,6vw,88px);min-height:min(calc(100svh - 70px),860px);max-width:1440px;margin:0 auto}
+.hero-palco{order:2;position:relative;aspect-ratio:1;width:100%;max-width:min(72svh,700px);justify-self:center;
+  -webkit-mask:radial-gradient(closest-side,#000 82%,transparent);mask:radial-gradient(closest-side,#000 82%,transparent)}
+.hero-palco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;user-select:none}
+.hero-palco img.entra{clip-path:circle(0% at var(--dx) var(--dy))}
+.hero-palco img.entra.vai{clip-path:circle(150% at var(--dx) var(--dy));transition:clip-path 1.25s cubic-bezier(.65,0,.25,1)}
+/* brilho na pedra no instante da troca */
+.hero-palco::after{content:"";position:absolute;left:var(--dx);top:var(--dy);width:22%;aspect-ratio:1;translate:-50% -50%;pointer-events:none;
+  background:radial-gradient(circle,rgba(255,255,255,.95) 0 6%,rgba(255,255,255,.35) 18%,transparent 60%);opacity:0;scale:.3;mix-blend-mode:screen}
+.hero-palco.brilha::after{animation:brilho 1.1s cubic-bezier(.16,1,.3,1)}
+@keyframes brilho{0%{opacity:0;scale:.3}30%{opacity:1;scale:1}100%{opacity:0;scale:1.4}}
+.hero-texto{order:1;max-width:480px;display:flex;flex-direction:column;gap:26px}
+.hero-texto h1{font-weight:300;font-stretch:112%;font-size:clamp(40px,5.4vw,80px);line-height:1;letter-spacing:-.02em}
+.hero-sub{color:var(--texto-2);font-size:15px;max-width:38ch}
+.hero-cores-lista{display:flex;gap:18px;flex-wrap:wrap;padding-top:6px}
+.hero-cores-lista button{display:flex;flex-direction:column;align-items:center;gap:9px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza);transition:color .25s}
+.hero-cores-lista i{display:block;width:34px;height:34px;border-radius:50%;border:1px solid rgba(20,20,20,.18);transition:transform .3s var(--ease)}
+.hero-cores-lista button:hover i{transform:scale(1.08)}
+.hero-cores-lista button[aria-pressed="true"]{color:var(--preto)}
+.hero-cores-lista button[aria-pressed="true"] i{box-shadow:0 0 0 3px var(--fundo),0 0 0 4px var(--preto)}
+.hero-cores-lista .tempo{display:block;width:100%;height:1px;background:var(--linha);position:relative;overflow:hidden;margin-top:-2px}
+.hero-cores-lista .tempo::after{content:"";position:absolute;inset:0;background:var(--preto);transform:scaleX(0);transform-origin:left}
+.hero-cores-lista [aria-pressed="true"] .tempo::after{transform:scaleX(1)}
+.hero-cores.rodando .hero-cores-lista [aria-pressed="true"] .tempo::after{transform:scaleX(0);animation:enche var(--tempo,3.6s) linear forwards}
+.hero-acao{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.hero-acao .comprar{display:flex;justify-content:space-between;align-items:center;gap:16px;min-width:240px;padding:17px 20px;background:var(--preto);color:var(--fundo);
+  border:1px solid var(--preto);font-size:11px;font-weight:400;font-stretch:110%;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;transition:background .3s var(--ease),color .3s}
+.hero-acao .comprar:hover{background:transparent;color:var(--preto)}
+.hero-acao .comprar svg{width:15px;height:15px;flex:none}
+.hero-preco{font-size:13px;color:var(--texto-2)}
+.hero-preco b{font-weight:400;color:var(--preto)}
+@media (prefers-reduced-motion:reduce){
+  .hero-palco img.entra,.hero-palco img.entra.vai{clip-path:none;transition:opacity .3s}
+  .hero-palco.brilha::after{animation:none}
+}
+@media (max-width:860px){
+  .hero-cores{grid-template-columns:minmax(0,1fr);min-height:0;gap:8px;padding-top:8px}
+  .hero-palco{order:1;max-width:520px}
+  .hero-texto{order:2;max-width:none;gap:18px}
+}
+@media (max-width:760px){
+  .hero-texto h1{font-size:36px}
+  .hero-sub{font-size:13px}
+  .hero-cores-lista{gap:0;justify-content:space-between}
+  .hero-cores-lista i{width:28px;height:28px}
+  .hero-cores-lista button{font-size:11px;letter-spacing:.04em}
+  .hero-acao .comprar{flex:1;min-width:0}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="index.html"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <nav class="indice" aria-label="Coleções" id="indice"></nav>
+    <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
+  </div>
+</header>
+
+<main>
+  <section class="hero-cores" id="hero" aria-labelledby="hero-t">
+    <div class="hero-palco" id="hero-palco" aria-hidden="true"></div>
+    <div class="hero-texto">
+      <h1 id="hero-t">Um diamante.<br>Seis cores.</h1>
+      <p class="hero-sub">Caya Colors: diamante natural em bezel de ouro 18k sobre silicone premium, para usar no trabalho, no treino e no mar.</p>
+      <div class="hero-cores-lista" role="group" aria-label="Cor da banda" id="hero-cores"></div>
+      <div class="hero-acao">
+        <a class="comprar" id="hero-link" href="../peca/index.html?peca=caya-colors"><span>Escolher o meu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <span class="hero-preco">a partir de <b id="hero-preco"></b></span>
+      </div>
+    </div>
+  </section>
+  <div id="lotes"></div>
+</main>
+
+<footer class="rodape">
+  <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p></div>
+  <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
+  <div><b>Medida do aro</b><p>Você informa a medida do aro ao finalizar o pedido. Se não souber, uma especialista Caya ajuda.</p></div>
+</footer>
+
+<script src="../../data/catalogo.js?v=20261022141315"></script>
+<script src="../comum.js?v=20261022141315"></script>
+<script src="../sacola.js?v=20261022141315"></script>
+<script src="../preferencia.js?v=20261022141315"></script>
+<script>
+(function(){
+const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
+const $=(s,r=document)=>r.querySelector(s);
+const el=(t,a={},h='')=>{const e=document.createElement(t);for(const k in a)e.setAttribute(k,a[k]);if(h)e.innerHTML=h;return e};
+const SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
+const OK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
+$('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
+const sel=lerEndereco();
+C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'#'+c.id},c.nome)));
+
+function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../peca/index.html?'+q}
+function trocarFoto(img,src){ if(img.getAttribute('src')===src) return; img.classList.add('troca');
+  const n=new Image(); n.onload=()=>{img.src=src; img.classList.remove('troca')}; n.src=src; }
+
+function acao(p,getE){
+  if(p.consulta) return el('a',{class:'acao',href:linkWhatsApp(`Olá! Quero conversar sobre o ${p.nome}.`),target:'_blank',rel:'noopener'},`<span>Falar com uma especialista</span>${SETA}`);
+  const b=el('button',{class:'acao',type:'button'},`<span>Adicionar<span class="longo"> à sacola</span></span>${SETA}`);
+  b.onclick=()=>{ sacola.adicionar(p,getE()); b.classList.add('ok'); b.innerHTML=`<span>Na sacola</span>${OK}`;
+    setTimeout(()=>{b.classList.remove('ok'); b.innerHTML=`<span>Adicionar<span class="longo"> à sacola</span></span>${SETA}`},1600); Caya.abrirSacola(); };
+  return b;
+}
+
+/* Caya Colors: uma peca so; pedra e banda escolhidas no painel */
+function montarColors(p){
+  const e=Object.assign(Caya.padraoCom(p), sel&&sel.p.id===p.id?sel.e:{});
+  const box=el('div',{class:'colors'});
+  box.innerHTML=`<a class="foto" href="#"><img alt="" width="1024" height="1272"></a>
+    <div class="painel">
+      <div class="peca-nome"><h3><span class="pequeno">Anel</span>${p.nome}</h3><span class="mono" data-r="preco"></span></div>
+      <p class="resumo">${p.resumo}</p>
+      <div><div class="rot"><span class="pequeno">Pedra</span><b class="mono" data-r="pts"></b></div><div class="regua" role="group" aria-label="Pontos do diamante"></div></div>
+      <div><div class="rot"><span class="pequeno">Banda</span><b data-r="banda"></b></div><div class="bandas" role="group" aria-label="Cor da banda"></div></div>
+    </div>`;
+  const painel=$('.painel',box), maior=Math.max(...p.eixos.pts);
+  p.eixos.pts.forEach(v=>{const d=Math.round(10+22*Math.pow(v/maior,.83));
+    const b=el('button',{type:'button','aria-pressed':'false','data-v':v,'aria-label':ct(v)},`<span class="pedra" style="width:${d}px;height:${d}px"></span><span class="mono">${v} pts</span>`);
+    b.onclick=()=>{e.pts=v;atual()}; $('.regua',painel).append(b)});
+  C.bandas.forEach(bd=>{const b=el('button',{type:'button','aria-pressed':'false','data-v':bd.id,'aria-label':'Banda '+bd.nome,title:bd.nome,style:'background:'+bd.cor});
+    b.onclick=()=>{e.banda=bd.id;atual()}; $('.bandas',painel).append(b)});
+  painel.append(acao(p,()=>({...e})));
+  const img=$('img',box);
+  function atual(){
+    const v=variacao(p,e);
+    trocarFoto(img,'../../'+v.fotos[0]); img.alt=`${p.nome}, ${rotulo(p,e)}`;
+    painel.querySelectorAll('.regua button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===e.pts));
+    painel.querySelectorAll('.bandas button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===e.banda));
+    $('[data-r=pts]',painel).textContent=ct(e.pts);
+    $('[data-r=banda]',painel).textContent=nomeBanda(e.banda);
+    $('[data-r=preco]',painel).textContent=brl(v.preco);
+    $('a.foto',box).href=linkPeca(p,e);
+    if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
+  }
+  atual(); return box;
+}
+
+/* Caya Colors Collection: mesma diagramacao do anel, com as seis cores a mostra */
+function montarCollection(p){
+  const e=Object.assign(Caya.padraoCom(p), sel&&sel.p.id===p.id?sel.e:{}), ed=EDITORIAL[p.id], maior=Math.max(...p.eixos.pts);
+  const box=el('div',{class:'colors collection',id:'peca-'+p.id});
+  box.innerHTML=`<a class="foto" href="#"><img src="../../${p.variacoes[0].fotos[0]}" alt="${p.nome}: caixa com o anel e as bandas nas seis cores" loading="lazy" width="1024" height="1272"></a>
+    <div class="painel">
+      <div class="peca-nome"><h3><span class="pequeno">${p.tipo}</span><a class="nome-link" href="#">${p.nome}</a></h3><span class="mono" data-r="preco"></span></div>
+      <p class="resumo">${p.resumo}</p>
+      <div><div class="rot"><span class="pequeno">Pedra</span><b class="mono" data-r="pts"></b></div><div class="regua" role="group" aria-label="Pontos do diamante"></div></div>
+      <div><div class="rot"><span class="pequeno">As seis cores na caixa</span></div>
+        <ul class="todas-cores">${p.cores.map(id=>`<li><i style="background:${corBanda(id)}"></i>${nomeBanda(id)}</li>`).join('')}</ul></div>
+    </div>`;
+  const painel=$('.painel',box);
+  p.eixos.pts.forEach(v=>{const d=Math.round(10+22*Math.pow(v/maior,.83));
+    const b=el('button',{type:'button','aria-pressed':'false','data-v':v,'aria-label':ct(v)},`<span class="pedra" style="width:${d}px;height:${d}px"></span><span class="mono">${v} pts</span>`);
+    b.onclick=()=>{e.pts=v;atual()}; $('.regua',painel).append(b)});
+  painel.append(acao(p,()=>({...e})));
+  if(ed) box.append(el('figure',{class:'editorial'},`<img src="../../assets/editorial/${ed.img}.webp" alt="${ed.alt}" loading="lazy" width="1000" height="1250"><figcaption class="pequeno">${ed.legenda}</figcaption>`));
+  function atual(){
+    const v=variacao(p,e);
+    painel.querySelectorAll('.regua button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.v===e.pts));
+    $('[data-r=pts]',painel).textContent=ct(e.pts);
+    $('[data-r=preco]',painel).textContent=brl(v.preco);
+    box.querySelectorAll('a.foto,a.nome-link').forEach(a=>a.href=linkPeca(p,e));
+    if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
+  }
+  atual(); return box;
+}
+
+function montarPeca(p,sozinha){
+  const e=Object.assign(Caya.padraoCom(p), sel&&sel.p.id===p.id?sel.e:{});
+  const art=el('article',{class:'peca',id:'peca-'+p.id});
+  art.innerHTML=`<a class="foto" href="#"><img alt="" loading="lazy" width="1024" height="1272"></a>
+    <div class="peca-corpo"><div class="peca-nome"><h3><span class="pequeno">${p.tipo}</span><a class="nome-link" href="#">${p.nome}</a></h3><span class="mono" data-r="preco"></span></div></div>`;
+  const corpo=$('.peca-corpo',art);
+  if(sozinha) corpo.append(el('p',{class:'resumo'},p.resumo));
+  const esc=el('div',{class:'escolhas'});
+  const nomes={pts:'Pedra',ouro:'Ouro'};
+  for(const k of Object.keys(p.eixos)){
+    const g=el('div',{class:'eixo',role:'group','aria-label':nomes[k]});
+    p.eixos[k].forEach(v=>{const b=k==='ouro'?el('button',{type:'button',class:'ouro-b','data-k':k,'data-v':v,'aria-pressed':'false','aria-label':'Ouro '+v,title:'Ouro '+v,style:'background:'+(v==='branco'?'linear-gradient(135deg,#F4F4F2,#C9C9C6)':'linear-gradient(135deg,#F1D88F,#C9A24E)')}):el('button',{type:'button',class:'opc','data-k':k,'data-v':v,'aria-pressed':'false'},ct(v));
+      b.onclick=()=>{e[k]=v;atual()}; g.append(b)});
+    esc.append(g);
+  }
+  if(esc.children.length) corpo.append(esc);
+  corpo.append(acao(p,()=>({...e})));
+  const img=$('img',art);
+  function atual(){
+    const v=variacao(p,e);
+    trocarFoto(img,'../../'+v.fotos[0]); img.alt=`${p.nome}${rotulo(p,e)?', '+rotulo(p,e):''}`;
+    art.querySelectorAll('.opc,.ouro-b').forEach(b=>b.setAttribute('aria-pressed',String(e[b.dataset.k])===b.dataset.v));
+    $('[data-r=preco]',art).textContent=p.consulta?'sob consulta':brl(v.preco);
+    art.querySelectorAll('a.foto,a.nome-link').forEach(a=>a.href=linkPeca(p,e));
+    if(atual.pronto) gravarEndereco(p,e); atual.pronto=true;
+  }
+  if(p.eixos.ouro) Caya.aoMudarOuro(v=>{ e.ouro=v; atual.pronto=false; atual(); });
+  atual(); return art;
+}
+
+const EDITORIAL={
+  'colors-collection':{img:'collection',alt:'Mãos abrindo a caixa Caya Colors Collection com as bandas coloridas',legenda:'A caixa Caya Colors Collection'},
+  'caya-colors':{img:'caya-colors',alt:'Mãos com cinco anéis Caya Colors em cores diferentes',legenda:'Caya Colors no dia a dia'},
+  'halo':{img:'halo',alt:'Mão com anéis de diamante em ouro branco sobre blazer preto',legenda:'Halo'}
+};
+C.colecoes.forEach(c=>{
+  const ps=C.pecas.filter(p=>p.colecao===c.id);
+  const faixa=[...new Set(ps.flatMap(p=>p.eixos.pts||[]))];
+  const dados=[
+    ['Pedra',c.id==='candy-cut'||c.id==='mosaico'?'diamante + esmeralda':'diamante natural'],
+    ['Ouro',c.id==='caya-colors'?'18k':'18k branco ou amarelo'],
+    faixa.length>1?['Pontos',faixa[0]+' a '+faixa[faixa.length-1]]:null,
+    ps.every(p=>p.consulta)?['Preço','sob consulta']:['A partir de',brl(Math.min(...ps.filter(p=>!p.consulta).map(aPartirDe)))]].filter(Boolean);
+  const sec=el('section',{class:'lote dobrado',id:c.id,'aria-labelledby':'t-'+c.id});
+  sec.innerHTML=`<header class="lote-cab"><div><h2 id="t-${c.id}">${c.nome}</h2><p class="linha">${c.linha}</p></div>
+    <dl>${dados.map(([a,b])=>`<div><dt>${a}</dt><dd>${b}</dd></div>`).join('')}</dl></header>
+    <div class="forro"></div>`;
+  const forro=$('.forro',sec);
+  const ed=EDITORIAL[c.id], fig=ed?el('figure',{class:'editorial'},`<img src="../../assets/editorial/${ed.img}.webp" alt="${ed.alt}" loading="lazy" width="1000" height="1250"><figcaption class="pequeno">${ed.legenda}</figcaption>`):null;
+  if(c.id==='caya-colors'){ const cc=montarColors(ps[0]); if(fig) cc.append(fig); forro.append(cc);
+    ps.slice(1).forEach(p=>forro.append(montarCollection(p))); }
+  else{ const box=el('div',{class:'pecas'}); box.dataset.n=ps.length; box.style.setProperty('--n',ps.length);
+    if(fig) box.prepend(fig);
+    ps.forEach(p=>box.append(montarPeca(p,false))); forro.append(box); }
+  $('#lotes').append(sec);
+});
+
+const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.remove('dobrado');io.unobserve(x.target)}}),{rootMargin:'0px 0px -10% 0px'});
+document.querySelectorAll('.lote').forEach(s=>io.observe(s));
+const links=[...document.querySelectorAll('#indice a')];
+const io2=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting)links.forEach(a=>a.setAttribute('aria-current',a.hash==='#'+x.target.id))}),{rootMargin:'-40% 0px -55% 0px'});
+document.querySelectorAll('.lote').forEach(s=>io2.observe(s));
+if(sel){const a=document.getElementById(sel.p.colecao); if(a){a.classList.remove('dobrado'); setTimeout(()=>a.scrollIntoView(),50)}}
+
+Caya.montarSacola('../../');
+Caya.montarPreferencia();
+/* hero: o anel troca de cor numa onda que nasce do diamante */
+(function(){
+  const palco=document.getElementById('hero-palco'), lista=document.getElementById('hero-cores'), sec=document.getElementById('hero');
+  const p=Caya.peca('caya-colors'), ORDEM=['preto','marrom','rosa','bege','amarelo','branco'], TEMPO=3600;
+  const reduz=matchMedia('(prefers-reduced-motion:reduce)').matches, cel=matchMedia('(max-width:760px)').matches;
+  const src=c=>`../../assets/hero/${c}${cel?'-m':''}.webp`;
+  let atual=-1, timer=null, parado=reduz;
+  sec.style.setProperty('--tempo',TEMPO+'ms');
+  $('#hero-preco').textContent=brl(Caya.aPartirDe(p));
+  ORDEM.forEach((c,k)=>{
+    const b=el('button',{type:'button','aria-pressed':'false','aria-label':'Banda '+nomeBanda(c)},`<i style="background:${corBanda(c)}"></i>${nomeBanda(c)}<span class="tempo"></span>`);
+    b.onclick=()=>{ir(k);parado=true;clearInterval(timer);sec.classList.remove('rodando')};
+    b.onmouseenter=()=>{ if(!cel) ir(k,true) };
+    lista.append(b);
+  });
+  function ir(k,suave){
+    if(k===atual) return; atual=k; const c=ORDEM[k];
+    lista.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===k)));
+    $('#hero-link').href=`../peca/index.html?peca=caya-colors&pts=10&banda=${c}`;
+    const img=new Image(); img.alt=''; img.decoding='async'; img.src=src(c);
+    const entrar=()=>{
+      if(!palco.children.length||reduz){ palco.replaceChildren(img); return; }
+      img.className='entra'; palco.append(img);
+      requestAnimationFrame(()=>requestAnimationFrame(()=>img.classList.add('vai')));
+      palco.classList.remove('brilha'); void palco.offsetWidth; palco.classList.add('brilha');
+      img.addEventListener('transitionend',()=>{ while(palco.children.length>1) palco.firstChild.remove(); img.className=''; },{once:true});
+    };
+    img.decode?img.decode().then(entrar,entrar):(img.onload=entrar);
+    sec.classList.remove('rodando'); void sec.offsetWidth; if(!parado) sec.classList.add('rodando');
+  }
+  function tocar(){ clearInterval(timer); if(!parado) timer=setInterval(()=>ir((atual+1)%ORDEM.length),TEMPO); }
+  sec.addEventListener('mouseleave',()=>{ if(!parado) tocar() });
+  sec.addEventListener('mouseenter',()=>clearInterval(timer));
+  document.addEventListener('visibilitychange',()=>document.hidden?clearInterval(timer):tocar());
+  /* pre-carrega as outras cores depois da primeira */
+  addEventListener('load',()=>ORDEM.forEach(c=>{const i=new Image(); i.src=src(c)}));
+  ir(2); tocar();
+})();
+})();
+</script>
+</body>
+</html>
