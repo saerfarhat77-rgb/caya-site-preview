@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Meça o aro de um anel que você já tem, direto na tela, em tamanho real.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261023154336">
+<link rel="stylesheet" href="../../assets/site.css?v=20261023155040">
 <style>
 .medidor{max-width:1100px;margin:0 auto;padding:clamp(28px,4vw,56px) var(--g) var(--respiro)}
 .medidor h1{font-weight:300;font-stretch:112%;font-size:clamp(30px,3.4vw,48px);line-height:1.05}
@@ -67,7 +67,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261023154336"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261023155040"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -120,7 +120,8 @@
       <p>Ficou entre dois números? Escolha o maior.</p>
       <button type="button" class="acao usar" id="usar"><span>Usar este aro</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 12.5l5 5L20 6.5"/></svg></button>
       <p class="usado" id="usado" hidden></p>
-      <p class="aviso-cal">O tamanho só é real com a tela ajustada. <a href="#" id="recalibrar">Ajustar de novo</a></p>
+      <p class="aviso-cal" id="aviso-auto" hidden>Reconhecemos o seu iPhone: o círculo já está em tamanho real.</p>
+      <p class="aviso-cal">Achou a medida estranha? <a href="#" id="recalibrar">Ajustar com um cartão</a></p>
     </div>
   </section>
 </main>
@@ -128,17 +129,17 @@
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
   <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023154336#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023154336#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023154336#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023154336#aro">Tabela de aros</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023155040#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023155040#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023155040#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023155040#aro">Tabela de aros</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261023154336"></script>
-<script src="../comum.js?v=20261023154336"></script>
-<script src="../sacola.js?v=20261023154336"></script>
-<script src="../preferencia.js?v=20261023154336"></script>
+<script src="../../data/catalogo.js?v=20261023155040"></script>
+<script src="../comum.js?v=20261023155040"></script>
+<script src="../sacola.js?v=20261023155040"></script>
+<script src="../preferencia.js?v=20261023155040"></script>
 <script>
 (function(){
 const {C,linkWhatsApp}=Caya, $=(s,r=document)=>r.querySelector(s);
-C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023154336&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023155040&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
 $('#zap').href=linkWhatsApp('Olá! Preciso de ajuda com a medida do aro.');
 Caya.montarSacola('../../');
 Caya.montarPreferencia();
@@ -172,13 +173,40 @@ function etapa(qual){
   $('#aba-cal').setAttribute('aria-selected',String(!med)); $('#aba-med').setAttribute('aria-selected',String(med));
 }
 $('#aba-cal').onclick=()=>etapa('cal'); $('#aba-med').onclick=()=>etapa('med');
-$('#ir-medir').onclick=ev=>{ev.preventDefault(); gravar('caya-calibrado','1'); etapa('med')};
+$('#ir-medir').onclick=ev=>{ev.preventDefault(); gravar('caya-calibrado','1'); gravar('caya-escala-origem','cartao'); $('#aviso-auto').hidden=true; etapa('med')};
 $('#recalibrar').onclick=ev=>{ev.preventDefault(); etapa('cal')};
 $('#usar').onclick=()=>{
   gravar('caya-aro-medido',aro.value);
   const u=$('#usado'); u.hidden=false;
-  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023154336'}">Voltar às peças</a>`;
+  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023155040'}">Voltar às peças</a>`;
 };
+/* iPhone: reconhece o modelo pela resolucao e trava o tamanho real sem cartao.
+   Largura fisica da tela (mm) por tela em CSS (lado curto x lado longo @ dpr). */
+const IPHONES={
+  '320x568@2':49.9,  /* SE 1a geracao, 5s */
+  '375x667@2':58.4,  /* 6, 7, 8, SE 2a e 3a */
+  '414x736@3':68.4,  /* 6/7/8 Plus */
+  '414x896@2':64.5,  /* XR, 11 */
+  '414x896@3':68.9,  /* XS Max, 11 Pro Max */
+  '390x844@3':64.6,  /* 12, 12 Pro, 13, 13 Pro, 14 */
+  '428x926@3':71.2,  /* 12 Pro Max, 13 Pro Max, 14 Plus */
+  '393x852@3':65.1,  /* 14 Pro, 15, 15 Pro, 16 */
+  '430x932@3':71.2,  /* 14 Pro Max, 15 Plus, 15 Pro Max, 16 Plus */
+  '402x874@3':66.6,  /* 16 Pro */
+  '440x956@3':72.9   /* 16 Pro Max */
+  /* 375x812@3 fica de fora: X/XS/11 Pro e 12/13 mini tem a mesma resolucao e telas diferentes */
+};
+function escalaAutomatica(){
+  if(!/iPhone/.test(navigator.userAgent)) return null;
+  const w=Math.min(screen.width,screen.height), h=Math.max(screen.width,screen.height), dpr=Math.round(devicePixelRatio||1);
+  const mm=IPHONES[`${w}x${h}@${dpr}`]; if(!mm) return null;
+  return (w/mm)/(96/25.4);      /* px CSS por mm real, dividido pelo "mm" do CSS */
+}
+const auto=escalaAutomatica();
+if(auto && ler('caya-escala-origem')!=='cartao'){
+  k=auto; gravar('caya-escala-origem','auto'); gravar('caya-calibrado','1');
+  $('#aviso-auto').hidden=false;
+}
 aplicarK(k);
 if(ler('caya-calibrado')) etapa('med');
 })();

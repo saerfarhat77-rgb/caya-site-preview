@@ -57,6 +57,6 @@
     /* pergunta so quem ainda nao escolheu (e nao fechou o quadro nesta visita) */
     let jaPerguntado = false;
     try { jaPerguntado = !!sessionStorage.getItem('caya-ouro-perguntado'); } catch (_) {}
-    if (!Caya.ouroPreferido() && !jaPerguntado) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
+    if (!Caya.ouroPreferido() && !jaPerguntado && !/v2-medidor/.test(location.pathname)) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
   };
 })();
