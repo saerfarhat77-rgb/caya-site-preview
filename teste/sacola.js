@@ -57,7 +57,7 @@
         const n = sacola.camposAro(i);
         const d = document.createElement('div'); d.className = 'item';
         d.innerHTML = `<img src="${raiz}${i.foto}" alt=""><div><b>${i.nome}</b><small>${i.detalhe}${i.qtd > 1 ? ' · ×' + i.qtd : ''}</small><button class="rm" type="button">Remover</button></div><span class="mono">${brl(i.preco * i.qtd)}</span>
-          ${n ? `<div class="aros">${Array.from({ length: n }, (_, k) => campoAro(i, k, n)).join('')}<a class="link-medir" href="${raiz}teste/v2-medidor/index.html">Medir</a></div>` : ''}`;
+          ${n ? `<div class="aros">${Array.from({ length: n }, (_, k) => campoAro(i, k, n)).join('')}<a class="link-medir" href="${raiz}teste/v2-medidor/index.html?item=${encodeURIComponent(i.chave)}">Medir</a></div>` : ''}`;
         d.querySelector('.rm').onclick = () => sacola.remover(i.chave);
         d.querySelectorAll('select').forEach((s) => { s.onchange = () => sacola.definirAro(i.chave, +s.dataset.n, s.value); });
         d.querySelectorAll('.usar-medido').forEach((b) => { b.onclick = () => { let m = null; try { m = localStorage.getItem('caya-aro-medido'); } catch (_) {} if (m) sacola.definirAro(i.chave, +b.dataset.n, m); }; });

@@ -8,14 +8,14 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261023164252">
+<link rel="stylesheet" href="../../assets/site.css?v=20261023164657">
 </head>
 <body>
 <script>document.documentElement.classList.add('js')</script>
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="index.html?v=20261023164252"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="index.html?v=20261023164657"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -38,14 +38,14 @@
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
   <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023164252&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023164252&p=garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023164252&p=entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023164252&p=aro">Medida do aro</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023164657&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023164657&p=garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023164657&p=entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023164657&p=aro">Medida do aro</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261023164252"></script>
-<script src="../comum.js?v=20261023164252"></script>
-<script src="../sacola.js?v=20261023164252"></script>
-<script src="../preferencia.js?v=20261023164252"></script>
-<script src="../banner.js?v=20261023164252"></script>
+<script src="../../data/catalogo.js?v=20261023164657"></script>
+<script src="../comum.js?v=20261023164657"></script>
+<script src="../sacola.js?v=20261023164657"></script>
+<script src="../preferencia.js?v=20261023164657"></script>
+<script src="../banner.js?v=20261023164657"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
@@ -55,9 +55,9 @@ const SETA='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-wi
 const OK='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12.5l5 5L20 6.5"/></svg>';
 $('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
 const sel=lerEndereco();
-C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?v=20261023164252&linha='+c.id},c.nome)));
+C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?v=20261023164657&linha='+c.id},c.nome)));
 
-function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../v2-peca/index.html?v=20261023164252&'+q}
+function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../v2-peca/index.html?v=20261023164657&'+q}
 function trocarFoto(img,src){ if(img.getAttribute('src')===src) return; img.classList.add('troca');
   const n=new Image(); n.onload=()=>{img.src=src; img.classList.remove('troca')}; n.src=src; }
 
@@ -198,9 +198,9 @@ document.querySelectorAll('[data-zap]').forEach(a=>a.href=Caya.linkWhatsApp('Ol�
 Caya.montarSacola('../../');
 Caya.montarPreferencia();
 Caya.montarBanner(document.getElementById('banner'),'../../',[
-  {img:'colors-487',nome:'Caya Colors no dia a dia',link:'../v2-linha/index.html?v=20261023164252&linha=caya-colors'},
-  {img:'halo-campanha',nome:'Coleção Halo',link:'../v2-linha/index.html?v=20261023164252&linha=halo'},
-  {imgOuro:{branco:'stud-branco',amarelo:'stud-amarelo'},nome:'Halo Stud, do 0,10 ao 0,50 ct',link:'../v2-peca/index.html?v=20261023164252&peca=halo-stud'}
+  {img:'colors-487',nome:'Caya Colors no dia a dia',link:'../v2-linha/index.html?v=20261023164657&linha=caya-colors'},
+  {img:'halo-campanha',nome:'Coleção Halo',link:'../v2-linha/index.html?v=20261023164657&linha=halo'},
+  {imgOuro:{branco:'stud-branco',amarelo:'stud-amarelo'},nome:'Halo Stud, do 0,10 ao 0,50 ct',link:'../v2-peca/index.html?v=20261023164657&peca=halo-stud'}
 ]);
 })();
 </script>
