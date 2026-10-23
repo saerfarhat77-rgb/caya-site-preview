@@ -381,3 +381,4 @@ a.foto{display:block}
 .pagar:disabled{opacity:.3;cursor:not-allowed}
 .fechar-pedido.secundario{background:transparent;color:var(--preto);border:1px solid var(--preto)}
 .erro-pag{font-size:12px;color:var(--preto)!important}
+.sacola footer .frete{display:flex;justify-content:space-between;font-size:13px;color:var(--texto-2)}

@@ -14,6 +14,7 @@
         <header><h2>Sacola</h2><button class="x" id="fechar-sacola" aria-label="Fechar sacola">${X}</button></header>
         <div class="lista" id="lista"></div>
         <footer>
+          <div class="frete"><span>Frete</span><span>Grátis</span></div>
           <div class="tot"><span>Total</span><span class="mono" id="total">R$ 0</span></div>
           <p class="falta-aro" id="falta-aro" hidden>Informe a medida do aro para finalizar.</p>
           <button type="button" class="pagar" id="pagar" hidden>Pagar agora · Pix ou cartão em até 12x</button>

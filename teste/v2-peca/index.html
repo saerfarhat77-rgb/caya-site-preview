@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261023163156">
+<link rel="stylesheet" href="../../assets/site.css?v=20261023163915">
 <style>
 /* ---------- pagina da peca ---------- */
 .trilha{padding:28px var(--g) 0;font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);font-stretch:110%}
@@ -111,7 +111,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261023163156"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261023163915"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -122,13 +122,13 @@
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
   <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023163156#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023163156#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023163156#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023163156#aro">Medida do aro</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023163915&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023163915&p=garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023163915&p=entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023163915&p=aro">Medida do aro</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261023163156"></script>
-<script src="../comum.js?v=20261023163156"></script>
-<script src="../sacola.js?v=20261023163156"></script>
-<script src="../preferencia.js?v=20261023163156"></script>
+<script src="../../data/catalogo.js?v=20261023163915"></script>
+<script src="../comum.js?v=20261023163915"></script>
+<script src="../sacola.js?v=20261023163915"></script>
+<script src="../preferencia.js?v=20261023163915"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,peca,variacao,rotulo,aPartirDe,lerEndereco,sacola,linkWhatsApp}=Caya;
@@ -141,14 +141,14 @@ const RAIZ='../../';
 const OURO={branco:'linear-gradient(135deg,#F4F4F2,#C9C9C6)',amarelo:'linear-gradient(135deg,#F1D88F,#C9A24E)'};
 
 $('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
-C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?v=20261023163156&linha='+c.id},c.nome)));
+C.colecoes.forEach(c=>$('#indice').append(el('a',{href:'../v2-linha/index.html?v=20261023163915&linha='+c.id},c.nome)));
 Caya.montarSacola(RAIZ);
 Caya.montarPreferencia();
 
 const sel=lerEndereco();
 const main=$('#principal');
 if(!sel){
-  main.innerHTML=`<div class="sumiu"><p>Não encontramos essa peça.</p><p style="margin-top:18px"><a href="../papel/index.html?v=20261023163156">Ver todas as peças</a></p></div>`;
+  main.innerHTML=`<div class="sumiu"><p>Não encontramos essa peça.</p><p style="margin-top:18px"><a href="../papel/index.html?v=20261023163915">Ver todas as peças</a></p></div>`;
   return;
 }
 const p=sel.p, e=sel.e;
@@ -156,7 +156,7 @@ const col=C.colecoes.find(c=>c.id===p.colecao);
 const anel=/anel|alian/i.test(p.tipo);
 
 main.innerHTML=`
-  <nav class="trilha" aria-label="Você está em"><a href="../papel/index.html?v=20261023163156">Início</a><span>/</span><a href="../v2-linha/index.html?v=20261023163156&linha=${col.id}">${col.nome}</a><span>/</span>${p.nome}</nav>
+  <nav class="trilha" aria-label="Você está em"><a href="../papel/index.html?v=20261023163915">Início</a><span>/</span><a href="../v2-linha/index.html?v=20261023163915&linha=${col.id}">${col.nome}</a><span>/</span>${p.nome}</nav>
   <section class="ficha-peca">
     <div class="galeria">
       <div class="foto"><img alt="" width="1024" height="1272"></div>
@@ -173,7 +173,7 @@ main.innerHTML=`
       </div>
       <div class="escolhas-peca" style="display:grid;gap:26px"></div>
       <div class="acao-peca"></div>
-      ${p.aros?'<p class="nota">Você informa a medida do aro ao finalizar o pedido. <a href="../v2-medidor/index.html?v=20261023163156">Medir o aro na tela</a></p>':''}
+      ${p.aros?'<p class="nota">Você informa a medida do aro ao finalizar o pedido. <a href="../v2-medidor/index.html?v=20261023163915">Medir o aro na tela</a></p>':''}
       <div class="secoes"></div>
     </div>
   </section>`;
@@ -234,8 +234,8 @@ function montarSecoes(){
   $('.secoes',main).innerHTML=
     secao('Descrição',`<p>${p.texto}</p>`,true)+
     secao('Ficha técnica',ficha)+
-    (p.aros?secao('Medida do aro','<p>Você informa a medida do aro na sacola, ao finalizar o pedido'+(p.aros>1?', uma para cada anel do par':'')+'. Se não souber, escolha "Não sei a medida": uma especialista Caya ajuda você a descobrir antes da produção.</p><p style="margin-top:10px"><a href="../v2-info/index.html?v=20261023163156#aro">Ver o guia de medidas</a></p>'):'')+
-    secao('Entrega e trocas','<p>Pronta em até 2 semanas. Envio pelos Correios com seguro ou entrega em mãos por portador, conforme o valor. Troca em até 30 dias e arrependimento em 7 dias.</p><p style="margin-top:10px"><a href="../v2-info/index.html?v=20261023163156#trocas">Ler a política completa</a></p>')+
+    (p.aros?secao('Medida do aro','<p>Você informa a medida do aro na sacola, ao finalizar o pedido'+(p.aros>1?', uma para cada anel do par':'')+'. Se não souber, escolha "Não sei a medida": uma especialista Caya ajuda você a descobrir antes da produção.</p><p style="margin-top:10px"><a href="../v2-info/index.html?v=20261023163915&p=aro">Ver o guia de medidas</a></p>'):'')+
+    secao('Entrega e trocas','<p>Frete grátis. Pronta em até 2 semanas. Envio pelos Correios com seguro ou entrega em mãos por portador, conforme o valor. Troca em até 30 dias e arrependimento em 7 dias.</p><p style="margin-top:10px"><a href="../v2-info/index.html?v=20261023163915&p=trocas">Ler a política completa</a></p>')+
     secao('Atendimento',`<p>Dúvidas sobre a peça, a medida ou o prazo: <a href="${linkWhatsApp('Olá! Tenho uma dúvida sobre o '+p.nome+'.')}" target="_blank" rel="noopener">fale com uma especialista Caya</a>.</p>`);
 }
 
@@ -291,8 +291,8 @@ if(p.id==='halo-stud'){
 }
 
 /* ---- mais da colecao (ou das outras, se a peca estiver sozinha) ---- */
-let outras=C.pecas.filter(x=>x.colecao===p.colecao&&x.id!==p.id), titulo='Mais de '+col.nome, link=`<a href="../v2-linha/index.html?v=20261023163156&linha=${col.id}">Ver coleção</a>`;
-if(!outras.length){outras=C.pecas.filter(x=>x.id!==p.id).slice(0,4); titulo='Outras peças'; link='<a href="../papel/index.html?v=20261023163156">Ver todas</a>';}
+let outras=C.pecas.filter(x=>x.colecao===p.colecao&&x.id!==p.id), titulo='Mais de '+col.nome, link=`<a href="../v2-linha/index.html?v=20261023163915&linha=${col.id}">Ver coleção</a>`;
+if(!outras.length){outras=C.pecas.filter(x=>x.id!==p.id).slice(0,4); titulo='Outras peças'; link='<a href="../papel/index.html?v=20261023163915">Ver todas</a>';}
 const mais=el('section',{class:'mais','aria-labelledby':'t-mais'},`<header class="lote-cab"><h2 id="t-mais">${titulo}</h2>${link}</header><div class="pecas"></div>`);
 outras.slice(0,4).forEach(x=>{const v=variacao(x,x.padrao); const q=new URLSearchParams({peca:x.id});
   $('.pecas',mais).append(el('article',{class:'peca'},`<a class="foto" href="?${q}"><img src="${RAIZ+v.fotos[0]}" alt="${x.nome}" loading="lazy" width="1024" height="1272"></a>

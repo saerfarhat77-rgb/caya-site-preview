@@ -73,9 +73,9 @@
       const v = variacao(p, e);
       const chave = p.id + '|' + JSON.stringify(e);
       const ja = itens.find((i) => i.chave === chave);
-      if (ja) ja.qtd += 1;
+      if (ja) { ja.qtd += 1; if (aroMedido()) aplicarAroMedido(aroMedido()); }
       else itens.push({ chave, id: p.id, nome: p.nome, detalhe: rotulo(p, e), preco: v.preco, foto: v.fotos[0], qtd: 1,
-                        aros: p.aros || 0, medidas: [] });
+                        aros: p.aros || 0, medidas: aroMedido() ? Array(p.aros || 0).fill(aroMedido()) : [] });
       salvar();
     },
     remover(chave) { itens = itens.filter((i) => i.chave !== chave); salvar(); },
@@ -94,6 +94,14 @@
     }),
     ouvir(f) { ouvintes.push(f); f(itens); },
   };
+  function aroMedido() { try { return localStorage.getItem('caya-aro-medido'); } catch (_) { return null; } }
+  /* depois de medir: preenche os aros que ainda estao vazios na sacola */
+  function aplicarAroMedido(m) {
+    itens.forEach((i) => { const n = (i.aros || 0) * i.qtd; i.medidas = i.medidas || [];
+      for (let k = 0; k < n; k++) if (!i.medidas[k]) i.medidas[k] = m; });
+    salvar();
+  }
+  sacola.aplicarAroMedido = aplicarAroMedido;
   const textoAro = (m) => (m === 'ajuda' ? 'preciso de ajuda com a medida' : 'aro ' + m);
 
   function linkWhatsApp(texto) {
