@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Medir o aro | Caya Diamonds</title>
+<link rel="icon" href="../../assets/marca/favicon.png">
+<meta name="description" content="Meça o aro de um anel que você já tem, direto na tela, em tamanho real.">
+<link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css?v=20261023154304">
+<style>
+.medidor{max-width:1100px;margin:0 auto;padding:clamp(28px,4vw,56px) var(--g) var(--respiro)}
+.medidor h1{font-weight:300;font-stretch:112%;font-size:clamp(30px,3.4vw,48px);line-height:1.05}
+.medidor .sub{color:var(--texto-2);max-width:52ch;margin-top:10px}
+.passos{display:flex;gap:22px;margin:28px 0 30px;border-bottom:1px solid var(--linha)}
+.passos button{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-stretch:110%;color:var(--cinza);padding:10px 0;border-bottom:1px solid transparent;margin-bottom:-1px}
+.passos button[aria-selected="true"]{color:var(--preto);border-bottom-color:var(--preto)}
+.etapa[hidden]{display:none}
+.etapa{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,340px);gap:clamp(28px,5vw,72px);align-items:center}
+.instr p{color:var(--texto-2);font-size:15px;max-width:42ch}
+.instr p+p{margin-top:10px}
+.instr ol{margin:14px 0 0 18px;color:var(--texto-2);font-size:15px;display:grid;gap:8px}
+.instr strong{font-weight:400;color:var(--preto)}
+
+/* calibracao: cartao em escala */
+.palco{display:grid;place-items:center;min-height:min(62vh,520px);background:var(--branco);border:1px solid var(--linha);position:relative;overflow:hidden;touch-action:none}
+.cartao{width:calc(85.6mm * var(--k,1));aspect-ratio:85.6/53.98;border:1.5px solid var(--preto);border-radius:calc(3.2mm * var(--k,1));
+  background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(20,20,20,.035) 10px 11px);position:relative}
+.cartao::after{content:"Encoste o cartão aqui";position:absolute;inset:auto 0 10px;text-align:center;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.ajuste{display:flex;align-items:center;gap:12px;margin-top:20px}
+.ajuste input{flex:1;accent-color:var(--preto)}
+.ajuste button,.passo-aro button{width:40px;height:40px;border:1px solid var(--linha);background:var(--branco);font-size:18px;flex:none}
+.ajuste button:hover,.passo-aro button:hover{border-color:var(--preto)}
+
+/* medicao: circulo em escala real */
+.alvo{position:relative;display:grid;place-items:center}
+.circulo{width:var(--d);height:var(--d);border-radius:50%;border:1px solid var(--preto);position:relative;transition:width .25s var(--ease),height .25s var(--ease);
+  background:radial-gradient(circle,rgba(20,20,20,.04) 0 60%,transparent 61%)}
+.circulo::before,.circulo::after{content:"";position:absolute;background:var(--preto);opacity:.35}
+.circulo::before{left:50%;top:-14px;bottom:-14px;width:1px}
+.circulo::after{top:50%;left:-14px;right:-14px;height:1px}
+.leitura{text-align:center;margin-top:22px}
+.leitura .num{font-weight:300;font-stretch:112%;font-size:clamp(44px,5vw,64px);line-height:1}
+.leitura .num small{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cinza);display:block;margin-bottom:4px;font-stretch:110%}
+.leitura .mm{font-size:13px;color:var(--cinza);margin-top:8px}
+.passo-aro{display:flex;align-items:center;gap:12px;margin-top:18px}
+.passo-aro input{flex:1;accent-color:var(--preto)}
+.usar{margin-top:22px}
+.usado{font-size:13px;color:var(--preto);margin-top:12px}
+.aviso-cal{font-size:12px;color:var(--cinza);margin-top:14px}
+.aviso-cal a{color:var(--preto)}
+/* celular: o cartao fica de pe, para caber na largura da tela */
+@media (max-width:600px){
+  .cartao{width:calc(53.98mm * var(--k,1));aspect-ratio:53.98/85.6}
+  .cartao::after{content:"Encoste o cartão de pé"}
+}
+@media (max-width:860px){
+  .etapa{grid-template-columns:minmax(0,1fr)}
+  .palco{min-height:auto;padding:28px 0}
+  .instr{order:2}
+}
+</style>
+</head>
+<body>
+<script>document.documentElement.classList.add('js')</script>
+
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="../papel/index.html?v=20261023154304"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <nav class="indice" aria-label="Coleções" id="indice"></nav>
+    <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
+  </div>
+</header>
+
+<main class="medidor">
+  <h1>Medir o aro</h1>
+  <p class="sub">Use um anel que já serve no dedo. Coloque-o sobre a tela e veja qual círculo encaixa na borda de dentro.</p>
+
+  <div class="passos" role="tablist">
+    <button role="tab" id="aba-cal" aria-selected="true" aria-controls="etapa-cal">1 · Ajustar a tela</button>
+    <button role="tab" id="aba-med" aria-selected="false" aria-controls="etapa-med">2 · Medir o anel</button>
+  </div>
+
+  <section class="etapa" id="etapa-cal" role="tabpanel" aria-labelledby="aba-cal">
+    <div>
+      <div class="palco"><div class="cartao" id="cartao"></div></div>
+      <div class="ajuste">
+        <button type="button" id="cal-menos" aria-label="Diminuir">−</button>
+        <input type="range" id="cal" min="0.5" max="2.6" step="0.002" aria-label="Tamanho do cartão na tela">
+        <button type="button" id="cal-mais" aria-label="Aumentar">+</button>
+      </div>
+    </div>
+    <div class="instr">
+      <p>Cada tela mostra os tamanhos de um jeito. Para o círculo ficar em <strong>tamanho real</strong>, ajuste uma vez:</p>
+      <ol>
+        <li>Pegue qualquer cartão de banco, de crédito ou débito.</li>
+        <li>Encoste o cartão na tela, sobre o desenho (no celular, com o cartão de pé).</li>
+        <li>Mexa na barra até o desenho ficar exatamente do tamanho do cartão.</li>
+      </ol>
+      <a class="acao usar" id="ir-medir" href="#"><span>Pronto, medir o anel</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="etapa" id="etapa-med" role="tabpanel" aria-labelledby="aba-med" hidden>
+    <div>
+      <div class="palco"><div class="alvo"><div class="circulo" id="circulo"></div></div></div>
+      <div class="passo-aro">
+        <button type="button" id="aro-menos" aria-label="Aro menor">−</button>
+        <input type="range" id="aro" min="8" max="30" step="1" value="16" aria-label="Número do aro">
+        <button type="button" id="aro-mais" aria-label="Aro maior">+</button>
+      </div>
+    </div>
+    <div class="instr">
+      <div class="leitura">
+        <div class="num" id="aro-num"><small>Aro</small>16</div>
+        <div class="mm" id="aro-mm"></div>
+      </div>
+      <p style="margin-top:22px">Coloque o anel deitado sobre o círculo. Passe pelos números até a linha ficar <strong>exatamente na borda de dentro</strong> do anel, sem sobrar nem faltar.</p>
+      <p>Ficou entre dois números? Escolha o maior.</p>
+      <button type="button" class="acao usar" id="usar"><span>Usar este aro</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 12.5l5 5L20 6.5"/></svg></button>
+      <p class="usado" id="usado" hidden></p>
+      <p class="aviso-cal">O tamanho só é real com a tela ajustada. <a href="#" id="recalibrar">Ajustar de novo</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
+  <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023154304#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023154304#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023154304#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023154304#aro">Tabela de aros</a></p></div>
+</footer>
+
+<script src="../../data/catalogo.js?v=20261023154304"></script>
+<script src="../comum.js?v=20261023154304"></script>
+<script src="../sacola.js?v=20261023154304"></script>
+<script src="../preferencia.js?v=20261023154304"></script>
+<script>
+(function(){
+const {C,linkWhatsApp}=Caya, $=(s,r=document)=>r.querySelector(s);
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023154304&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+$('#zap').href=linkWhatsApp('Olá! Preciso de ajuda com a medida do aro.');
+Caya.montarSacola('../../');
+Caya.montarPreferencia();
+
+const ler=k=>{try{return localStorage.getItem(k)}catch(_){return null}}, gravar=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};
+/* k = fator que leva o "mm" do CSS ao mm real desta tela */
+let k=parseFloat(ler('caya-escala'))||1;
+const cal=$('#cal'); cal.value=k;
+function aplicarK(v){ k=Math.min(2.6,Math.max(.5,v)); cal.value=k; document.documentElement.style.setProperty('--k',k); gravar('caya-escala',String(k)); desenhar(); }
+cal.oninput=()=>aplicarK(+cal.value);
+$('#cal-menos').onclick=()=>aplicarK(k-.004); $('#cal-mais').onclick=()=>aplicarK(k+.004);
+/* primeira vez num celular: ponto de partida mais proximo do real */
+if(!ler('caya-escala') && matchMedia('(max-width:600px)').matches) k=1.55;
+
+/* aro brasileiro: circunferencia interna = aro + 40 mm */
+const aro=$('#aro'); const m=ler('caya-aro-medido'); if(m) aro.value=m;
+function desenhar(){
+  const n=+aro.value, circ=n+40, d=circ/Math.PI;
+  $('#circulo').style.setProperty('--d',`calc(${d.toFixed(2)}mm * ${k})`);
+  $('#aro-num').innerHTML=`<small>Aro</small>${n}`;
+  $('#aro-mm').textContent=`Diâmetro interno ${d.toFixed(1).replace('.',',')} mm · circunferência ${circ} mm`;
+  $('#usado').hidden=true;
+}
+aro.oninput=desenhar;
+$('#aro-menos').onclick=()=>{aro.value=Math.max(8,+aro.value-1);desenhar()};
+$('#aro-mais').onclick=()=>{aro.value=Math.min(30,+aro.value+1);desenhar()};
+
+function etapa(qual){
+  const med=qual==='med';
+  $('#etapa-cal').hidden=med; $('#etapa-med').hidden=!med;
+  $('#aba-cal').setAttribute('aria-selected',String(!med)); $('#aba-med').setAttribute('aria-selected',String(med));
+}
+$('#aba-cal').onclick=()=>etapa('cal'); $('#aba-med').onclick=()=>etapa('med');
+$('#ir-medir').onclick=ev=>{ev.preventDefault(); gravar('caya-calibrado','1'); etapa('med')};
+$('#recalibrar').onclick=ev=>{ev.preventDefault(); etapa('cal')};
+$('#usar').onclick=()=>{
+  gravar('caya-aro-medido',aro.value);
+  const u=$('#usado'); u.hidden=false;
+  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023154304'}">Voltar às peças</a>`;
+};
+aplicarK(k);
+if(ler('caya-calibrado')) etapa('med');
+})();
+</script>
+</body>
+</html>

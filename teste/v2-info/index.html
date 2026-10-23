@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Trocas, devoluções, garantia, prazos de entrega, guia de medida do aro e cuidados com a joia Caya.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261023153955">
+<link rel="stylesheet" href="../../assets/site.css?v=20261023154304">
 <style>
 .ajuda{max-width:1240px;margin:0 auto;padding:clamp(40px,6vw,88px) var(--g) var(--respiro);display:grid;
   grid-template-columns:minmax(0,240px) minmax(0,680px);gap:clamp(40px,7vw,120px)}
@@ -48,7 +48,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261023153955"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261023154304"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -121,12 +121,10 @@
     <section id="aro" aria-labelledby="t-aro">
       <h2 id="t-aro">Medida do aro</h2>
       <p>Os anéis Caya são feitos na sua medida. Você informa o aro na sacola, ao finalizar o pedido; se não souber, escolha "Não sei a medida" e a especialista ajuda.</p>
-      <h3>Como medir em casa</h3>
-      <ul>
-        <li><strong>Com um anel que já serve:</strong> meça o diâmetro interno, de borda a borda por dentro, e procure na tabela.</li>
-        <li><strong>Com um fio ou tira de papel:</strong> passe em volta da base do dedo, marque onde fecha e meça o comprimento em milímetros. Esse é a circunferência.</li>
-        <li>Meça no fim do dia, quando o dedo está um pouco maior. Na dúvida entre dois números, fique com o maior.</li>
-      </ul>
+      <h3>Meça na tela</h3>
+      <p>Coloque um anel que já serve sobre a tela do celular ou do computador e encontre o círculo que encaixa na borda de dentro. O medidor mostra o tamanho real depois de um ajuste rápido com um cartão de banco.</p>
+      <a class="acao" href="../v2-medidor/index.html?v=20261023154304" style="max-width:340px;margin-top:18px"><span>Medir o aro do meu anel</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+      <h3>Tabela de aros</h3>
       <table class="tabela-aro" id="tabela-aro">
         <thead><tr><th>Aro</th><th>Circunferência</th><th>Diâmetro interno</th></tr></thead>
         <tbody></tbody>
@@ -165,14 +163,14 @@
   <div><b>Ajuda</b><p><a href="#trocas">Trocas e devoluções</a><br><a href="#garantia">Garantia</a><br><a href="#entrega">Prazos e entrega</a><br><a href="#aro">Medida do aro</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261023153955"></script>
-<script src="../comum.js?v=20261023153955"></script>
-<script src="../sacola.js?v=20261023153955"></script>
-<script src="../preferencia.js?v=20261023153955"></script>
+<script src="../../data/catalogo.js?v=20261023154304"></script>
+<script src="../comum.js?v=20261023154304"></script>
+<script src="../sacola.js?v=20261023154304"></script>
+<script src="../preferencia.js?v=20261023154304"></script>
 <script>
 (function(){
 const {C,linkWhatsApp}=Caya, $=(s,r=document)=>r.querySelector(s);
-C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023153955&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023154304&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
 $('#zap').href=linkWhatsApp('Olá! Vim pelo site da Caya.');
 $('#zap-ajuda').href=linkWhatsApp('Olá! Preciso de ajuda com um pedido Caya.');
 /* tabela de aros: padrao brasileiro, circunferencia = aro + 40 mm */

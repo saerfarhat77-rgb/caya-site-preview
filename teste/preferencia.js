@@ -16,6 +16,12 @@
     botao.type = 'button';
     botao.className = 'ouro-pref';
     sacolaBtn.before(botao);
+    const medir = document.createElement('a');
+    medir.className = 'medir-aro';
+    medir.href = '../v2-medidor/index.html';
+    medir.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="4"/></svg><span>Medir aro</span>';
+    medir.setAttribute('aria-label', 'Medir o aro do seu anel');
+    if (!/v2-medidor/.test(location.pathname)) botao.before(medir);
 
     document.body.insertAdjacentHTML('beforeend', `
       <dialog class="pref" id="pref" aria-labelledby="pref-t">
