@@ -34,7 +34,7 @@
       const rotulo = total > 1 ? `Aro ${n + 1}` : 'Aro';
       return `<label class="aro"><span>${rotulo}</span>
         <select data-n="${n}" aria-label="${rotulo} de ${i.nome}">
-          <option value=""${atual ? '' : ' selected'}>Opcional</option>
+          <option value=""${atual ? '' : ' selected'}>--</option>
           ${MEDIDAS.map((m) => `<option value="${m}"${atual === m ? ' selected' : ''}>${m}${m === medido ? ' (medido)' : ''}</option>`).join('')}
         </select>${!atual && medido ? `<button type="button" class="usar-medido" data-n="${n}">Usar ${medido}</button>` : ''}</label>`;
     }
