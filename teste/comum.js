@@ -1,7 +1,7 @@
 /* Logica comum aos prototipos: variacoes, precos, sacola, endereco da escolha. */
 (function () {
   const C = window.CAYA;
-  const brl = (n) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: 0 });
+  const brl = (n) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
   const nomeBanda = (id) => (C.bandas.find((b) => b.id === id) || {}).nome || id;
   const corBanda = (id) => (C.bandas.find((b) => b.id === id) || {}).cor;
   const ct = (pts) => (pts / 100).toFixed(2).replace('.', ',') + ' ct';

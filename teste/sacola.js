@@ -16,7 +16,8 @@
         <footer>
           <div class="frete"><span>Frete</span><span>Grátis</span></div>
           <div class="tot"><span>Total</span><span class="mono" id="total">R$ 0</span></div>
-          <button type="button" class="pagar" id="pagar" hidden>Pagar agora · Pix ou cartão em até 12x</button>
+          <p class="parcela" id="parcela"></p>
+          <button type="button" class="pagar" id="pagar" hidden>Pagar agora · até 5x sem juros</button>
           <p class="erro-pag" id="erro-pag" hidden></p>
           <a class="fechar-pedido" id="fechar-pedido" href="#" target="_blank" rel="noopener">Finalizar com uma especialista</a>
           <p id="nota-fim">Uma especialista Caya conclui o seu pedido com você: confirma os detalhes da peça, a medida e a entrega, e envia o pagamento.</p>
@@ -42,6 +43,7 @@
     sacola.ouvir((its) => {
       $('#qtd').textContent = sacola.quantidade();
       $('#total').textContent = brl(sacola.total());
+      $('#parcela').textContent = sacola.total() ? 'ou 5x de ' + brl(Math.ceil(sacola.total() / 5 * 100) / 100) + ' sem juros' : '';
       const falta = false;
       const fp = $('#fechar-pedido');
       fp.href = its.length && !falta ? pedidoWhatsApp() : '#';
@@ -68,7 +70,7 @@
       const pg = $('#pagar'), er = $('#erro-pag');
       pg.disabled = true; pg.textContent = 'Abrindo o pagamento…'; er.hidden = true;
       try { await Caya.pagar(raiz); }
-      catch (e) { er.hidden = false; er.textContent = 'Não conseguimos abrir o pagamento agora. Tente de novo ou finalize com uma especialista.'; pg.disabled = false; pg.textContent = 'Pagar agora · Pix ou cartão em até 12x'; }
+      catch (e) { er.hidden = false; er.textContent = 'Não conseguimos abrir o pagamento agora. Tente de novo ou finalize com uma especialista.'; pg.disabled = false; pg.textContent = 'Pagar agora · até 5x sem juros'; }
     };
     Caya.abrirSacola = abrirSacola;
   };
