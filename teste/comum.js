@@ -108,7 +108,36 @@
     return linkWhatsApp('Olá! Gostaria de finalizar meu pedido Caya:\n' + linhas.join('\n') + '\nTotal: ' + brl(sacola.total()));
   }
 
+  /* pagamento: checkout da InfinitePay (Pix ou cartao em ate 12x). O preco sai do catalogo;
+     a especialista confere cada pedido antes da producao. */
+  const handlePag = () => C.infinitepay || (C.contato && C.contato.infinitepay) || '';
+  const pagamentoAtivo = () => !!handlePag();
+  function descricaoItem(i) {
+    const n = (i.aros || 0) * i.qtd;
+    const aros = n ? ' · ' + Array.from({ length: n }, (_, k) => textoAro((i.medidas || [])[k])).join(', ') : '';
+    return (i.nome + (i.detalhe ? ' (' + i.detalhe + ')' : '') + aros).slice(0, 250);
+  }
+  async function pagar(raiz) {
+    const pedido = 'CAYA-' + new Date().toISOString().replace(/\D/g, '').slice(2, 14) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
+    const base = location.href.replace(/\/teste\/.*$/, '/');
+    const resumo = itens.map((i) => ({ nome: i.nome, detalhe: i.detalhe, qtd: i.qtd, preco: i.preco, aros: i.aros, medidas: i.medidas }));
+    try { localStorage.setItem('caya-ultimo-pedido', JSON.stringify({ pedido, itens: resumo, total: sacola.total() })); } catch (_) {}
+    const r = await fetch('https://api.checkout.infinitepay.io/links', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        handle: handlePag(),
+        order_nsu: pedido,
+        redirect_url: base + 'teste/v2-obrigado/index.html',
+        items: itens.map((i) => ({ quantity: i.qtd, price: Math.round(i.preco * 100), description: descricaoItem(i) })),
+      }),
+    });
+    const d = await r.json().catch(() => ({}));
+    const url = d.url || d.link || d.checkout_url || (d.data && (d.data.url || d.data.link));
+    if (!r.ok || !url) throw new Error(d.message || 'Não foi possível abrir o pagamento.');
+    location.href = url;
+  }
+
   window.Caya = { C, brl, ct, nomeBanda, corBanda, peca, variacao, rotulo, aPartirDe,
                   lerEndereco, gravarEndereco, sacola, linkWhatsApp, pedidoWhatsApp,
-                  padraoCom, definirOuro, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
+                  padraoCom, definirOuro, pagar, pagamentoAtivo, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
 })();

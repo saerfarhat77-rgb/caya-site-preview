@@ -853,6 +853,7 @@ window.CAYA = {
   "whatsapp": "5511976117954",
   "instagram": "cayadiamonds"
  },
+ "infinitepay": "saer-fauzi",
  "redirecionar": {
   "anel-caya-colors-10-pts-rosa": [
    "caya-colors",

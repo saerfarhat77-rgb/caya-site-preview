@@ -16,8 +16,10 @@
         <footer>
           <div class="tot"><span>Total</span><span class="mono" id="total">R$ 0</span></div>
           <p class="falta-aro" id="falta-aro" hidden>Informe a medida do aro para finalizar.</p>
+          <button type="button" class="pagar" id="pagar" hidden>Pagar agora · Pix ou cartão em até 12x</button>
+          <p class="erro-pag" id="erro-pag" hidden></p>
           <a class="fechar-pedido" id="fechar-pedido" href="#" target="_blank" rel="noopener">Finalizar com uma especialista</a>
-          <p>Uma especialista Caya conclui o seu pedido com você: confirma os detalhes da peça, a medida e a entrega, e envia o pagamento.</p>
+          <p id="nota-fim">Uma especialista Caya conclui o seu pedido com você: confirma os detalhes da peça, a medida e a entrega, e envia o pagamento.</p>
         </footer>
       </aside>`);
     const gaveta = $('#sacola'), veu = $('#veu'), abrir = $('#abrir-sacola');
@@ -46,6 +48,11 @@
       fp.href = its.length && !falta ? pedidoWhatsApp() : '#';
       fp.setAttribute('aria-disabled', String(!its.length || falta));
       $('#falta-aro').hidden = !(its.length && falta);
+      const pg = $('#pagar');
+      pg.hidden = !Caya.pagamentoAtivo();
+      pg.disabled = !its.length || falta;
+      fp.classList.toggle('secundario', Caya.pagamentoAtivo());
+      if (Caya.pagamentoAtivo()) $('#nota-fim').textContent = 'Pagamento seguro pela InfinitePay. Prefere ajuda antes? Uma especialista Caya conclui o pedido com você.';
       const l = $('#lista'); l.innerHTML = '';
       if (!its.length) { l.innerHTML = '<p class="vazia">Sua sacola está vazia.</p>'; return; }
       its.forEach((i) => {
@@ -61,6 +68,12 @@
       const ajuda = its.some((i) => (i.medidas || []).includes('ajuda'));
       if (ajuda) l.insertAdjacentHTML('beforeend', '<p class="dica-aro">Sem problema: a especialista Caya ajuda você a descobrir a medida antes da produção.</p>');
     });
+    $('#pagar').onclick = async () => {
+      const pg = $('#pagar'), er = $('#erro-pag');
+      pg.disabled = true; pg.textContent = 'Abrindo o pagamento…'; er.hidden = true;
+      try { await Caya.pagar(raiz); }
+      catch (e) { er.hidden = false; er.textContent = 'Não conseguimos abrir o pagamento agora. Tente de novo ou finalize com uma especialista.'; pg.disabled = false; pg.textContent = 'Pagar agora · Pix ou cartão em até 12x'; }
+    };
     Caya.abrirSacola = abrirSacola;
   };
 })();
