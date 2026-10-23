@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Meça o aro de um anel que você já tem, direto na tela, em tamanho real.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261023155339">
+<link rel="stylesheet" href="../../assets/site.css?v=20261023155916">
 <style>
 .medidor{max-width:1100px;margin:0 auto;padding:clamp(28px,4vw,56px) var(--g) var(--respiro)}
 .medidor h1{font-weight:300;font-stretch:112%;font-size:clamp(30px,3.4vw,48px);line-height:1.05}
@@ -67,7 +67,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261023155339"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261023155916"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -129,17 +129,17 @@
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
   <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023155339#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023155339#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023155339#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023155339#aro">Tabela de aros</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023155916#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023155916#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023155916#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023155916#aro">Tabela de aros</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261023155339"></script>
-<script src="../comum.js?v=20261023155339"></script>
-<script src="../sacola.js?v=20261023155339"></script>
-<script src="../preferencia.js?v=20261023155339"></script>
+<script src="../../data/catalogo.js?v=20261023155916"></script>
+<script src="../comum.js?v=20261023155916"></script>
+<script src="../sacola.js?v=20261023155916"></script>
+<script src="../preferencia.js?v=20261023155916"></script>
 <script>
 (function(){
 const {C,linkWhatsApp}=Caya, $=(s,r=document)=>r.querySelector(s);
-C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023155339&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023155916&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
 $('#zap').href=linkWhatsApp('Olá! Preciso de ajuda com a medida do aro.');
 Caya.montarSacola('../../');
 Caya.montarPreferencia();
@@ -178,7 +178,7 @@ $('#recalibrar').onclick=ev=>{ev.preventDefault(); etapa('cal')};
 $('#usar').onclick=()=>{
   gravar('caya-aro-medido',aro.value);
   const u=$('#usado'); u.hidden=false;
-  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023155339'}">Voltar às peças</a>`;
+  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023155916'}">Voltar às peças</a>`;
 };
 /* iPhone: reconhece o modelo pela resolucao e trava o tamanho real sem cartao.
    Largura fisica da tela (mm) por tela em CSS (lado curto x lado longo @ dpr). */
