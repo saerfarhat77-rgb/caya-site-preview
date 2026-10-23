@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Meça o aro de um anel que você já tem, direto na tela, em tamanho real.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261023160313">
+<link rel="stylesheet" href="../../assets/site.css?v=20261023160650">
 <style>
 .medidor{max-width:1100px;margin:0 auto;padding:clamp(28px,4vw,56px) var(--g) var(--respiro)}
 .medidor h1{font-weight:300;font-stretch:112%;font-size:clamp(30px,3.4vw,48px);line-height:1.05}
@@ -23,7 +23,17 @@
 .instr ol{margin:14px 0 0 18px;color:var(--texto-2);font-size:15px;display:grid;gap:8px}
 .instr strong{font-weight:400;color:var(--preto)}
 
-/* calibracao: cartao em escala */
+/* calibracao: moeda de R$ 1 (27 mm) ou cartao (85,6 mm) */
+.ref-escolha{display:flex;gap:8px;margin-bottom:14px}
+.ref-escolha button{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:9px 12px;border:1px solid var(--linha);background:var(--branco)}
+.ref-escolha button[aria-checked="true"]{border-color:var(--preto);background:var(--preto);color:var(--fundo)}
+.palco-cal{touch-action:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.moeda{width:calc(27mm * var(--k,1));aspect-ratio:1;border-radius:50%;border:1.5px solid var(--preto);display:grid;place-items:center;background:var(--fundo)}
+.moeda span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza);text-align:center;max-width:70%}
+.cartao[hidden],.moeda[hidden]{display:none}
+.ajuste .grande{width:64px;height:64px;font-size:26px;touch-action:manipulation;user-select:none;-webkit-user-select:none}
+.ajuste-txt{flex:1;text-align:center;font-size:12px;color:var(--cinza)}
+
 .palco{display:grid;place-items:center;min-height:min(62vh,520px);background:var(--branco);border:1px solid var(--linha);position:relative;overflow:hidden;touch-action:none}
 .cartao{width:calc(85.6mm * var(--k,1));aspect-ratio:85.6/53.98;border:1.5px solid var(--preto);border-radius:calc(3.2mm * var(--k,1));
   background:var(--fundo);position:relative}
@@ -58,6 +68,12 @@
 @media (max-width:860px){
   .etapa{grid-template-columns:minmax(0,1fr)}
   .palco{min-height:auto;padding:28px 0}
+  .palco-cal{min-height:0;height:230px;padding:0}
+  .palco-cal:has(.cartao:not([hidden])){height:auto;padding:20px 0}
+  .medidor .sub{display:none}
+  .passos{margin:18px 0 16px}
+  .ref-escolha button{flex:1;padding:8px 6px}
+  .ajuste{margin-top:12px}
   .instr{order:2}
 }
 </style>
@@ -67,7 +83,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261023160313"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261023160650"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -78,25 +94,32 @@
   <p class="sub">Use um anel que já serve no dedo. Coloque-o sobre a tela e veja qual círculo encaixa na borda de dentro.</p>
 
   <div class="passos" role="tablist">
-    <button role="tab" id="aba-cal" aria-selected="true" aria-controls="etapa-cal">1 · Ajustar a tela</button>
-    <button role="tab" id="aba-med" aria-selected="false" aria-controls="etapa-med">2 · Medir o anel</button>
+    <button role="tab" id="aba-cal" aria-selected="true" aria-controls="etapa-cal">1 · Ajustar</button>
+    <button role="tab" id="aba-med" aria-selected="false" aria-controls="etapa-med">2 · Medir</button>
   </div>
 
   <section class="etapa" id="etapa-cal" role="tabpanel" aria-labelledby="aba-cal">
     <div>
-      <div class="palco"><div class="cartao" id="cartao"></div></div>
+      <div class="ref-escolha" role="radiogroup" aria-label="O que você tem em mãos">
+        <button type="button" role="radio" data-ref="moeda" aria-checked="true">Moeda de R$ 1</button>
+        <button type="button" role="radio" data-ref="cartao" aria-checked="false">Cartão de banco</button>
+      </div>
+      <div class="palco palco-cal" id="palco-cal">
+        <div class="moeda" id="moeda"><span>Encoste a moeda aqui</span></div>
+        <div class="cartao" id="cartao" hidden></div>
+      </div>
       <div class="ajuste">
-        <button type="button" id="cal-menos" aria-label="Diminuir">−</button>
-        <input type="range" id="cal" min="0.5" max="2.6" step="0.002" aria-label="Tamanho do cartão na tela">
-        <button type="button" id="cal-mais" aria-label="Aumentar">+</button>
+        <button type="button" class="grande" id="cal-menos" aria-label="Diminuir">−</button>
+        <span class="ajuste-txt" id="ajuste-txt">Ajuste até a moeda caber exatamente</span>
+        <button type="button" class="grande" id="cal-mais" aria-label="Aumentar">+</button>
       </div>
     </div>
     <div class="instr">
       <p>Cada tela mostra os tamanhos de um jeito. Para o círculo ficar em <strong>tamanho real</strong>, ajuste uma vez:</p>
-      <ol>
-        <li>Pegue qualquer cartão de banco, de crédito ou débito.</li>
-        <li>Encoste o cartão na tela, sobre o desenho (no celular, com o cartão de pé).</li>
-        <li>Mexa na barra até o desenho ficar exatamente do tamanho do cartão.</li>
+      <ol id="passos-ref">
+        <li>Pegue uma moeda de R$ 1.</li>
+        <li>Encoste a moeda na tela, sobre o círculo.</li>
+        <li>Toque em − ou + até a borda do círculo coincidir com a borda da moeda. Segure o botão para ir mais rápido.</li>
       </ol>
       <a class="acao usar" id="ir-medir" href="#"><span>Pronto, medir o anel</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
     </div>
@@ -121,7 +144,7 @@
       <button type="button" class="acao usar" id="usar"><span>Usar este aro</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4.5 12.5l5 5L20 6.5"/></svg></button>
       <p class="usado" id="usado" hidden></p>
       <p class="aviso-cal" id="aviso-auto" hidden>Reconhecemos o seu iPhone: o círculo já está em tamanho real.</p>
-      <p class="aviso-cal">Achou a medida estranha? <a href="#" id="recalibrar">Ajustar com um cartão</a></p>
+      <p class="aviso-cal">Achou a medida estranha? <a href="#" id="recalibrar">Ajustar com uma moeda ou cartão</a></p>
     </div>
   </section>
 </main>
@@ -129,17 +152,17 @@
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
   <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023160313#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023160313#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023160313#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023160313#aro">Tabela de aros</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261023160650#trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261023160650#garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261023160650#entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261023160650#aro">Tabela de aros</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261023160313"></script>
-<script src="../comum.js?v=20261023160313"></script>
-<script src="../sacola.js?v=20261023160313"></script>
-<script src="../preferencia.js?v=20261023160313"></script>
+<script src="../../data/catalogo.js?v=20261023160650"></script>
+<script src="../comum.js?v=20261023160650"></script>
+<script src="../sacola.js?v=20261023160650"></script>
+<script src="../preferencia.js?v=20261023160650"></script>
 <script>
 (function(){
 const {C,linkWhatsApp}=Caya, $=(s,r=document)=>r.querySelector(s);
-C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023160313&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261023160650&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
 $('#zap').href=linkWhatsApp('Olá! Preciso de ajuda com a medida do aro.');
 Caya.montarSacola('../../');
 Caya.montarPreferencia();
@@ -147,10 +170,34 @@ Caya.montarPreferencia();
 const ler=k=>{try{return localStorage.getItem(k)}catch(_){return null}}, gravar=(k,v)=>{try{localStorage.setItem(k,v)}catch(_){}};
 /* k = fator que leva o "mm" do CSS ao mm real desta tela */
 let k=parseFloat(ler('caya-escala'))||1;
-const cal=$('#cal'); cal.value=k;
-function aplicarK(v){ k=Math.min(2.6,Math.max(.5,v)); cal.value=k; document.documentElement.style.setProperty('--k',k); gravar('caya-escala',String(k)); desenhar(); }
-cal.oninput=()=>aplicarK(+cal.value);
-$('#cal-menos').onclick=()=>aplicarK(k-.004); $('#cal-mais').onclick=()=>aplicarK(k+.004);
+
+function aplicarK(v){ k=Math.min(2.6,Math.max(.5,v)); document.documentElement.style.setProperty('--k',k); gravar('caya-escala',String(k)); desenhar(); }
+/* segurar o botao acelera; nada de barra deslizante perto da moeda */
+function segurar(bt,passo){
+  let timer=null, vel=passo;
+  const parar=()=>{clearTimeout(timer); timer=null; vel=passo};
+  const ir=()=>{aplicarK(k+vel); vel=Math.sign(passo)*Math.min(Math.abs(vel)*1.15,.03); timer=setTimeout(ir,70)};
+  bt.addEventListener('pointerdown',ev=>{ev.preventDefault(); aplicarK(k+passo); timer=setTimeout(ir,380)});
+  ['pointerup','pointerleave','pointercancel'].forEach(e=>bt.addEventListener(e,parar));
+  bt.addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();aplicarK(k+passo)}});
+}
+segurar($('#cal-menos'),-.003); segurar($('#cal-mais'),.003);
+/* tocar a tela com a moeda ou o cartao nao pode virar zoom */
+['gesturestart','gesturechange'].forEach(e=>document.addEventListener(e,ev=>ev.preventDefault(),{passive:false}));
+$('#palco-cal').addEventListener('touchmove',ev=>ev.preventDefault(),{passive:false});
+document.addEventListener('touchmove',ev=>{if(ev.touches.length>1)ev.preventDefault()},{passive:false});
+let ref=ler('caya-ref')||'moeda';
+function usarRef(r){
+  ref=r; gravar('caya-ref',r);
+  document.querySelectorAll('.ref-escolha button').forEach(b=>b.setAttribute('aria-checked',String(b.dataset.ref===r)));
+  $('#moeda').hidden=r!=='moeda'; $('#cartao').hidden=r!=='cartao';
+  $('#ajuste-txt').textContent=r==='moeda'?'Ajuste até a moeda caber exatamente':'Ajuste até o desenho ter o tamanho do cartão';
+  $('#passos-ref').innerHTML=r==='moeda'
+    ?'<li>Pegue uma moeda de R$ 1.</li><li>Encoste a moeda na tela, sobre o círculo.</li><li>Toque em − ou + até a borda do círculo coincidir com a borda da moeda. Segure o botão para ir mais rápido.</li>'
+    :'<li>Pegue qualquer cartão de banco, de crédito ou débito.</li><li>Encoste o cartão na tela, sobre o desenho (no celular, com o cartão de pé).</li><li>Toque em − ou + até o desenho ficar do tamanho do cartão. Segure o botão para ir mais rápido.</li>';
+}
+document.querySelectorAll('.ref-escolha button').forEach(b=>b.onclick=()=>usarRef(b.dataset.ref));
+usarRef(ref);
 /* primeira vez num celular: ponto de partida mais proximo do real */
 if(!ler('caya-escala') && matchMedia('(max-width:600px)').matches) k=1.55;
 
@@ -173,12 +220,12 @@ function etapa(qual){
   $('#aba-cal').setAttribute('aria-selected',String(!med)); $('#aba-med').setAttribute('aria-selected',String(med));
 }
 $('#aba-cal').onclick=()=>etapa('cal'); $('#aba-med').onclick=()=>etapa('med');
-$('#ir-medir').onclick=ev=>{ev.preventDefault(); gravar('caya-calibrado','1'); gravar('caya-escala-origem','cartao'); $('#aviso-auto').hidden=true; etapa('med')};
+$('#ir-medir').onclick=ev=>{ev.preventDefault(); gravar('caya-calibrado','1'); gravar('caya-escala-origem','manual'); $('#aviso-auto').hidden=true; etapa('med')};
 $('#recalibrar').onclick=ev=>{ev.preventDefault(); etapa('cal')};
 $('#usar').onclick=()=>{
   gravar('caya-aro-medido',aro.value);
   const u=$('#usado'); u.hidden=false;
-  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023160313'}">Voltar às peças</a>`;
+  u.innerHTML=`Aro ${aro.value} guardado. Ele aparece como sugestão na sacola. <a href="${document.referrer&&!/v2-medidor/.test(document.referrer)?document.referrer:'../papel/index.html?v=20261023160650'}">Voltar às peças</a>`;
 };
 /* iPhone: reconhece o modelo pela resolucao e trava o tamanho real sem cartao.
    Largura fisica da tela (mm) por tela em CSS (lado curto x lado longo @ dpr). */
@@ -203,7 +250,7 @@ function escalaAutomatica(){
   return (w/mm)/(96/25.4);      /* px CSS por mm real, dividido pelo "mm" do CSS */
 }
 const auto=escalaAutomatica();
-if(auto && ler('caya-escala-origem')!=='cartao'){
+if(auto && ler('caya-escala-origem')!=='manual'){
   k=auto; gravar('caya-escala-origem','auto'); gravar('caya-calibrado','1');
   $('#aviso-auto').hidden=false;
 }
