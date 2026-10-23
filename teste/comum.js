@@ -102,7 +102,7 @@
     salvar();
   }
   sacola.aplicarAroMedido = aplicarAroMedido;
-  const textoAro = (m) => (m === 'ajuda' ? 'preciso de ajuda com a medida' : 'aro ' + m);
+  const textoAro = (m) => (m && m !== 'ajuda' ? 'aro ' + m : 'aro a confirmar');
 
   function linkWhatsApp(texto) {
     return 'https://wa.me/' + C.contato.whatsapp + '?text=' + encodeURIComponent(texto);

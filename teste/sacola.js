@@ -16,7 +16,6 @@
         <footer>
           <div class="frete"><span>Frete</span><span>Grátis</span></div>
           <div class="tot"><span>Total</span><span class="mono" id="total">R$ 0</span></div>
-          <p class="falta-aro" id="falta-aro" hidden>Informe a medida do aro para finalizar.</p>
           <button type="button" class="pagar" id="pagar" hidden>Pagar agora · Pix ou cartão em até 12x</button>
           <p class="erro-pag" id="erro-pag" hidden></p>
           <a class="fechar-pedido" id="fechar-pedido" href="#" target="_blank" rel="noopener">Finalizar com uma especialista</a>
@@ -35,20 +34,18 @@
       const rotulo = total > 1 ? `Aro ${n + 1}` : 'Aro';
       return `<label class="aro"><span>${rotulo}</span>
         <select data-n="${n}" aria-label="${rotulo} de ${i.nome}">
-          <option value=""${atual ? '' : ' selected'} disabled>Escolha a medida</option>
+          <option value=""${atual ? '' : ' selected'}>Opcional</option>
           ${MEDIDAS.map((m) => `<option value="${m}"${atual === m ? ' selected' : ''}>${m}${m === medido ? ' (medido)' : ''}</option>`).join('')}
-          <option value="ajuda"${atual === 'ajuda' ? ' selected' : ''}>Não sei a medida</option>
         </select>${!atual && medido ? `<button type="button" class="usar-medido" data-n="${n}">Usar ${medido}</button>` : ''}</label>`;
     }
 
     sacola.ouvir((its) => {
       $('#qtd').textContent = sacola.quantidade();
       $('#total').textContent = brl(sacola.total());
-      const falta = sacola.faltaAro();
+      const falta = false;
       const fp = $('#fechar-pedido');
       fp.href = its.length && !falta ? pedidoWhatsApp() : '#';
       fp.setAttribute('aria-disabled', String(!its.length || falta));
-      $('#falta-aro').hidden = !(its.length && falta);
       const pg = $('#pagar');
       pg.hidden = !Caya.pagamentoAtivo();
       pg.disabled = !its.length || falta;
@@ -60,14 +57,12 @@
         const n = sacola.camposAro(i);
         const d = document.createElement('div'); d.className = 'item';
         d.innerHTML = `<img src="${raiz}${i.foto}" alt=""><div><b>${i.nome}</b><small>${i.detalhe}${i.qtd > 1 ? ' · ×' + i.qtd : ''}</small><button class="rm" type="button">Remover</button></div><span class="mono">${brl(i.preco * i.qtd)}</span>
-          ${n ? `<div class="aros">${Array.from({ length: n }, (_, k) => campoAro(i, k, n)).join('')}<a class="link-medir" href="${raiz}teste/v2-medidor/index.html">Medir o aro na tela</a></div>` : ''}`;
+          ${n ? `<div class="aros">${Array.from({ length: n }, (_, k) => campoAro(i, k, n)).join('')}<a class="link-medir" href="${raiz}teste/v2-medidor/index.html">Medir</a></div>` : ''}`;
         d.querySelector('.rm').onclick = () => sacola.remover(i.chave);
         d.querySelectorAll('select').forEach((s) => { s.onchange = () => sacola.definirAro(i.chave, +s.dataset.n, s.value); });
         d.querySelectorAll('.usar-medido').forEach((b) => { b.onclick = () => { let m = null; try { m = localStorage.getItem('caya-aro-medido'); } catch (_) {} if (m) sacola.definirAro(i.chave, +b.dataset.n, m); }; });
         l.append(d);
       });
-      const ajuda = its.some((i) => (i.medidas || []).includes('ajuda'));
-      if (ajuda) l.insertAdjacentHTML('beforeend', '<p class="dica-aro">Sem problema: a especialista Caya ajuda você a descobrir a medida antes da produção.</p>');
     });
     $('#pagar').onclick = async () => {
       const pg = $('#pagar'), er = $('#erro-pag');
