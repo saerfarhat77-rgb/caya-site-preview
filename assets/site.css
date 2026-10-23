@@ -358,3 +358,7 @@ a.foto{display:block}
 }
 
 .rodape .empresa{margin-top:14px;font-size:12px;color:var(--cinza);line-height:1.7}
+
+/* bloco de atendimento: botao principal */
+.atendimento .acao{background:var(--preto);color:var(--fundo);padding:15px 18px;border:1px solid var(--preto)}
+.atendimento .acao:hover{background:transparent;color:var(--preto);padding-inline:18px}
