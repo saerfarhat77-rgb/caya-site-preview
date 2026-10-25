@@ -24,7 +24,7 @@ a{color:inherit;text-underline-offset:.25em;text-decoration-thickness:1px}
 
 /* ---------- cabecalho ---------- */
 .topo{position:sticky;top:0;z-index:20;background:rgba(245,245,243,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
-.topo-in{display:flex;align-items:center;gap:clamp(24px,4vw,64px);padding:22px var(--g)}
+.topo-in{display:flex;align-items:center;gap:clamp(18px,2.6vw,56px);padding:22px var(--g)}
 .marca{display:block;flex:none}
 .marca img{height:20px;width:auto;filter:brightness(0)}
 .indice{display:flex;gap:clamp(20px,3vw,44px);flex:1;overflow-x:auto;scrollbar-width:none}
