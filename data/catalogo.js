@@ -858,7 +858,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 4900,
      "fotos": [
-      "assets/img/CAYA_solitario_020pt.webp"
+      "assets/img/ay01v2-20-branco.webp"
      ]
     },
     {
@@ -866,7 +866,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 4900,
      "fotos": [
-      "assets/img/CAYA_solitario_020pt_ouro_amarelo.webp"
+      "assets/img/ay01v2-20-amarelo.webp"
      ]
     },
     {
@@ -874,7 +874,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 6900,
      "fotos": [
-      "assets/img/CAYA_solitario_030pt.webp"
+      "assets/img/ay01v2-30-branco.webp"
      ],
      "gia": true
     },
@@ -883,7 +883,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 6900,
      "fotos": [
-      "assets/img/CAYA_solitario_030pt_ouro_amarelo.webp"
+      "assets/img/ay01v2-30-amarelo.webp"
      ],
      "gia": true
     },
@@ -892,7 +892,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 9900,
      "fotos": [
-      "assets/img/CAYA_solitario_050pt.webp"
+      "assets/img/ay01v2-50-branco.webp"
      ],
      "gia": true
     },
@@ -901,7 +901,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 9900,
      "fotos": [
-      "assets/img/CAYA_solitario_050pt_ouro_amarelo.webp"
+      "assets/img/ay01v2-50-amarelo.webp"
      ],
      "gia": true
     },
