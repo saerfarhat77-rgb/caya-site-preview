@@ -840,7 +840,6 @@ window.CAYA = {
     "pts": [
      20,
      30,
-     40,
      50,
      100
     ],
@@ -883,24 +882,6 @@ window.CAYA = {
      "pts": 30,
      "ouro": "amarelo",
      "preco": 6900,
-     "fotos": [
-      "assets/img/CAYA_solitario_030pt_ouro_amarelo.webp"
-     ],
-     "gia": true
-    },
-    {
-     "pts": 40,
-     "ouro": "branco",
-     "preco": 8400,
-     "fotos": [
-      "assets/img/CAYA_solitario_030pt.webp"
-     ],
-     "gia": true
-    },
-    {
-     "pts": 40,
-     "ouro": "amarelo",
-     "preco": 8400,
      "fotos": [
       "assets/img/CAYA_solitario_030pt_ouro_amarelo.webp"
      ],
