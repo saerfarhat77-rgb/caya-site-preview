@@ -1,6 +1,15 @@
 /* Logica comum aos prototipos: variacoes, precos, sacola, endereco da escolha. */
 (function () {
   const C = window.CAYA;
+  /* enderecos das paginas: em teste/ (desenvolvimento e previa) ou com nome limpo (site oficial) */
+  const SCRIPT = document.currentScript.src;
+  const RAIZ = new URL('..', SCRIPT).href;
+  const DEV = /\/teste\/comum\.js/.test(SCRIPT);
+  const PAGINAS = { inicio: ['teste/papel/index.html', ''], peca: ['teste/v2-peca/index.html', 'peca/'],
+                    linha: ['teste/v2-linha/index.html', 'colecao/'], info: ['teste/v2-info/index.html', 'ajuda/'],
+                    medidor: ['teste/v2-medidor/index.html', 'medir-aro/'], obrigado: ['teste/v2-obrigado/index.html', 'obrigado/'] };
+  const pagina = (n) => RAIZ + PAGINAS[n][DEV ? 0 : 1];
+  const naPagina = (n) => location.href.split(/[?#]/)[0].replace(/index\.html$/, '') === pagina(n).replace(/index\.html$/, '');
   const brl = (n) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
   const nomeBanda = (id) => (C.bandas.find((b) => b.id === id) || {}).nome || id;
   const corBanda = (id) => (C.bandas.find((b) => b.id === id) || {}).cor;
@@ -127,7 +136,6 @@
   }
   async function pagar(raiz) {
     const pedido = 'CAYA-' + new Date().toISOString().replace(/\D/g, '').slice(2, 14) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
-    const base = location.href.replace(/\/teste\/.*$/, '/');
     const resumo = itens.map((i) => ({ nome: i.nome, detalhe: i.detalhe, qtd: i.qtd, preco: i.preco, aros: i.aros, medidas: i.medidas }));
     try { localStorage.setItem('caya-ultimo-pedido', JSON.stringify({ pedido, itens: resumo, total: sacola.total() })); } catch (_) {}
     const r = await fetch('https://api.checkout.infinitepay.io/links', {
@@ -135,7 +143,7 @@
       body: JSON.stringify({
         handle: handlePag(),
         order_nsu: pedido,
-        redirect_url: base + 'teste/v2-obrigado/index.html',
+        redirect_url: pagina('obrigado'),
         items: itens.map((i) => ({ quantity: i.qtd, price: Math.round(i.preco * 100), description: descricaoItem(i) })),
       }),
     });
@@ -147,5 +155,5 @@
 
   window.Caya = { C, brl, ct, nomeBanda, corBanda, peca, variacao, rotulo, aPartirDe,
                   lerEndereco, gravarEndereco, sacola, linkWhatsApp, pedidoWhatsApp,
-                  padraoCom, definirOuro, pagar, pagamentoAtivo, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
+                  padraoCom, definirOuro, pagar, pagina, naPagina, pagamentoAtivo, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
 })();

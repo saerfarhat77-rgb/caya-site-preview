@@ -18,10 +18,10 @@
     sacolaBtn.before(botao);
     const medir = document.createElement('a');
     medir.className = 'medir-aro';
-    medir.href = '../v2-medidor/index.html';
+    medir.href = Caya.pagina('medidor');
     medir.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="4"/></svg><span>Medir aro</span>';
     medir.setAttribute('aria-label', 'Medir o aro do seu anel');
-    if (!/v2-medidor/.test(location.pathname)) botao.before(medir);
+    if (!Caya.naPagina('medidor')) botao.before(medir);
 
     document.body.insertAdjacentHTML('beforeend', `
       <dialog class="pref" id="pref" aria-labelledby="pref-t">
@@ -57,6 +57,6 @@
     /* pergunta so quem ainda nao escolheu (e nao fechou o quadro nesta visita) */
     let jaPerguntado = false;
     try { jaPerguntado = !!sessionStorage.getItem('caya-ouro-perguntado'); } catch (_) {}
-    if (!Caya.ouroPreferido() && !jaPerguntado && !/v2-medidor/.test(location.pathname)) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
+    if (!Caya.ouroPreferido() && !jaPerguntado && !Caya.naPagina('medidor')) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
   };
 })();
