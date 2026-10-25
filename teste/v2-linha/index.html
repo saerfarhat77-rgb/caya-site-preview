@@ -8,7 +8,7 @@
 <link rel="icon" href="../../assets/marca/favicon.png">
 <meta name="description" content="Diamante natural e ouro 18k. Caya Colors, Halo, Candy Cut, Mosaico e Clássicos.">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261025011354">
+<link rel="stylesheet" href="../../assets/site.css?v=20261025012112">
 <link rel="preload" as="image" href="../../assets/hero/rosa.webp">
 <style>
 /* ---------- hero: um diamante, seis cores (so nesta copia) ---------- */
@@ -72,7 +72,7 @@
 
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261025011354"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261025012112"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -86,7 +86,7 @@
       <p class="hero-sub">Caya Colors: diamante natural em bezel de ouro 18k sobre silicone premium, para usar no trabalho, no treino e no mar.</p>
       <div class="hero-cores-lista" role="group" aria-label="Cor da banda" id="hero-cores"></div>
       <div class="hero-acao">
-        <a class="comprar" id="hero-link" href="../v2-peca/index.html?v=20261025011354&peca=caya-colors"><span>Escolher o meu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        <a class="comprar" id="hero-link" href="../v2-peca/index.html?v=20261025012112&peca=caya-colors"><span>Escolher o meu</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
         <span class="hero-preco">a partir de <b id="hero-preco"></b></span>
       </div>
     </div>
@@ -105,13 +105,13 @@
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
   <div><b>Atendimento</b><p><a id="zap" href="#" target="_blank" rel="noopener">Fale com uma especialista</a><br><a href="https://instagram.com/cayadiamonds" rel="noopener">Instagram @cayadiamonds</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261025011354&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261025011354&p=garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261025011354&p=entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261025011354&p=aro">Medida do aro</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261025012112&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261025012112&p=garantia">Garantia</a><br><a href="../v2-info/index.html?v=20261025012112&p=entrega">Prazos e entrega</a><br><a href="../v2-info/index.html?v=20261025012112&p=aro">Medida do aro</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261025011354"></script>
-<script src="../comum.js?v=20261025011354"></script>
-<script src="../sacola.js?v=20261025011354"></script>
-<script src="../preferencia.js?v=20261025011354"></script>
+<script src="../../data/catalogo.js?v=20261025012112"></script>
+<script src="../comum.js?v=20261025012112"></script>
+<script src="../sacola.js?v=20261025012112"></script>
+<script src="../preferencia.js?v=20261025012112"></script>
 <script>
 (function(){
 const {C,brl,ct,nomeBanda,corBanda,variacao,rotulo,aPartirDe,lerEndereco,gravarEndereco,sacola,linkWhatsApp,pedidoWhatsApp}=Caya;
@@ -124,10 +124,10 @@ const sel=lerEndereco();
 const LINHA=(new URLSearchParams(location.search).get('linha'))||'caya-colors';
 const COL=C.colecoes.find(c=>c.id===LINHA)||C.colecoes[0];
 document.title=COL.nome+' | Caya Diamonds';
-C.colecoes.forEach(c=>$('#indice').append(el('a',Object.assign({href:'index.html?v=20261025011354&linha='+c.id},c.id===COL.id?{'aria-current':'page'}:{}),c.nome)));
+C.colecoes.forEach(c=>$('#indice').append(el('a',Object.assign({href:'index.html?v=20261025012112&linha='+c.id},c.id===COL.id?{'aria-current':'page'}:{}),c.nome)));
 if(COL.id!=='caya-colors') document.getElementById('hero').remove();
 
-function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../v2-peca/index.html?v=20261025011354&'+q}
+function linkPeca(p,e){const q=new URLSearchParams({peca:p.id});for(const k of Object.keys(p.eixos))q.set(k,e[k]);return '../v2-peca/index.html?v=20261025012112&'+q}
 function trocarFoto(img,src){ if(img.getAttribute('src')===src) return; img.classList.add('troca');
   const n=new Image(); n.onload=()=>{img.src=src; img.classList.remove('troca')}; n.src=src; }
 
@@ -287,7 +287,7 @@ Caya.montarPreferencia();
   function ir(k,suave){
     if(k===atual) return; atual=k; const c=ORDEM[k];
     lista.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===k)));
-    $('#hero-link').href=`../v2-peca/index.html?v=20261025011354&peca=caya-colors&pts=10&banda=${c}`;
+    $('#hero-link').href=`../v2-peca/index.html?v=20261025012112&peca=caya-colors&pts=10&banda=${c}`;
     const img=new Image(); img.alt=''; img.decoding='async'; img.src=src(c);
     const entrar=()=>{
       if(!palco.children.length||reduz){ palco.replaceChildren(img); return; }

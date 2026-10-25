@@ -858,7 +858,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 4900,
      "fotos": [
-      "assets/img/ay01v2-20-branco.webp"
+      "assets/img/ay01-20pt-branco.webp"
      ]
     },
     {
@@ -866,7 +866,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 4900,
      "fotos": [
-      "assets/img/ay01v2-20-amarelo.webp"
+      "assets/img/ay01-20pt-amarelo.webp"
      ]
     },
     {
@@ -874,7 +874,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 6900,
      "fotos": [
-      "assets/img/ay01v2-30-branco.webp"
+      "assets/img/ay01-30pt-branco.webp"
      ],
      "gia": true
     },
@@ -883,7 +883,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 6900,
      "fotos": [
-      "assets/img/ay01v2-30-amarelo.webp"
+      "assets/img/ay01-30pt-amarelo.webp"
      ],
      "gia": true
     },
@@ -892,7 +892,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 9900,
      "fotos": [
-      "assets/img/ay01v2-50-branco.webp"
+      "assets/img/ay01-50pt-branco.webp"
      ],
      "gia": true
     },
@@ -901,7 +901,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 9900,
      "fotos": [
-      "assets/img/ay01v2-50-amarelo.webp"
+      "assets/img/ay01-50pt-amarelo.webp"
      ],
      "gia": true
     },
@@ -910,7 +910,7 @@ window.CAYA = {
      "ouro": "branco",
      "preco": 16900,
      "fotos": [
-      "assets/img/CAYA_solitario_100pt.webp"
+      "assets/img/ay01-100pt-branco.webp"
      ],
      "gia": true
     },
@@ -919,7 +919,7 @@ window.CAYA = {
      "ouro": "amarelo",
      "preco": 16900,
      "fotos": [
-      "assets/img/CAYA_solitario_100pt_ouro_amarelo.webp"
+      "assets/img/ay01-100pt-amarelo.webp"
      ],
      "gia": true
     }
