@@ -8,7 +8,7 @@
   const PAGINAS = { inicio: ['teste/papel/index.html', ''], peca: ['teste/v2-peca/index.html', 'peca/'],
                     linha: ['teste/v2-linha/index.html', 'colecao/'], info: ['teste/v2-info/index.html', 'ajuda/'],
                     medidor: ['teste/v2-medidor/index.html', 'medir-aro/'], obrigado: ['teste/v2-obrigado/index.html', 'obrigado/'],
-                    conta: ['teste/v2-conta/index.html', 'conta/'] };
+                    conta: ['teste/v2-conta/index.html', 'conta/'], painel: ['teste/v2-painel/index.html', 'painel/'] };
   const pagina = (n) => RAIZ + PAGINAS[n][DEV ? 0 : 1];
   const naPagina = (n) => location.href.split(/[?#]/)[0].replace(/index\.html$/, '') === pagina(n).replace(/index\.html$/, '');
   const brl = (n) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
@@ -74,6 +74,16 @@
   function salvar() {
     try { localStorage.setItem(CHAVE, JSON.stringify(itens)); } catch (_) {}
     ouvintes.forEach((f) => f(itens));
+    contarSacola();
+  }
+  /* avisa o servidor da sacola (aviso "colocou na sacola" / "desistiu" para a Caya) */
+  let visitante = null;
+  try { visitante = localStorage.getItem('caya-visitante'); if (!visitante) { visitante = 'v-' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('caya-visitante', visitante); } } catch (_) {}
+  let timerSacola = null;
+  function contarSacola() {
+    if (!contaAtiva() || !visitante) return;
+    clearTimeout(timerSacola);
+    timerSacola = setTimeout(() => servidor('evento', { visitante, itens: itensServidor() }).catch(() => {}), 800);
   }
   const sacola = {
     itens: () => itens,
@@ -163,13 +173,38 @@
     if (!r.ok) throw new Error(d.erro || 'Falha no servidor.');
     return d;
   }
+  /* visita: uma por pagina aberta (painel da Caya). Sem cookies; origem = 1a pagina da sessao. */
+  function contarVisita() {
+    if (!contaAtiva() || !visitante) return;
+    const nomePag = Object.keys(PAGINAS).find((n) => naPagina(n));
+    const tipo = { inicio: 'inicio', peca: 'peca', linha: 'colecao', info: 'ajuda', medidor: 'medir-aro', obrigado: 'obrigado', conta: 'conta' }[nomePag];
+    if (!tipo) return;
+    let sessao = null, ref = '', utm = {};
+    try {
+      sessao = sessionStorage.getItem('caya-sessao');
+      if (!sessao) {
+        sessao = 's-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+        sessionStorage.setItem('caya-sessao', sessao);
+        const q = new URLSearchParams(location.search);
+        ['utm_source', 'utm_medium', 'utm_campaign'].forEach((k) => { if (q.get(k)) utm[k] = q.get(k); });
+        sessionStorage.setItem('caya-chegada', JSON.stringify({ ref: document.referrer, utm }));
+      }
+      const ch = JSON.parse(sessionStorage.getItem('caya-chegada') || '{}');
+      ref = ch.ref || ''; utm = ch.utm || {};
+    } catch (_) {}
+    const q = new URLSearchParams(location.search);
+    let fuso = ''; try { fuso = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch (_) {}
+    servidor('evento', { tipo: 'visita', visitante, sessao: sessao || visitante, pagina: tipo, peca: q.get('peca'), colecao: q.get('linha'),
+                         ref, utm, fuso }).catch(() => {});
+  }
+  setTimeout(contarVisita, 300);
   const itensServidor = () => itens.map((i) => ({ id: i.id, escolha: escolhaDe(i), qtd: i.qtd, medidas: i.medidas || [] }));
   /* valores do pedido como o servidor calcula (desconto da 1a compra, cashback disponivel) */
   function previa(usarCashback) { return servidor('checkout', { itens: itensServidor(), usarCashback: !!usarCashback, previa: true }); }
 
   async function pagar(raiz, usarCashback) {
     if (contaAtiva()) {
-      const d = await servidor('checkout', { itens: itensServidor(), usarCashback: !!usarCashback, voltar: pagina('obrigado') });
+      const d = await servidor('checkout', { itens: itensServidor(), usarCashback: !!usarCashback, voltar: pagina('obrigado'), visitante });
       const resumo = itens.map((i) => ({ nome: i.nome, detalhe: i.detalhe, qtd: i.qtd, preco: i.preco, aros: i.aros, medidas: i.medidas }));
       try { localStorage.setItem('caya-ultimo-pedido', JSON.stringify({ pedido: d.pedido, itens: resumo, total: d.total / 100,
         desconto: d.desconto / 100, cashback: d.cashback / 100 })); } catch (_) {}
