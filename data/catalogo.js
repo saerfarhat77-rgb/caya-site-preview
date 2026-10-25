@@ -55,7 +55,7 @@ window.CAYA = {
   {
    "id": "classicos",
    "nome": "Clássicos",
-   "linha": "O solitário de sempre, com pedra certificada."
+   "linha": "O solitário de seis garras em ouro 18k, de 0,20 a 1 quilate."
   }
  ],
  "pecas": [
@@ -823,25 +823,122 @@ window.CAYA = {
    "aros": 1
   },
   {
-   "id": "solitario-gia",
+   "id": "solitario-ay01",
    "colecao": "classicos",
-   "nome": "Solitário GIA 0,30 ct",
+   "nome": "Solitário AY 01",
    "tipo": "Anel",
-   "resumo": "Solitário clássico com diamante natural certificado pelo GIA.",
-   "texto": "Um clássico absoluto da alta joalheria. O diamante natural de 0,30 ct tem certificação do Gemological Institute of America (GIA), garantindo autenticidade, procedência e classificação precisa da pedra.",
+   "resumo": "Diamante natural em seis garras de ouro 18k, de 0,20 a 1 quilate.",
+   "texto": "O solitário clássico: um diamante natural preso por seis garras finas em ouro 18k, para receber luz de todos os lados. A partir de 0,30 ct, a pedra acompanha certificado GIA.",
    "ficha": [
-    "Diamante natural de 0,30 ct",
-    "Certificado GIA",
+    "Diamante natural",
+    "Seis garras",
+    "Ouro 18k",
+    "Aro sob medida",
     "Garantia Caya Diamonds"
    ],
-   "eixos": {},
-   "padrao": {},
+   "eixos": {
+    "pts": [
+     20,
+     30,
+     40,
+     50,
+     100
+    ],
+    "ouro": [
+     "branco",
+     "amarelo"
+    ]
+   },
+   "padrao": {
+    "pts": 30,
+    "ouro": "branco"
+   },
    "variacoes": [
     {
-     "preco": 6490,
+     "pts": 20,
+     "ouro": "branco",
+     "preco": 4900,
      "fotos": [
-      "assets/img/solitario-gia-1.webp",
-      "assets/img/solitario-gia-2.webp"
+      "assets/img/CAYA_solitario_020pt.webp"
+     ]
+    },
+    {
+     "pts": 20,
+     "ouro": "amarelo",
+     "preco": 4900,
+     "fotos": [
+      "assets/img/CAYA_solitario_020pt_ouro_amarelo.webp"
+     ]
+    },
+    {
+     "pts": 30,
+     "ouro": "branco",
+     "preco": 6900,
+     "fotos": [
+      "assets/img/CAYA_solitario_030pt.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 30,
+     "ouro": "amarelo",
+     "preco": 6900,
+     "fotos": [
+      "assets/img/CAYA_solitario_030pt_ouro_amarelo.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 40,
+     "ouro": "branco",
+     "preco": 8400,
+     "fotos": [
+      "assets/img/CAYA_solitario_030pt.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 40,
+     "ouro": "amarelo",
+     "preco": 8400,
+     "fotos": [
+      "assets/img/CAYA_solitario_030pt_ouro_amarelo.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 50,
+     "ouro": "branco",
+     "preco": 9900,
+     "fotos": [
+      "assets/img/CAYA_solitario_050pt.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 50,
+     "ouro": "amarelo",
+     "preco": 9900,
+     "fotos": [
+      "assets/img/CAYA_solitario_050pt_ouro_amarelo.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 100,
+     "ouro": "branco",
+     "preco": 16900,
+     "fotos": [
+      "assets/img/CAYA_solitario_100pt.webp"
+     ],
+     "gia": true
+    },
+    {
+     "pts": 100,
+     "ouro": "amarelo",
+     "preco": 16900,
+     "fotos": [
+      "assets/img/CAYA_solitario_100pt_ouro_amarelo.webp"
      ],
      "gia": true
     }
@@ -984,8 +1081,8 @@ window.CAYA = {
    ""
   ],
   "anel-diamante-solitario-tiffany-0-30ct-3lxzr": [
-   "solitario-gia",
-   ""
+   "solitario-ay01",
+   "pts=30"
   ]
  }
 };
