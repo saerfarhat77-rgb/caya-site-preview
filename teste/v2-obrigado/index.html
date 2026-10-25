@@ -7,7 +7,7 @@
 <title>Pedido recebido | Caya Diamonds</title>
 <link rel="icon" href="../../assets/marca/favicon.png">
 <link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="../../assets/site.css?v=20261025012112">
+<link rel="stylesheet" href="../../assets/site.css?v=20261025015935">
 <style>
 .ok{max-width:760px;margin:0 auto;padding:clamp(56px,8vw,120px) var(--g) var(--respiro)}
 .ok h1{font-weight:300;font-stretch:112%;font-size:clamp(32px,3.6vw,52px);line-height:1.05}
@@ -25,7 +25,7 @@
 <body>
 <header class="topo">
   <div class="topo-in">
-    <a class="marca" href="../papel/index.html?v=20261025012112"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <a class="marca" href="../papel/index.html?v=20261025015935"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
     <nav class="indice" aria-label="Coleções" id="indice"></nav>
     <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
   </div>
@@ -46,17 +46,17 @@
 
 <footer class="rodape">
   <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
-  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261025012112&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261025012112&p=entrega">Prazos e entrega</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261025015935&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261025015935&p=entrega">Prazos e entrega</a></p></div>
 </footer>
 
-<script src="../../data/catalogo.js?v=20261025012112"></script>
-<script src="../comum.js?v=20261025012112"></script>
-<script src="../sacola.js?v=20261025012112"></script>
-<script src="../preferencia.js?v=20261025012112"></script>
+<script src="../../data/catalogo.js?v=20261025015935"></script>
+<script src="../comum.js?v=20261025015935"></script>
+<script src="../sacola.js?v=20261025015935"></script>
+<script src="../preferencia.js?v=20261025015935"></script>
 <script>
 (function(){
 const {C,brl,linkWhatsApp,sacola}=Caya, $=s=>document.querySelector(s);
-C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261025012112&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261025015935&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
 const q=new URLSearchParams(location.search);
 let ult=null; try{ult=JSON.parse(localStorage.getItem('caya-ultimo-pedido'))}catch(_){}
 const pedido=q.get('order_nsu')||(ult&&ult.pedido);
