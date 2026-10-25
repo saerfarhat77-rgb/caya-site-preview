@@ -80,11 +80,19 @@
   let visitante = null;
   try { visitante = localStorage.getItem('caya-visitante'); if (!visitante) { visitante = 'v-' + Math.random().toString(36).slice(2) + Date.now().toString(36); localStorage.setItem('caya-visitante', visitante); } } catch (_) {}
   let timerSacola = null;
-  function contarSacola() {
+  const retratoSacola = () => JSON.stringify(itens.map((i) => [i.chave, i.qtd]));
+  function contarSacola(espera) {
     if (!contaAtiva() || !visitante) return;
     clearTimeout(timerSacola);
-    timerSacola = setTimeout(() => servidor('evento', { visitante, itens: itensServidor() }).catch(() => {}), 800);
+    timerSacola = setTimeout(() => {
+      const r = retratoSacola();
+      servidor('evento', { visitante, itens: itensServidor() })
+        .then(() => { try { localStorage.setItem('caya-sacola-enviada', r); } catch (_) {} }).catch(() => {});
+    }, espera == null ? 300 : espera);
   }
+  /* sacola que ja estava no navegador (ou que nao chegou ao servidor): manda ao abrir a pagina */
+  setTimeout(() => { let ult = null; try { ult = localStorage.getItem('caya-sacola-enviada'); } catch (_) {}
+    if (itens.length && ult !== retratoSacola()) contarSacola(0); }, 1200);
   const sacola = {
     itens: () => itens,
     total: () => itens.reduce((s, i) => s + i.preco * i.qtd, 0),
@@ -165,7 +173,7 @@
   async function servidor(nome, corpo) {
     const s = await sessao();
     const r = await fetch(C.conta.url + '/functions/v1/' + nome, {
-      method: 'POST',
+      method: 'POST', keepalive: nome === 'evento',
       headers: { 'Content-Type': 'application/json', apikey: C.conta.chave, Authorization: 'Bearer ' + (s ? s.access_token : C.conta.chave) },
       body: JSON.stringify(corpo),
     });
