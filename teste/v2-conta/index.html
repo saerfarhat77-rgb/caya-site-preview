@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sua conta | Caya Diamonds</title>
+<link rel="icon" href="../../assets/marca/favicon.png">
+<link rel="preload" href="../../assets/fonts/archivo-latin-wdth-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/site.css?v=20261025112332">
+<style>
+.conta{max-width:760px;margin:0 auto;padding:clamp(56px,8vw,120px) var(--g) var(--respiro)}
+.conta h1{font-weight:300;font-stretch:112%;font-size:clamp(32px,3.6vw,52px);line-height:1.05}
+.conta .sub{color:var(--texto-2);margin-top:14px;max-width:52ch}
+.conta [hidden]{display:none!important}
+.entrar{margin-top:36px;max-width:420px;display:grid;gap:12px}
+.entrar .prov{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;border:1px solid var(--preto);
+  font-size:11px;font-weight:400;letter-spacing:.16em;text-transform:uppercase}
+.entrar .prov svg{width:16px;height:16px}
+.entrar .ou{display:flex;align-items:center;gap:14px;color:var(--cinza);font-size:12px;margin:8px 0}
+.entrar .ou::before,.entrar .ou::after{content:"";flex:1;border-top:1px solid var(--linha)}
+.entrar label{display:grid;gap:6px;font-size:12px;color:var(--texto-2)}
+.entrar input,.dados input{font:inherit;font-size:16px;padding:13px 14px;border:1px solid var(--linha);background:var(--branco);color:var(--preto);width:100%}
+.entrar input:focus,.dados input:focus{outline:1px solid var(--preto);outline-offset:0;border-color:var(--preto)}
+.entrar .codigo{letter-spacing:.4em;font-size:22px;text-align:center}
+.entrar .principal,.dados .principal{padding:15px;background:var(--preto);color:var(--fundo);font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase}
+.entrar .principal:disabled{opacity:.4}
+.entrar .link{font-size:12px;color:var(--cinza);text-decoration:underline;justify-self:start}
+.msg{font-size:13px;color:var(--texto-2);min-height:1.2em}
+.blocos{margin-top:40px;display:grid;gap:40px}
+.bloco h2{font-size:11px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:var(--cinza);padding-bottom:12px;border-bottom:1px solid var(--linha-forte)}
+.saldo{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--linha);border:1px solid var(--linha);margin-top:18px}
+.saldo div{background:var(--fundo);padding:18px 20px}
+.saldo b{display:block;font-weight:300;font-size:28px;font-stretch:108%}
+.saldo span{font-size:12px;color:var(--cinza)}
+.oferta{margin-top:18px;padding:16px 20px;border:1px solid var(--preto);display:flex;justify-content:space-between;gap:16px;align-items:baseline;flex-wrap:wrap}
+.oferta b{font-weight:400}
+.regras{font-size:12px;color:var(--cinza);margin-top:12px;max-width:60ch}
+.linha{display:grid;grid-template-columns:1fr auto;gap:4px 16px;padding:14px 0;border-bottom:1px solid var(--linha);font-size:14px}
+.linha small{color:var(--cinza);font-size:12px;grid-column:1}
+.linha .mono{grid-row:1/3;grid-column:2;align-self:center;text-align:right}
+.linha .mono small{display:block}
+.vazio{color:var(--texto-2);padding:16px 0;font-size:14px}
+.dados{display:grid;gap:12px;margin-top:18px;max-width:420px}
+.dados label{display:grid;gap:6px;font-size:12px;color:var(--texto-2)}
+.sair{margin-top:8px;font-size:12px;color:var(--cinza);text-decoration:underline;justify-self:start}
+</style>
+</head>
+<body>
+<header class="topo">
+  <div class="topo-in">
+    <a class="marca" href="../papel/index.html?v=20261025112332"><img src="../../assets/marca/caya-tinta.png" alt="Caya Diamonds" width="454" height="126"></a>
+    <nav class="indice" aria-label="Coleções" id="indice"></nav>
+    <button class="sacola-btn" id="abrir-sacola" aria-controls="sacola" aria-expanded="false">Sacola <span class="mono" id="qtd">0</span></button>
+  </div>
+</header>
+
+<main class="conta">
+  <!-- sem login -->
+  <section id="fora" hidden>
+    <h1>Sua conta Caya.</h1>
+    <p class="sub">15% off na primeira compra e 15% de cashback em todas as compras, para usar na próxima joia.</p>
+    <div class="entrar" id="passo-email">
+      <button type="button" class="prov" data-prov="google"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.4h6.5a5.6 5.6 0 0 1-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.7z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1A12 12 0 0 0 12 24z"/><path fill="#FBBC05" d="M5.3 14.3a7.2 7.2 0 0 1 0-4.6V6.6h-4a12 12 0 0 0 0 10.8l4-3.1z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.3.6 4.6 1.8l3.4-3.4A12 12 0 0 0 1.3 6.6l4 3.1c.9-2.9 3.6-4.9 6.7-4.9z"/></svg>Continuar com Google</button>
+      <button type="button" class="prov" data-prov="apple" hidden><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7a4.6 4.6 0 0 0-3.6-1.9c-1.5-.2-3 .9-3.7.9-.8 0-2-.9-3.2-.9a4.8 4.8 0 0 0-4.1 2.5c-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.2 0 1.7-.8 3.2-.8s1.9.8 3.2.8c1.3 0 2.2-1.2 3-2.4a10 10 0 0 0 1.4-2.8 4.3 4.3 0 0 1-2.7-4.3zM14 5.4A4.4 4.4 0 0 0 15 2.2a4.5 4.5 0 0 0-2.9 1.5 4.2 4.2 0 0 0-1.1 3.1c1.1.1 2.2-.6 3-1.4z"/></svg>Continuar com Apple</button>
+      <div class="ou">ou com seu e-mail</div>
+      <form id="form-email" novalidate>
+        <label>E-mail<input type="email" id="email" autocomplete="email" inputmode="email" required></label>
+        <button class="principal" type="submit" style="width:100%;margin-top:12px">Receber código</button>
+      </form>
+      <p class="msg" id="msg-email" role="status"></p>
+    </div>
+    <div class="entrar" id="passo-codigo" hidden>
+      <p class="sub" style="margin:0">Enviamos um código de 6 números para <b id="email-v"></b>.</p>
+      <form id="form-codigo" novalidate>
+        <label>Código<input class="codigo" id="codigo" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" required></label>
+        <button class="principal" type="submit" style="width:100%;margin-top:12px">Entrar</button>
+      </form>
+      <p class="msg" id="msg-codigo" role="status"></p>
+      <button type="button" class="link" id="outro-email">Usar outro e-mail</button>
+    </div>
+  </section>
+
+  <!-- com login -->
+  <section id="dentro" hidden>
+    <h1 id="ola">Olá.</h1>
+    <p class="sub" id="email-conta"></p>
+    <div class="blocos">
+      <div class="bloco">
+        <h2>Cashback</h2>
+        <div class="saldo">
+          <div><b class="mono" id="cb-disp">R$ 0</b><span>disponível agora</span></div>
+          <div><b class="mono" id="cb-lib">R$ 0</b><span id="cb-lib-t">a liberar</span></div>
+        </div>
+        <div class="oferta" id="oferta" hidden><b>15% off na sua primeira compra</b><span>aplicado na sacola</span></div>
+        <div id="cb-lista"></div>
+        <p class="regras">Cada compra devolve 15% do valor pago. O cashback é liberado 8 dias depois do pagamento e vale por 3 meses. Ele paga até metade de uma compra.</p>
+      </div>
+      <div class="bloco">
+        <h2>Compras</h2>
+        <div id="compras"></div>
+      </div>
+      <div class="bloco">
+        <h2>Seus dados</h2>
+        <form class="dados" id="form-dados">
+          <label>Nome<input id="nome" autocomplete="name"></label>
+          <label>Telefone<input id="telefone" autocomplete="tel" inputmode="tel"></label>
+          <button class="principal" type="submit">Salvar</button>
+          <p class="msg" id="msg-dados" role="status"></p>
+        </form>
+        <button type="button" class="sair" id="sair">Sair da conta</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="rodape">
+  <div><img src="../../assets/marca/caya-diamonds-tinta.png" alt="Caya Diamonds" width="454" height="159"><p>Diamante natural e ouro 18k.</p><p class="empresa">Farhat Comércio de Joias Ltda – ME<br>CNPJ 56.052.523/0001-36 · São Paulo – SP<br><a href="mailto:diamondscaya@gmail.com">diamondscaya@gmail.com</a></p></div>
+  <div><b>Ajuda</b><p><a href="../v2-info/index.html?v=20261025112332&p=trocas">Trocas e devoluções</a><br><a href="../v2-info/index.html?v=20261025112332&p=privacidade">Privacidade</a></p></div>
+</footer>
+
+<script src="../../data/catalogo.js?v=20261025112332"></script>
+<script src="../comum.js?v=20261025112332"></script>
+<script src="../sacola.js?v=20261025112332"></script>
+<script src="../preferencia.js?v=20261025112332"></script>
+<script>
+(async function(){
+const {C,brl}=Caya, $=s=>document.querySelector(s);
+C.colecoes.forEach(c=>{const a=document.createElement('a'); a.href='../v2-linha/index.html?v=20261025112332&linha='+c.id; a.textContent=c.nome; $('#indice').append(a)});
+Caya.montarSacola('../../');
+Caya.montarPreferencia();
+const dataBR=d=>new Date(d).toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit',year:'numeric'});
+const reais=c=>brl(c/100);
+
+if(!Caya.contaAtiva()){ $('#fora').hidden=false; $('#passo-email').innerHTML='<p class="sub">A conta de cliente estará disponível em breve.</p>'; return; }
+/* depois do login volta para onde a cliente estava (ex.: a sacola) */
+const q=new URLSearchParams(location.search);
+if(q.get('voltar')&&document.referrer&&!/conta/.test(document.referrer)) try{sessionStorage.setItem('caya-voltar',document.referrer)}catch(_){}
+let sb; try{ sb=await Caya.sb(); }catch(e){ $('#fora').hidden=false; $('#msg-email').textContent=e.message; return; }
+if(C.conta.apple) document.querySelector('[data-prov="apple"]').hidden=false;
+
+function voltar(){ let v=null; try{v=sessionStorage.getItem('caya-voltar'); sessionStorage.removeItem('caya-voltar')}catch(_){} if(v){ location.href=v; return true; } return false; }
+
+/* ---- entrar ---- */
+document.querySelectorAll('.prov').forEach(b=>b.onclick=async()=>{
+  const {error}=await sb.auth.signInWithOAuth({provider:b.dataset.prov,options:{redirectTo:Caya.pagina('conta')}});
+  if(error) $('#msg-email').textContent='Não foi possível entrar agora. Tente pelo e-mail.';
+});
+let email='';
+$('#form-email').onsubmit=async ev=>{
+  ev.preventDefault(); email=$('#email').value.trim().toLowerCase();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ $('#msg-email').textContent='Confira o e-mail.'; return; }
+  const bt=ev.target.querySelector('button'); bt.disabled=true; $('#msg-email').textContent='Enviando…';
+  const {error}=await sb.auth.signInWithOtp({email,options:{shouldCreateUser:true,emailRedirectTo:Caya.pagina('conta')}});
+  bt.disabled=false;
+  if(error){ $('#msg-email').textContent=/rate|seconds/i.test(error.message)?'Aguarde um minuto e peça um novo código.':'Não conseguimos enviar o código. Tente de novo.'; return; }
+  $('#msg-email').textContent=''; $('#email-v').textContent=email; $('#passo-email').hidden=true; $('#passo-codigo').hidden=false; $('#codigo').focus();
+};
+$('#outro-email').onclick=()=>{ $('#passo-codigo').hidden=true; $('#passo-email').hidden=false; $('#codigo').value=''; };
+$('#form-codigo').onsubmit=async ev=>{
+  ev.preventDefault(); const token=$('#codigo').value.replace(/\D/g,'');
+  if(token.length!==6){ $('#msg-codigo').textContent='O código tem 6 números.'; return; }
+  const bt=ev.target.querySelector('button'); bt.disabled=true; $('#msg-codigo').textContent='Conferindo…';
+  const {error}=await sb.auth.verifyOtp({email,token,type:'email'});
+  bt.disabled=false;
+  if(error){ $('#msg-codigo').textContent='Código inválido ou vencido. Peça um novo.'; return; }
+};
+
+/* ---- conta ---- */
+async function mostrarConta(user){
+  $('#fora').hidden=true; $('#dentro').hidden=false;
+  $('#email-conta').textContent=user.email||'';
+  const [cli,ped,cb]=await Promise.all([
+    sb.from('clientes').select('nome,telefone').eq('id',user.id).maybeSingle(),
+    sb.from('pedidos').select('order_nsu,itens,total,status,criado_em,pago_em,desconto_primeira,cashback_usado').neq('status','pendente').order('criado_em',{ascending:false}),
+    sb.from('cashback_saldos').select('valor,restante,libera_em,expira_em,status_origem,pedido').order('expira_em'),
+  ]);
+  const nome=(cli.data&&cli.data.nome)||'';
+  $('#ola').textContent=nome?'Olá, '+nome.split(' ')[0]+'.':'Olá.';
+  $('#nome').value=nome; $('#telefone').value=(cli.data&&cli.data.telefone)||'';
+  const agora=Date.now(), cr=(cb.data||[]).filter(c=>c.status_origem==='pago');
+  const disp=cr.filter(c=>new Date(c.libera_em)<=agora&&new Date(c.expira_em)>agora);
+  const lib=cr.filter(c=>new Date(c.libera_em)>agora);
+  $('#cb-disp').textContent=reais(disp.reduce((s,c)=>s+c.restante,0));
+  $('#cb-lib').textContent=reais(lib.reduce((s,c)=>s+c.restante,0));
+  if(lib.length) $('#cb-lib-t').textContent='a liberar a partir de '+dataBR(lib[0].libera_em);
+  $('#cb-lista').innerHTML=disp.filter(c=>c.restante>0).map(c=>`<div class="linha"><span>Cashback do pedido ${c.pedido}</span><small>vale até ${dataBR(c.expira_em)}</small><span class="mono">${reais(c.restante)}</span></div>`).join('');
+  const pagos=(ped.data||[]).filter(p=>p.status==='pago');
+  $('#oferta').hidden=pagos.length>0;
+  $('#compras').innerHTML=(ped.data||[]).length?(ped.data||[]).map(p=>`<div class="linha"><span>${(p.itens||[]).map(i=>i.nome+(i.qtd>1?' ×'+i.qtd:'')).join(', ')}</span><small>${p.order_nsu} · ${dataBR(p.pago_em||p.criado_em)}${p.status==='cancelado'?' · cancelado':''}</small><span class="mono">${reais(p.total)}${p.desconto_primeira||p.cashback_usado?`<small>${p.desconto_primeira?'1ª compra −'+reais(p.desconto_primeira):''}${p.desconto_primeira&&p.cashback_usado?' · ':''}${p.cashback_usado?'cashback −'+reais(p.cashback_usado):''}</small>`:''}</span></div>`).join(''):'<p class="vazio">Nenhuma compra ainda.</p>';
+}
+$('#form-dados').onsubmit=async ev=>{
+  ev.preventDefault(); const {data:{user}}=await sb.auth.getUser(); if(!user) return;
+  const {error}=await sb.from('clientes').update({nome:$('#nome').value.trim()||null,telefone:$('#telefone').value.trim()||null}).eq('id',user.id);
+  $('#msg-dados').textContent=error?'Não foi possível salvar.':'Dados salvos.';
+  if(!error){ const n=$('#nome').value.trim(); $('#ola').textContent=n?'Olá, '+n.split(' ')[0]+'.':'Olá.'; }
+};
+$('#sair').onclick=async()=>{ await sb.auth.signOut(); location.href=Caya.pagina('conta'); };
+
+let mostrada=false;
+async function aoMudar(session){
+  if(session&&session.user){ if(voltar()) return; if(!mostrada){ mostrada=true; await mostrarConta(session.user); } if(Caya.atualizarBeneficios) Caya.atualizarBeneficios(); }
+  else { mostrada=false; $('#dentro').hidden=true; $('#fora').hidden=false; }
+}
+sb.auth.onAuthStateChange((_e,s)=>{ setTimeout(()=>aoMudar(s),0); });
+const {data:{session}}=await sb.auth.getSession(); aoMudar(session);
+})();
+</script>
+</body>
+</html>

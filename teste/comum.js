@@ -7,7 +7,8 @@
   const DEV = /\/teste\/comum\.js/.test(SCRIPT);
   const PAGINAS = { inicio: ['teste/papel/index.html', ''], peca: ['teste/v2-peca/index.html', 'peca/'],
                     linha: ['teste/v2-linha/index.html', 'colecao/'], info: ['teste/v2-info/index.html', 'ajuda/'],
-                    medidor: ['teste/v2-medidor/index.html', 'medir-aro/'], obrigado: ['teste/v2-obrigado/index.html', 'obrigado/'] };
+                    medidor: ['teste/v2-medidor/index.html', 'medir-aro/'], obrigado: ['teste/v2-obrigado/index.html', 'obrigado/'],
+                    conta: ['teste/v2-conta/index.html', 'conta/'] };
   const pagina = (n) => RAIZ + PAGINAS[n][DEV ? 0 : 1];
   const naPagina = (n) => location.href.split(/[?#]/)[0].replace(/index\.html$/, '') === pagina(n).replace(/index\.html$/, '');
   const brl = (n) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
@@ -83,7 +84,7 @@
       const chave = p.id + '|' + JSON.stringify(e);
       const ja = itens.find((i) => i.chave === chave);
       if (ja) { ja.qtd += 1; if (aroMedido()) aplicarAroMedido(aroMedido()); }
-      else itens.push({ chave, id: p.id, nome: p.nome, detalhe: rotulo(p, e), preco: v.preco, foto: v.fotos[0], qtd: 1,
+      else itens.push({ chave, id: p.id, escolha: Object.assign({}, e), nome: p.nome, detalhe: rotulo(p, e), preco: v.preco, foto: v.fotos[0], qtd: 1,
                         aros: p.aros || 0, medidas: aroMedido() ? Array(p.aros || 0).fill(aroMedido()) : [] });
       salvar();
     },
@@ -134,7 +135,47 @@
     const aros = n ? ' · ' + Array.from({ length: n }, (_, k) => textoAro((i.medidas || [])[k])).join(', ') : '';
     return (i.nome + (i.detalhe ? ' (' + i.detalhe + ')' : '') + aros).slice(0, 250);
   }
-  async function pagar(raiz) {
+  /* conta de cliente (Supabase): login, desconto da primeira compra e cashback. Sem C.conta, nada disso aparece. */
+  const contaAtiva = () => !!(C.conta && C.conta.url && C.conta.chave);
+  let sbPromessa = null;
+  function sb() {
+    if (!contaAtiva()) return Promise.resolve(null);
+    if (!sbPromessa) sbPromessa = new Promise((ok, falha) => {
+      const criar = () => ok(window.supabase.createClient(C.conta.url, C.conta.chave, { auth: { persistSession: true, detectSessionInUrl: true, flowType: 'pkce' } }));
+      if (window.supabase) return criar();
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js';
+      s.onload = criar; s.onerror = () => falha(new Error('Não foi possível carregar a conta.'));
+      document.head.append(s);
+    });
+    return sbPromessa;
+  }
+  async function sessao() { const c = await sb(); if (!c) return null; const { data } = await c.auth.getSession(); return data.session; }
+  const escolhaDe = (i) => i.escolha || JSON.parse(i.chave.slice(i.chave.indexOf('|') + 1));
+  async function servidor(nome, corpo) {
+    const s = await sessao();
+    const r = await fetch(C.conta.url + '/functions/v1/' + nome, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: C.conta.chave, Authorization: 'Bearer ' + (s ? s.access_token : C.conta.chave) },
+      body: JSON.stringify(corpo),
+    });
+    const d = await r.json().catch(() => ({}));
+    if (!r.ok) throw new Error(d.erro || 'Falha no servidor.');
+    return d;
+  }
+  const itensServidor = () => itens.map((i) => ({ id: i.id, escolha: escolhaDe(i), qtd: i.qtd, medidas: i.medidas || [] }));
+  /* valores do pedido como o servidor calcula (desconto da 1a compra, cashback disponivel) */
+  function previa(usarCashback) { return servidor('checkout', { itens: itensServidor(), usarCashback: !!usarCashback, previa: true }); }
+
+  async function pagar(raiz, usarCashback) {
+    if (contaAtiva()) {
+      const d = await servidor('checkout', { itens: itensServidor(), usarCashback: !!usarCashback, voltar: pagina('obrigado') });
+      const resumo = itens.map((i) => ({ nome: i.nome, detalhe: i.detalhe, qtd: i.qtd, preco: i.preco, aros: i.aros, medidas: i.medidas }));
+      try { localStorage.setItem('caya-ultimo-pedido', JSON.stringify({ pedido: d.pedido, itens: resumo, total: d.total / 100,
+        desconto: d.desconto / 100, cashback: d.cashback / 100 })); } catch (_) {}
+      location.href = d.url;
+      return;
+    }
     const pedido = 'CAYA-' + new Date().toISOString().replace(/\D/g, '').slice(2, 14) + '-' + Math.random().toString(36).slice(2, 6).toUpperCase();
     const resumo = itens.map((i) => ({ nome: i.nome, detalhe: i.detalhe, qtd: i.qtd, preco: i.preco, aros: i.aros, medidas: i.medidas }));
     try { localStorage.setItem('caya-ultimo-pedido', JSON.stringify({ pedido, itens: resumo, total: sacola.total() })); } catch (_) {}
@@ -155,5 +196,5 @@
 
   window.Caya = { C, brl, ct, nomeBanda, corBanda, peca, variacao, rotulo, aPartirDe,
                   lerEndereco, gravarEndereco, sacola, linkWhatsApp, pedidoWhatsApp,
-                  padraoCom, definirOuro, pagar, pagina, naPagina, pagamentoAtivo, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
+                  padraoCom, definirOuro, pagar, pagina, naPagina, contaAtiva, sb, sessao, servidor, previa, pagamentoAtivo, ouroPreferido: () => ouroPref, aoMudarOuro: (f) => ouvintesOuro.push(f) };
 })();

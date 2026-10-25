@@ -22,6 +22,15 @@
     medir.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="4"/></svg><span>Medir aro</span>';
     medir.setAttribute('aria-label', 'Medir o aro do seu anel');
     if (!Caya.naPagina('medidor')) botao.before(medir);
+    if (Caya.contaAtiva()) {
+      const conta = document.createElement('a');
+      conta.className = 'conta-btn';
+      conta.href = Caya.pagina('conta');
+      conta.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.6 4-5.5 7.5-5.5s6.3 1.9 7.5 5.5"/></svg>';
+      conta.setAttribute('aria-label', 'Sua conta');
+      conta.title = 'Sua conta';
+      sacolaBtn.before(conta);
+    }
 
     document.body.insertAdjacentHTML('beforeend', `
       <dialog class="pref" id="pref" aria-labelledby="pref-t">
@@ -57,6 +66,6 @@
     /* pergunta so quem ainda nao escolheu (e nao fechou o quadro nesta visita) */
     let jaPerguntado = false;
     try { jaPerguntado = !!sessionStorage.getItem('caya-ouro-perguntado'); } catch (_) {}
-    if (!Caya.ouroPreferido() && !jaPerguntado && !Caya.naPagina('medidor')) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
+    if (!Caya.ouroPreferido() && !jaPerguntado && !Caya.naPagina('medidor') && !Caya.naPagina('conta')) setTimeout(() => { if (!dlg.open) dlg.showModal(); }, 700);
   };
 })();

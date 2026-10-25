@@ -1065,5 +1065,10 @@ window.CAYA = {
    "solitario-ay01",
    "pts=30"
   ]
+ },
+ "conta": {
+  "url": "https://ndzuysdnickkmlozuypt.supabase.co",
+  "chave": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im5kenV5c2RuaWNra21sb3p1eXB0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI5MzM1MDksImV4cCI6MjEwODUwOTUwOX0.GX1JlBOGUAdFg3ckGRrTzcWiw5dSy2BaIBy7vE9yal8",
+  "apple": false
  }
 };

@@ -15,6 +15,7 @@
         <div class="lista" id="lista"></div>
         <footer>
           <div class="frete"><span>Frete</span><span>Grátis</span></div>
+          <div class="beneficios" id="beneficios" hidden></div>
           <div class="tot"><span>Total</span><span class="mono" id="total">R$ 0</span></div>
           <p class="parcela" id="parcela"></p>
           <button type="button" class="pagar" id="pagar" hidden>Pagar agora · até 10x sem juros</button>
@@ -24,6 +25,7 @@
         </footer>
       </aside>`);
     const gaveta = $('#sacola'), veu = $('#veu'), abrir = $('#abrir-sacola');
+    let usarCashback = true, pedidoPrevia = 0;   /* conta: usar o cashback disponivel e ordem das previas */
     function abrirSacola() { gaveta.dataset.aberta = veu.dataset.aberta = 'true'; abrir.setAttribute('aria-expanded', 'true'); $('#fechar-sacola').focus(); }
     function fechar() { gaveta.dataset.aberta = veu.dataset.aberta = 'false'; abrir.setAttribute('aria-expanded', 'false'); abrir.focus(); }
     abrir.onclick = abrirSacola; $('#fechar-sacola').onclick = fechar; veu.onclick = fechar;
@@ -42,8 +44,8 @@
 
     sacola.ouvir((its) => {
       $('#qtd').textContent = sacola.quantidade();
-      $('#total').textContent = brl(sacola.total());
-      $('#parcela').textContent = sacola.total() ? 'ou 10x de ' + brl(Math.ceil(sacola.total() / 10 * 100) / 100) + ' sem juros' : '';
+      mostrarTotal(sacola.total());
+      if (Caya.contaAtiva()) atualizarBeneficios();
       const falta = false;
       const fp = $('#fechar-pedido');
       fp.href = its.length && !falta ? pedidoWhatsApp() : '#';
@@ -66,10 +68,35 @@
         l.append(d);
       });
     });
+    function mostrarTotal(v) {
+      $('#total').textContent = brl(v);
+      $('#parcela').textContent = v ? 'ou 10x de ' + brl(Math.ceil(v / 10 * 100) / 100) + ' sem juros' : '';
+    }
+    /* conta ligada: desconto da primeira compra e cashback, calculados pelo servidor */
+    async function atualizarBeneficios() {
+      const bx = $('#beneficios'), n = ++pedidoPrevia;
+      if (!sacola.itens().length) { bx.hidden = true; return; }
+      let s = null; try { s = await Caya.sessao(); } catch (_) {}
+      if (!s) {
+        bx.hidden = false;
+        bx.innerHTML = `<a class="entrar-oferta" href="${Caya.pagina('conta')}?voltar=1"><b>15% off na primeira compra</b><span>Entre ou crie sua conta</span></a>`;
+        return;
+      }
+      let d; try { d = await Caya.previa(usarCashback); } catch (_) { return; }
+      if (n !== pedidoPrevia) return;
+      const L = [];
+      if (d.desconto) L.push(`<div><span>Primeira compra · 15%</span><span class="mono">− ${brl(d.desconto / 100)}</span></div>`);
+      if (d.saldo) L.push(`<label class="usar-cb"><input type="checkbox" id="usar-cb"${usarCashback ? ' checked' : ''}><span>Usar cashback <small>${brl(d.saldo / 100)} disponível</small></span><span class="mono">${d.cashback ? '− ' + brl(d.cashback / 100) : ''}</span></label>`);
+      L.push(`<p class="ganha">Você ganha ${brl(Math.round(d.total * 0.15) / 100)} de cashback nesta compra.</p>`);
+      bx.hidden = false; bx.innerHTML = L.join('');
+      const cb = $('#usar-cb'); if (cb) cb.onchange = () => { usarCashback = cb.checked; atualizarBeneficios(); };
+      mostrarTotal(d.total / 100);
+    }
+    Caya.atualizarBeneficios = atualizarBeneficios;
     $('#pagar').onclick = async () => {
       const pg = $('#pagar'), er = $('#erro-pag');
       pg.disabled = true; pg.textContent = 'Abrindo o pagamento…'; er.hidden = true;
-      try { await Caya.pagar(raiz); }
+      try { await Caya.pagar(raiz, usarCashback); }
       catch (e) { er.hidden = false; er.textContent = 'Não conseguimos abrir o pagamento agora. Tente de novo ou finalize com uma especialista.'; pg.disabled = false; pg.textContent = 'Pagar agora · até 10x sem juros'; }
     };
     Caya.abrirSacola = abrirSacola;

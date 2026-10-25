@@ -384,3 +384,17 @@ a.foto{display:block}
 .sacola footer .frete{display:flex;justify-content:space-between;font-size:13px;color:var(--texto-2)}
 .parcela{font-size:13px;color:var(--texto-2);margin-top:-6px}
 .sacola footer .parcela{margin-top:-10px;text-align:right;font-size:12px}
+
+/* ---------- conta de cliente: beneficios na sacola ---------- */
+.beneficios[hidden]{display:none}
+.beneficios{display:grid;gap:10px;font-size:13px;color:var(--texto-2)}
+.beneficios>div{display:flex;justify-content:space-between}
+.entrar-oferta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 14px;border:1px solid var(--linha);text-decoration:none}
+.entrar-oferta b{font-weight:400;color:var(--preto)}
+.entrar-oferta span{font-size:12px;text-decoration:underline}
+.usar-cb{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline;cursor:pointer}
+.usar-cb input{accent-color:var(--preto);width:15px;height:15px;transform:translateY(2px)}
+.usar-cb small{color:var(--cinza);font-size:12px;margin-left:4px}
+.sacola footer .ganha{font-size:12px;color:var(--cinza)}
+.conta-btn{display:grid;place-items:center;width:34px;height:34px;flex:none}
+.conta-btn svg{width:19px;height:19px}
