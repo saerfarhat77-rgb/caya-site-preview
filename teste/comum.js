@@ -8,7 +8,7 @@
   const PAGINAS = { inicio: ['teste/papel/index.html', ''], peca: ['teste/v2-peca/index.html', 'peca/'],
                     linha: ['teste/v2-linha/index.html', 'colecao/'], info: ['teste/v2-info/index.html', 'ajuda/'],
                     medidor: ['teste/v2-medidor/index.html', 'medir-aro/'], obrigado: ['teste/v2-obrigado/index.html', 'obrigado/'],
-                    conta: ['teste/v2-conta/index.html', 'conta/'], painel: ['teste/v2-painel/index.html', 'painel/'] };
+                    conta: ['teste/v2-conta/index.html', 'conta/'] };
   const pagina = (n) => RAIZ + PAGINAS[n][DEV ? 0 : 1];
   const naPagina = (n) => location.href.split(/[?#]/)[0].replace(/index\.html$/, '') === pagina(n).replace(/index\.html$/, '');
   const brl = (n) => 'R$ ' + n.toLocaleString('pt-BR', { minimumFractionDigits: Number.isInteger(n) ? 0 : 2, maximumFractionDigits: 2 });
@@ -181,7 +181,7 @@
     if (!r.ok) throw new Error(d.erro || 'Falha no servidor.');
     return d;
   }
-  /* visita: uma por pagina aberta (painel da Caya). Sem cookies; origem = 1a pagina da sessao. */
+  /* visita: uma por pagina aberta (estatisticas da Caya). Sem cookies; origem = 1a pagina da sessao. */
   function contarVisita() {
     if (!contaAtiva() || !visitante) return;
     const nomePag = Object.keys(PAGINAS).find((n) => naPagina(n));
